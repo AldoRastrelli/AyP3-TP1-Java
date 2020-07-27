@@ -1,14 +1,30 @@
 package algo3.tp2.modelo;
 
+import algo3.tp2.modelo.Boosts.Boost;
+import algo3.tp2.modelo.Preguntas.Pregunta;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Juego {
 
     List<Jugador> jugadores;
+    List<Pregunta> preguntas;
+    Jugador jugadorActual;
+    Pregunta preguntaActual;
+    RondaActual jugadasActuales;
+    List<Boost> boosters;
 
     public Juego(){
+
         jugadores = new ArrayList<>();
+        preguntas = new ArrayList<>();
+        jugadasActuales = new RondaActual();
+        boosters = new ArrayList<>();
+    }
+
+    public void iniciarJuego(){
+
     }
 
     public Jugador crearJugador(String nombre){
@@ -18,17 +34,10 @@ public class Juego {
         return jugador;
     }
 
-    public void compararRespuestas(List<Respuesta> respuestas, Pregunta pregunta){
+    public void calcularPuntaje(RondaActual rondaActual){
 
-        var puntajes = pregunta.compararRespuestaCon(respuestas);
 
-        var size = respuestas.size();
-        for (int i= 0 ; i < size; i++){
-            var jugador = jugadores.get(i);
-            var puntaje = puntajes.get(i);
-
-            jugador.sumarPuntos(puntaje);
-        }
     }
+
 
 }
