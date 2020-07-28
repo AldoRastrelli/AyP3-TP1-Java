@@ -30,4 +30,34 @@ public class MutipleChoiceClasicoTest {
         assertTrue(((MultipleChoice) pregunta).esRespuestaCorrecta(respuestaCorrecta));
     }
 
+    @Test
+    public void PreguntaMultipleClasicoRecibeListRtasYAsignaCorrectamentePuntosAJugadoresTest(){
+
+        var juego = new Juego();
+
+        juego.crearJugador("Marcos");
+        juego.crearJugador("Evelyn");
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); }};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.MultipleChoiceClasico(respuestaCorrecta);
+
+        Map<String,List<String>> respuestas = new HashMap<String,List<String>>(){{
+            put("Marcos",respuestaIncorrecta);
+            put("Evelyn",respuestaCorrecta);
+        }};
+
+        Map<String,Integer> puntajeEsperado = new HashMap<String,Integer>(){{
+            put("Marcos",0);
+            put("Evelyn",1);
+        }};
+
+        Map<String, Integer> puntajeObtenido = pregunta.determinarPuntaje(respuestas);
+
+        assertTrue((puntajeEsperado.get("Marcos")).equals(puntajeObtenido.get("Marcos")) &&
+                (puntajeEsperado.get("Evelyn")).equals(puntajeObtenido.get("Evelyn")));
+
+    }
+
 }
