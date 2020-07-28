@@ -2,15 +2,15 @@ package algo3.tp2.modelo.Preguntas;
 
 import algo3.tp2.modelo.Comportamientos.Comportamiento;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public abstract class Pregunta {
 
     protected List<String> opciones;
     protected List<String> respuestaCorrecta;
-    private Integer puntajeObtenido;
-    private Comportamiento comportamiento;
+    protected Integer puntajeObtenido;
+    protected Comportamiento comportamiento;
 
     public Pregunta(List<String> respuesta, Comportamiento comportamiento){
         respuestaCorrecta = respuesta;
@@ -21,5 +21,7 @@ public abstract class Pregunta {
         opciones.add(opcion);
     }
 
-    public abstract List<Integer> determinarPuntaje(List<List<String>> respuestas);
+    public abstract Map<String,Integer> determinarPuntaje(Map<String, List<String>> preguntas);
+
+    public abstract boolean esRespuestaCorrecta(List<String> respuesta);
 }

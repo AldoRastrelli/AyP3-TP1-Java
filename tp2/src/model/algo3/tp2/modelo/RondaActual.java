@@ -1,74 +1,70 @@
 package algo3.tp2.modelo;
 
 import algo3.tp2.modelo.Boosts.Boost;
+import algo3.tp2.modelo.Boosts.BoostExclusividad;
 import algo3.tp2.modelo.Preguntas.Pregunta;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class RondaActual {
 
-    List<Jugador> jugadores;
-    List<List<String>> respuestas;
-    List<Integer> puntajes;
-    List<Boost> boosts;
+    Map<String, List<String>> respuestas;
+    Map<String,Integer> puntajes;
+    Map<String,Boost> boosts;
     boolean boostExclusividad;
 
     public RondaActual(){
-        jugadores = new ArrayList<>();
-        respuestas = new ArrayList<>();
-        puntajes = new ArrayList<>();
-        boosts = new ArrayList<>();
-        boostExclusividad = false;
+        respuestas = new HashMap<String, List<String>>();
+        puntajes = new HashMap<String,Integer>();
+        boosts = new HashMap<String,Boost>();
+        /*boostExclusividad = false;*/
     }
 
-    public void determinarPuntajePara(Pregunta preguntaActual){
+    public void determinarPuntaje(Pregunta preguntaActual, Map<String,Jugador> jugadores){
 
         puntajes = preguntaActual.determinarPuntaje(respuestas);
 
-        if (boostExclusividad & !verificaBoostExclusivo(puntajes,boosts)) {
-            pasarPuntajesAJugadores();
+        if (seUsaBoostExclusividad(boosts) & !verificaBoostExclusivo(puntajes)) {
+            pasarPuntajes(jugadores);
             return;
         }
-            usarBoosts(puntajes,boosts);
+        usarBoosts(puntajes,boosts);
 
-        pasarPuntajesAJugadores();
-
-    }
-
-    private boolean verificaBoostExclusivo(List<Integer> puntajes, List<Boost> boosts){
-
-        var streamPuntajes = puntajes.stream();
-        streamPuntajes.filter(p -> p>=1); // filtra a los jugadores que no hayan acertado
-
-        return (streamPuntajes.count() == 1);
+        pasarPuntajes(jugadores);
 
     }
 
-    private List<Integer> usarBoosts(List<Integer> puntajes, List<Boost> boosts){
+    private boolean seUsaBoostExclusividad(Map<String,Boost> boosts){
 
-        List<Integer> nuevosPuntajes = new ArrayList<>();
-
-        Iterator<Integer> itPuntajes = puntajes.iterator();
-        Iterator<Boost> itBoosts = boosts.iterator();
-
-        while (itPuntajes.hasNext() && itBoosts.hasNext()) {
-
-            var boost = itBoosts.next();
-            var puntaje = itPuntajes.next();
-
-            nuevosPuntajes.add(boost.usarBoost(puntaje));
-        }
-
-        return nuevosPuntajes;
+        return boosts.containsValue(new BoostExclusividad());
     }
 
-    private void pasarPuntajesAJugadores(){
+    private boolean verificaBoostExclusivo( Map<String,Integer> puntajes){
 
-        for (int i = 0; i < jugadores.size(); i++) {
-            jugadores.get(i).actualizarPuntaje(puntajes.get(i));
-        }
+        var cantPuntajesNoNulos = puntajes.entrySet().stream().filter(p-> p.getValue() != 0).count();
+
+        return (cantPuntajesNoNulos == 1);
+
     }
 
+    private void usarBoosts(Map<String,Integer> puntajes, Map<String,Boost> boosts){
+
+        var jugadores = puntajes.keySet().stream();
+
+        jugadores.forEach( j->
+                puntajes.put
+                    ( j , boosts.get(j).usarBoost(puntajes.get(j) )
+                )
+        );
+
+    }
+
+    private void pasarPuntajes(Map<String,Jugador> jugadores){
+
+        var puntajes = this.puntajes.keySet().stream();
+
+        puntajes.forEach(jugador ->
+                jugadores.get(jugador).actualizarPuntaje( this.puntajes.get(jugador) )
+                );
+    }
 }

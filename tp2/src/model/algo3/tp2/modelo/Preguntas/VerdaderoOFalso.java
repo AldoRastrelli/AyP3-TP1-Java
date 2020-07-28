@@ -1,32 +1,29 @@
 package algo3.tp2.modelo.Preguntas;
 
-import algo3.tp2.modelo.Boosts.Boost;
 import algo3.tp2.modelo.Comportamientos.Comportamiento;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class VerdaderoOFalso extends Pregunta{
-
-    Integer puntajeCorrecto = 1;
 
     public VerdaderoOFalso(List<String> respuesta, Comportamiento comportamiento) {
         super(respuesta, comportamiento);
     }
 
-    public List<Integer> determinarPuntaje(List<List<String>> respuestas) {
+    public Map<String, Integer> determinarPuntaje( Map<String,List<String>> respuestas) {
 
-        List<Integer> puntajes = new ArrayList<>();
-        var itRespuestas = respuestas.iterator();
+        var puntajes = new HashMap<String,Integer>();
+        var jugadores = respuestas.keySet().stream();
 
-        while (itRespuestas.hasNext()) {
+        jugadores.forEach(j->
+                puntajes.put
+                        (j,
+                            esRespuestaCorrecta(respuestas.get(j)) ?
+                                comportamiento.calcularPuntaje(1,0) :
+                                    comportamiento.calcularPuntaje(0,1))
 
-            var respuesta = itRespuestas.next();
+        );
 
-            puntajes.add(esRespuestaCorrecta(respuesta) ? puntajeCorrecto : 0);
-        }
         return puntajes;
     }
 

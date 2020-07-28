@@ -1,6 +1,6 @@
 package algo3.tp2.modelo.Boosts;
 
-public class Boost {
+public abstract class Boost {
 
     Integer multiplicador;
 
