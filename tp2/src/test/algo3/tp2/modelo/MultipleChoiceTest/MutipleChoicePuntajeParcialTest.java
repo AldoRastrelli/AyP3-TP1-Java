@@ -29,4 +29,33 @@ public class MutipleChoicePuntajeParcialTest {
         assertTrue(((MultipleChoice) pregunta).esRespuestaCorrecta(respuestaCorrecta));
     }
 
+    @Test
+    public void PreguntaMultipleChoicePuntajeParcialRecibeListRtasYAsignaCorrectamentePuntosAJugadoresTest(){
+
+        var juego = new Juego();
+
+        juego.crearJugador("Marcos");
+        juego.crearJugador("Evelyn");
+
+        List<String> respuestaCompleta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
+        List<String> respuestaIncompleta = new ArrayList<String>(){{ add("Olas"); }};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.MultipleChoicePuntajeParcial(respuestaCompleta);
+
+        Map<String,List<String>> respuestas = new HashMap<String,List<String>>(){{
+            put("Marcos",respuestaIncompleta);
+            put("Evelyn",respuestaCompleta);
+        }};
+
+        Map<String,Integer> puntajeEsperado = new HashMap<String,Integer>(){{
+            put("Marcos",1);
+            put("Evelyn",2);
+        }};
+
+        Map<String, Integer> puntajeObtenido = pregunta.determinarPuntaje(respuestas);
+
+        assertTrue((puntajeEsperado.get("Marcos")).equals(puntajeObtenido.get("Marcos")) &&
+                (puntajeEsperado.get("Evelyn")).equals(puntajeObtenido.get("Evelyn")));
+
+    }
 }
