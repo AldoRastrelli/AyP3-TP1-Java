@@ -4,7 +4,9 @@ import algo3.tp2.modelo.Boosts.Boost;
 import algo3.tp2.modelo.Preguntas.Pregunta;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Juego {
 
@@ -36,7 +38,14 @@ public class Juego {
 
     public void calcularPuntaje(RondaActual rondaActual){
 
+        Map<String,Jugador> jugadores = new HashMap<>();
+        this.jugadores.stream().forEach(j-> jugadores.put(j.getNombre(), j));
 
+        rondaActual.determinarPuntaje( preguntaActual, jugadores );
+    }
+
+    public Jugador verJugador(int numeroJugador){
+        return jugadores.get(numeroJugador-1);
     }
 
 

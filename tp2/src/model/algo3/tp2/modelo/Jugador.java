@@ -26,6 +26,9 @@ public class Jugador {
 
     public void usarBoost(){ }
 
+    public String getNombre(){
+        return nombre;
+    }
 
 
 
