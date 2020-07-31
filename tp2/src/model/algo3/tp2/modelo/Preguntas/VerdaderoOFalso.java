@@ -10,22 +10,6 @@ public class VerdaderoOFalso extends Pregunta{
         super(respuesta, comportamiento);
     }
 
-    public Map<String, Integer> determinarPuntaje( Map<String,List<String>> respuestas) {
-
-        var puntajes = new HashMap<String,Integer>();
-        var jugadores = respuestas.keySet().stream();
-
-        jugadores.forEach(j->
-                puntajes.put
-                        (j,
-                            esRespuestaCorrecta(respuestas.get(j)) ?
-                                comportamiento.calcularPuntaje(1,0) :
-                                    comportamiento.calcularPuntaje(0,1))
-
-        );
-
-        return puntajes;
-    }
 
     public boolean esRespuestaCorrecta(List<String> respuesta){
 

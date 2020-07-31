@@ -55,8 +55,7 @@ public class MutipleChoiceClasicoTest {
 
         Map<String, Integer> puntajeObtenido = pregunta.determinarPuntaje(respuestas);
 
-        assertTrue((puntajeEsperado.get("Marcos")).equals(puntajeObtenido.get("Marcos")) &&
-                (puntajeEsperado.get("Evelyn")).equals(puntajeObtenido.get("Evelyn")));
+        assertTrue(puntajeObtenido.equals(puntajeEsperado));
 
     }
 

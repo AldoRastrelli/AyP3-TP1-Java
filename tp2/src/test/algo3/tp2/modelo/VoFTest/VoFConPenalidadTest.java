@@ -1,4 +1,4 @@
-package algo3.tp2.modelo.VoF;
+package algo3.tp2.modelo.VoFTest;
 
 import algo3.tp2.modelo.FactoryPreguntas.FactoryPreguntas;
 import algo3.tp2.modelo.Juego;
@@ -52,8 +52,7 @@ public class VoFConPenalidadTest {
 
         Map<String, Integer> puntajeObtenido = pregunta.determinarPuntaje(respuestas);
 
-        assertTrue((puntajeEsperado.get("Marcos")).equals(puntajeObtenido.get("Marcos")) &
-                (puntajeEsperado.get("Evelyn")).equals(puntajeObtenido.get("Evelyn")));
+        assertTrue(puntajeObtenido.equals(puntajeEsperado));
 
     }
 }
