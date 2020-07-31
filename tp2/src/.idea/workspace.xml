@@ -20,7 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73f75cae-a863-4081-a848-04850b148fef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test/algo3/tp2/modelo/MultipleChoiceTest/MultpleChoiceAsignaPuntaje.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/algo3/tp2/modelo/AgruparTest/AgruparTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/algo3/tp2/modelo/AgruparTest/AgruparTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,5 +69,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
