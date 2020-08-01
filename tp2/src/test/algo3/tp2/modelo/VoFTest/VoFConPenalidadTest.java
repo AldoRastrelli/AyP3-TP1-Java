@@ -1,12 +1,11 @@
 package algo3.tp2.modelo.VoFTest;
 
-import algo3.tp2.modelo.Boosts.Boost;
 import algo3.tp2.modelo.Boosts.BoostDuplicador;
 import algo3.tp2.modelo.Boosts.BoostSimple;
 import algo3.tp2.modelo.FactoryPreguntas.FactoryPreguntas;
 import algo3.tp2.modelo.Juego;
 import algo3.tp2.modelo.Jugador;
-import algo3.tp2.modelo.NoTieneBoostDisponibleException;
+import algo3.tp2.modelo.Exceptions.NoTieneBoostDisponibleException;
 import algo3.tp2.modelo.Preguntas.Pregunta;
 import algo3.tp2.modelo.Preguntas.VerdaderoOFalso;
 import algo3.tp2.modelo.RondaActual;

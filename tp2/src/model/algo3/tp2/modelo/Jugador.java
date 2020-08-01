@@ -4,6 +4,7 @@ import algo3.tp2.modelo.Boosts.Boost;
 import algo3.tp2.modelo.Boosts.BoostDuplicador;
 import algo3.tp2.modelo.Boosts.BoostExclusividad;
 import algo3.tp2.modelo.Boosts.BoostTriplicador;
+import algo3.tp2.modelo.Exceptions.NoTieneBoostDisponibleException;
 
 import java.util.Map;
 

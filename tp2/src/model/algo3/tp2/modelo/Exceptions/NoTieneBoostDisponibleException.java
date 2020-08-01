@@ -1,4 +1,4 @@
-package algo3.tp2.modelo;
+package algo3.tp2.modelo.Exceptions;
 
 public class NoTieneBoostDisponibleException extends Exception{
 
