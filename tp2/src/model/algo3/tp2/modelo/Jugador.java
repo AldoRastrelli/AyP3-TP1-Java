@@ -6,6 +6,7 @@ import algo3.tp2.modelo.Boosts.BoostExclusividad;
 import algo3.tp2.modelo.Boosts.BoostTriplicador;
 import algo3.tp2.modelo.Exceptions.NoTieneBoostDisponibleException;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Jugador {
@@ -17,9 +18,10 @@ public class Jugador {
     public Jugador(String nombre){
         this.nombre = nombre;
         this.puntos = 0;
-        boosts.put(new BoostDuplicador(),1);
-        boosts.put(new BoostTriplicador(),1);
-        boosts.put(new BoostExclusividad(),2);
+        boosts = new HashMap<Boost, Integer>();
+        boosts.put(new BoostDuplicador(),(Integer)1);
+        boosts.put(new BoostTriplicador(),(Integer)1);
+        boosts.put(new BoostExclusividad(),(Integer)2);
     }
 
     public Integer getPuntos() {
