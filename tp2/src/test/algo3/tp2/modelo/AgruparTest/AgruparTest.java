@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 public class AgruparTest {
 
     @Test
-    public void PreguntaAgruparClasicoPuedeCrearseIndicandoRespuestaCorrectaTest() {
+    public void PreguntaAgruparPuedeCrearseIndicandoRespuestaCorrectaTest() {
 
         List<String> respuestaCorrecta = new ArrayList<>();
         respuestaCorrecta.add("Pan");
@@ -28,11 +28,11 @@ public class AgruparTest {
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.Agrupar(respuestaCorrecta);
 
-        assertTrue(((Agrupar) pregunta).esRespuestaCorrecta(respuestaCorrecta));
+        assertTrue((pregunta).esRespuestaCorrecta(respuestaCorrecta));
     }
 
     @Test
-    public void PreguntaMultipleClasicoRecibeListRtasYAsignaCorrectamentePuntosAJugadoresTest(){
+    public void PreguntaAgruparRecibeListRtasYAsignaCorrectamentePuntosAJugadoresTest(){
 
         var juego = new Juego();
 
