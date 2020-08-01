@@ -20,10 +20,10 @@ public class AgruparTest {
         List<String> respuestaCorrecta = new ArrayList<>();
         respuestaCorrecta.add("Pan");
         respuestaCorrecta.add("Hamburguesa");
-        respuestaCorrecta.add("0");
+        respuestaCorrecta.add("\0");
         respuestaCorrecta.add("Agua");
         respuestaCorrecta.add("Coca-Cola");
-        respuestaCorrecta.add("0");
+        respuestaCorrecta.add("\0");
 
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.Agrupar(respuestaCorrecta);
@@ -39,8 +39,8 @@ public class AgruparTest {
         juego.crearJugador("Marcos");
         juego.crearJugador("Evelyn");
 
-        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("0"); add("Agua"); add("Coca-Cola"); add("0");}};
-        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("0"); add("Pan"); add("Coca-Cola"); add("0"); }};
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("\0"); add("Agua"); add("Coca-Cola"); add("\0");}};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("\0"); add("Pan"); add("Coca-Cola"); add("\0"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.Agrupar(respuestaCorrecta);
 

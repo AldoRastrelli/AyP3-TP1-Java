@@ -46,7 +46,7 @@ public class Agrupar extends Pregunta{
 
     private int guardarRespuestas(int index, List<String> grupo, List<String> respuesta){
 
-        while (!respuesta.get(index).equals("0")){
+        while (!respuesta.get(index).equals("\0")){
             grupo.add(respuesta.get(index));
             index++;
         }

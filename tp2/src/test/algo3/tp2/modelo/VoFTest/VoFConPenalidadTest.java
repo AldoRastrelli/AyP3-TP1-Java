@@ -1,9 +1,13 @@
 package algo3.tp2.modelo.VoFTest;
 
+import algo3.tp2.modelo.Boosts.Boost;
+import algo3.tp2.modelo.Boosts.BoostDuplicador;
+import algo3.tp2.modelo.Boosts.BoostSimple;
 import algo3.tp2.modelo.FactoryPreguntas.FactoryPreguntas;
 import algo3.tp2.modelo.Juego;
 import algo3.tp2.modelo.Preguntas.Pregunta;
 import algo3.tp2.modelo.Preguntas.VerdaderoOFalso;
+import algo3.tp2.modelo.RondaActual;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -54,5 +58,39 @@ public class VoFConPenalidadTest {
 
         assertTrue(puntajeObtenido.equals(puntajeEsperado));
 
+    }
+
+    @Test
+    public void PreguntaVoFConPenalidadYJugadorUsaMultiplicadorPorDosDevuelvePuntajeDuplicado(){
+        var juego = new Juego();
+
+        juego.crearJugador("Marcos");
+        juego.crearJugador("Evelyn");
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Verdadero"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Falso"); }};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.VerdaderoOFalsoConPenalidad(respuestaCorrecta);
+
+        Map<String,List<String>> respuestas = new HashMap<String,List<String>>(){{
+            put("Marcos",respuestaCorrecta);
+            put("Evelyn",respuestaIncorrecta);
+        }};
+
+        Map<String,Boost> boosters = new HashMap<String,Boost>(){{
+            put("Marcos", new BoostDuplicador());
+            put("Evelyn", new BoostSimple());
+        }};
+
+        Map<String,Integer> puntajeEsperado = new HashMap<String,Integer>(){{
+            put("Marcos",2);
+            put("Evelyn",-1);
+        }};
+
+        RondaActual rondaActual = new RondaActual();
+
+        Map<String, Integer> puntajeObtenido = pregunta.determinarPuntaje(respuestas);
+
+        assertTrue(puntajeObtenido.equals(puntajeEsperado));
     }
 }
