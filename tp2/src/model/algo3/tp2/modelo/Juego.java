@@ -44,6 +44,10 @@ public class Juego {
         rondaActual.determinarPuntaje( preguntaActual, jugadores );
     }
 
+    public void guardarPreguntaActual(Pregunta pregunta){
+        preguntaActual = pregunta;
+    }
+
     public Jugador verJugador(int numeroJugador){
         return jugadores.get(numeroJugador-1);
     }

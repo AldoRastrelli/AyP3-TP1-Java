@@ -1,6 +1,9 @@
 package algo3.tp2.modelo;
 
 import algo3.tp2.modelo.Boosts.Boost;
+import algo3.tp2.modelo.Boosts.BoostDuplicador;
+import algo3.tp2.modelo.Boosts.BoostExclusividad;
+import algo3.tp2.modelo.Boosts.BoostTriplicador;
 
 import java.util.Map;
 
@@ -13,6 +16,9 @@ public class Jugador {
     public Jugador(String nombre){
         this.nombre = nombre;
         this.puntos = 0;
+        boosts.put(new BoostDuplicador(),1);
+        boosts.put(new BoostTriplicador(),1);
+        boosts.put(new BoostExclusividad(),2);
     }
 
     public Integer getPuntos() {
@@ -24,7 +30,12 @@ public class Jugador {
         this.puntos += puntosNuevos;
     }
 
-    public void usarBoost(){ }
+    public void usarBoost(Boost boost) throws NoTieneBoostDisponibleException {
+        if(boosts.get(boost) < 1){
+            throw new NoTieneBoostDisponibleException();
+        }
+        boosts.put(boost, boosts.get(boost) -1);
+    }
 
     public String getNombre(){
         return nombre;
