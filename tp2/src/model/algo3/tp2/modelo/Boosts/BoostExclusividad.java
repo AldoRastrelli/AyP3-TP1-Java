@@ -4,6 +4,7 @@ public class BoostExclusividad extends Boost{
 
     public BoostExclusividad(){
         multiplicador = 2;
+        nombre = "Exclusividad";
     }
 
     public void duplicarExclusivo(){

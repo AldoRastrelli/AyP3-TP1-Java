@@ -100,15 +100,7 @@ public class VoFConPenalidadTest {
         BoostDuplicador duplicador = new BoostDuplicador();
         BoostSimple simple = new BoostSimple();
 
-        boolean thrown = false;
-
-        try {
-            jugador1.usarBoost(duplicador);
-        } catch (NoTieneBoostDisponibleException e) {
-            thrown = true;
-        }
-
-        assertFalse(thrown);
+        jugador1.usarBoost(duplicador.getNombre());
 
         RondaActual rondaActual = new RondaActual();
         rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, duplicador);
@@ -117,12 +109,7 @@ public class VoFConPenalidadTest {
         juego.guardarPreguntaActual(pregunta);
         juego.calcularPuntaje(rondaActual);
 
-        try{jugador1.usarBoost(duplicador);
-        } catch (NoTieneBoostDisponibleException e) {
-            thrown = true;
-        }
-
-        assertTrue(thrown);
+        jugador1.usarBoost(duplicador.getNombre());
     }
 
 }

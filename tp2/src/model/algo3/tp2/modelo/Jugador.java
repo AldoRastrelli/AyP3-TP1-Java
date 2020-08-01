@@ -13,15 +13,15 @@ public class Jugador {
 
     private String nombre;
     private Integer puntos;
-    private Map<Boost,Integer> boosts;
+    private Map<String,Integer> boosts;
 
     public Jugador(String nombre){
         this.nombre = nombre;
         this.puntos = 0;
-        boosts = new HashMap<Boost, Integer>();
-        boosts.put(new BoostDuplicador(),(Integer)1);
-        boosts.put(new BoostTriplicador(),(Integer)1);
-        boosts.put(new BoostExclusividad(),(Integer)2);
+        boosts = new HashMap<String, Integer>();
+        boosts.put("Duplicador",(Integer)1);
+        boosts.put("Triplicador",(Integer)1);
+        boosts.put("Exclusividad",(Integer)2);
     }
 
     public Integer getPuntos() {
@@ -33,7 +33,7 @@ public class Jugador {
         this.puntos += puntosNuevos;
     }
 
-    public void usarBoost(Boost boost) throws NoTieneBoostDisponibleException {
+    public void usarBoost(String boost){
         if(boosts.get(boost) < 1){
             throw new NoTieneBoostDisponibleException();
         }
