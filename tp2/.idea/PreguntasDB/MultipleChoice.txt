@@ -1,0 +1,3 @@
+¿Qué errores puede tirar el SIU en semana de inscripciones?
+505;500;400;200
+505;500;400

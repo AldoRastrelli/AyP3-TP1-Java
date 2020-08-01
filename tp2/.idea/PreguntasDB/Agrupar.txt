@@ -1,0 +1,5 @@
+A
+¿Qué materias pertenecen a qué carrera?
+Ingeniería en Informática;Licenciatura en Sistemas
+Laboratorio;Física;Matemática Discreta
+Laboratorio;Física;0;Matemática Discreta;0

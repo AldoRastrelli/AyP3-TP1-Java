@@ -20,6 +20,11 @@ public class RondaActual {
         /*boostExclusividad = false;*/
     }
 
+    public void guardarRespuesta(String nombreJugador, List<String> respuesta, Boost boost){
+        respuestas.put(nombreJugador,respuesta);
+        boosts.put(nombreJugador,boost);
+    }
+
     public void determinarPuntaje(Pregunta preguntaActual, Map<String,Jugador> jugadores){
 
         puntajes = preguntaActual.determinarPuntaje(respuestas);
