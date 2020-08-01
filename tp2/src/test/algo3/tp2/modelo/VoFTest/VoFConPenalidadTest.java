@@ -80,11 +80,9 @@ public class VoFConPenalidadTest {
         juego.guardarPreguntaActual(pregunta);
         juego.calcularPuntaje(rondaActual);
 
-        Integer puntajeObtenido = 2;
-        assertEquals(puntajeObtenido, jugador1.getPuntos());
+        Integer puntajeIncorrecto = -1;
+        assertTrue( jugador1.getPuntos().equals((Integer) 2) && jugador2.getPuntos().equals(puntajeIncorrecto));
 
-        puntajeObtenido = -1;
-        assertEquals(puntajeObtenido, jugador2.getPuntos());
     }
 
     @Test(expected = NoTieneBoostDisponibleException.class)
