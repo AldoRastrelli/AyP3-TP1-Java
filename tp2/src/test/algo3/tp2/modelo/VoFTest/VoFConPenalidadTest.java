@@ -186,5 +186,48 @@ public class VoFConPenalidadTest {
         assertTrue( jugador1.getPuntos().equals((Integer) 3) && jugador2.getPuntos().equals((Integer) (-2)));
     }
 
+    @Test
+    public void JugadorUsaMultiplicadorx2PeroRespuestaIncorrectaEntoncesPierde2Puntos(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Verdadero"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Falso"); }};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.VerdaderoOFalsoConPenalidad(respuestaCorrecta);
+
+        RondaActual rondaActual = new RondaActual();
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrecta, new BoostDuplicador());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaCorrecta, new BoostSimple());
+
+        juego.guardarPreguntaActual(pregunta);
+        juego.calcularPuntaje(rondaActual);
+
+        assertTrue( jugador1.getPuntos().equals((Integer) (-2)));
+    }
+
+    @Test
+    public void JugadorUsaMultiplicadorx3PeroRespuestaIncorrectaEntoncesPierde3Puntos(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Verdadero"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Falso"); }};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.VerdaderoOFalsoConPenalidad(respuestaCorrecta);
+
+        RondaActual rondaActual = new RondaActual();
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrecta, new BoostTriplicador());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaCorrecta, new BoostSimple());
+
+        juego.guardarPreguntaActual(pregunta);
+        juego.calcularPuntaje(rondaActual);
+
+        assertTrue( jugador1.getPuntos().equals((Integer) (-3)));
+    }
 }
 
