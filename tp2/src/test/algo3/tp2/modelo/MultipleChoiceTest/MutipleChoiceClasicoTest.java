@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class MutipleChoiceClasicoTest {
@@ -55,7 +56,7 @@ public class MutipleChoiceClasicoTest {
 
         Map<String, Integer> puntajeObtenido = pregunta.determinarPuntaje(respuestas);
 
-        assertTrue(puntajeObtenido.equals(puntajeEsperado));
+        assertEquals(puntajeEsperado, puntajeObtenido);
 
     }
 

@@ -26,22 +26,22 @@ public class MultipleChoice extends Pregunta{
                         puntajes.put(j, obtenerPuntaje(respuestas.get(j)))
         );
 
-
         return puntajes;
     }
 
     public Integer obtenerPuntaje(List<String> respuesta){
 
-        if(esRespuestaCorrecta(respuesta)){return comportamiento.calcularPuntaje(respuesta.size(),0);}
+        if(esRespuestaCorrecta(respuesta)){return comportamiento.calcularPuntaje(respuesta.size(),0, true);}
 
         // calcula la cant de respuestas correctas e incorrectas para calcular su puntaje final
 
         Integer cantCorrectasPregunta = Math.toIntExact(respuestaCorrecta.stream().count());
+        Integer cantRespuestasJugador = Math.toIntExact(respuesta.size());
 
         Integer respuestasCorrectasUsuario = Math.toIntExact(respuestaCorrecta.stream().filter(respuesta::contains).count());
-        Integer respuestasIncorrectasUsuario = cantCorrectasPregunta - respuestasCorrectasUsuario;
+        Integer respuestasIncorrectasUsuario = cantRespuestasJugador - respuestasCorrectasUsuario;
 
-        return comportamiento.calcularPuntaje(respuestasCorrectasUsuario,respuestasIncorrectasUsuario);
+        return comportamiento.calcularPuntaje(respuestasCorrectasUsuario, respuestasIncorrectasUsuario, respuestasCorrectasUsuario.equals(cantCorrectasPregunta));
     }
 
     @Override

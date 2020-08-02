@@ -6,7 +6,7 @@ public class ComportamientoConPenalidad extends Comportamiento{
         valorPuntajeIncorrecto = -1;
     }
 
-    public Integer calcularPuntaje(Integer respuestasCorrectas, Integer respuestasIncorrectas){
-        return respuestasIncorrectas == 0 ? valorPuntajeCorrecto : valorPuntajeIncorrecto;
+    public Integer calcularPuntaje(Integer respuestasCorrectas, Integer respuestasIncorrectas, boolean cantRespuestasUsuarioCoincideConCantCorrectas){
+        return (valorPuntajeCorrecto * respuestasCorrectas) + (valorPuntajeIncorrecto * respuestasIncorrectas);
     }
 }

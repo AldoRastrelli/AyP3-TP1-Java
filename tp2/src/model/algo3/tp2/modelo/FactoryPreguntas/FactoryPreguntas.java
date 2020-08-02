@@ -24,6 +24,10 @@ public class FactoryPreguntas {
         return new MultipleChoice(respuestaCorrecta, new ComportamientoClasico());
     }
 
+    public MultipleChoice MultipleChoiceConPenalidad(List<String> respuestaCorrecta){
+        return new MultipleChoice(respuestaCorrecta, new ComportamientoConPenalidad());
+    }
+
     public MultipleChoice MultipleChoicePuntajeParcial(List<String> respuestaCorrecta){
         return new MultipleChoice(respuestaCorrecta, new ComportamientoPuntajeParcial());
     }

@@ -31,8 +31,8 @@ public abstract class Pregunta {
                 puntajes.put
                         (j,
                                 esRespuestaCorrecta(respuestas.get(j)) ?
-                                        comportamiento.calcularPuntaje(1,0) :
-                                        comportamiento.calcularPuntaje(0,1))
+                                        comportamiento.calcularPuntaje(1,0, true) :
+                                        comportamiento.calcularPuntaje(0,1, false))
 
         );
 
