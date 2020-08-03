@@ -23,28 +23,32 @@ public class RondaActual {
     public void guardarRespuesta(String nombreJugador, List<String> respuesta, Boost boost){
         respuestas.put(nombreJugador,respuesta);
         boosts.put(nombreJugador,boost);
+        puntajes.put(nombreJugador,0);
+        if(boost.esBoostExclusivo()){
+            boostExclusividad = true;
+        }
     }
 
     public void determinarPuntaje(Pregunta preguntaActual, Map<String,Jugador> jugadores){
 
         puntajes = preguntaActual.determinarPuntaje(respuestas);
 
-        if (seUsaBoostExclusividad(boosts) & !verificaBoostExclusivo(puntajes)) {
+        if (seUsaBoostExclusividad() & !verificaBoostExclusivo()) {
             pasarPuntajes(jugadores);
             return;
         }
-        usarBoosts(puntajes,boosts);
+        usarBoosts();
 
         pasarPuntajes(jugadores);
         return;
     }
 
-    private boolean seUsaBoostExclusividad(Map<String,Boost> boosts){
+    private boolean seUsaBoostExclusividad(){
 
-        return boosts.containsValue(new BoostExclusividad());
+        return boostExclusividad;
     }
 
-    private boolean verificaBoostExclusivo( Map<String,Integer> puntajes){
+    private boolean verificaBoostExclusivo(){
 
         var cantPuntajesNoNulos = puntajes.entrySet().stream().filter(p-> p.getValue() != 0).count();
 
@@ -52,7 +56,7 @@ public class RondaActual {
 
     }
 
-    private void usarBoosts(Map<String,Integer> puntajes, Map<String,Boost> boosts){
+    private void usarBoosts(){
 
         var jugadores = puntajes.keySet().stream();
 

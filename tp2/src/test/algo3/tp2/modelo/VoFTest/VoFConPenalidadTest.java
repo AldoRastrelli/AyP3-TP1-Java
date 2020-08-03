@@ -68,18 +68,19 @@ public class VoFConPenalidadTest {
 
         Jugador jugador1 = juego.crearJugador("Marcos");
         Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Verdadero"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Falso"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.VerdaderoOFalsoConPenalidad(respuestaCorrecta);
 
-        RondaActual rondaActual = new RondaActual();
-        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, new BoostDuplicador());
-        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, new BoostSimple());
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostDuplicador());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.noUsarBoost());
 
         juego.guardarPreguntaActual(pregunta);
-        juego.calcularPuntaje(rondaActual);
+
+        juego.calcularPuntaje();
 
         Integer puntajeIncorrecto = -1;
         assertTrue( jugador1.getPuntos().equals((Integer) 2) && jugador2.getPuntos().equals(puntajeIncorrecto));
@@ -92,25 +93,20 @@ public class VoFConPenalidadTest {
 
         Jugador jugador1 = juego.crearJugador("Marcos");
         Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Verdadero"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Falso"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.VerdaderoOFalsoConPenalidad(respuestaCorrecta);
 
-        BoostDuplicador duplicador = new BoostDuplicador();
-        BoostSimple simple = new BoostSimple();
-
-        jugador1.usarBoost(duplicador.getNombre());
-
-        RondaActual rondaActual = new RondaActual();
-        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, duplicador);
-        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, simple);
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostDuplicador());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.noUsarBoost());
 
         juego.guardarPreguntaActual(pregunta);
-        juego.calcularPuntaje(rondaActual);
 
-        jugador1.usarBoost(duplicador.getNombre());
+        juego.calcularPuntaje();
+        juego.calcularPuntaje();
     }
 
     @Test
@@ -119,18 +115,19 @@ public class VoFConPenalidadTest {
 
         Jugador jugador1 = juego.crearJugador("Marcos");
         Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Verdadero"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Falso"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.VerdaderoOFalsoConPenalidad(respuestaCorrecta);
 
-        RondaActual rondaActual = new RondaActual();
-        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, new BoostTriplicador());
-        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, new BoostSimple());
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostTriplicador());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.noUsarBoost());
 
         juego.guardarPreguntaActual(pregunta);
-        juego.calcularPuntaje(rondaActual);
+
+        juego.calcularPuntaje();
 
         Integer puntajeIncorrecto = -1;
         assertTrue( jugador1.getPuntos().equals((Integer) 3) && jugador2.getPuntos().equals(puntajeIncorrecto));
@@ -143,25 +140,20 @@ public class VoFConPenalidadTest {
 
         Jugador jugador1 = juego.crearJugador("Marcos");
         Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Verdadero"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Falso"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.VerdaderoOFalsoConPenalidad(respuestaCorrecta);
 
-        BoostTriplicador triplicador = new BoostTriplicador();
-        BoostSimple simple = new BoostSimple();
-
-        jugador1.usarBoost(triplicador.getNombre());
-
-        RondaActual rondaActual = new RondaActual();
-        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, triplicador);
-        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, simple);
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostTriplicador());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.noUsarBoost());
 
         juego.guardarPreguntaActual(pregunta);
-        juego.calcularPuntaje(rondaActual);
 
-        jugador1.usarBoost(triplicador.getNombre());
+        juego.calcularPuntaje();
+        juego.calcularPuntaje();
     }
 
     @Test
@@ -170,18 +162,19 @@ public class VoFConPenalidadTest {
 
         Jugador jugador1 = juego.crearJugador("Marcos");
         Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Verdadero"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Falso"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.VerdaderoOFalsoConPenalidad(respuestaCorrecta);
 
-        RondaActual rondaActual = new RondaActual();
-        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, new BoostTriplicador());
-        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, new BoostDuplicador());
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostTriplicador());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.elegirBoostDuplicador());
 
         juego.guardarPreguntaActual(pregunta);
-        juego.calcularPuntaje(rondaActual);
+
+        juego.calcularPuntaje();
 
         assertTrue( jugador1.getPuntos().equals((Integer) 3) && jugador2.getPuntos().equals((Integer) (-2)));
     }
@@ -192,19 +185,19 @@ public class VoFConPenalidadTest {
 
         Jugador jugador1 = juego.crearJugador("Marcos");
         Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Verdadero"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Falso"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.VerdaderoOFalsoConPenalidad(respuestaCorrecta);
 
-        RondaActual rondaActual = new RondaActual();
-        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrecta, new BoostDuplicador());
-        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaCorrecta, new BoostSimple());
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrecta, jugador1.elegirBoostDuplicador());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.elegirBoostDuplicador());
 
         juego.guardarPreguntaActual(pregunta);
-        juego.calcularPuntaje(rondaActual);
 
+        juego.calcularPuntaje();
         assertTrue( jugador1.getPuntos().equals((Integer) (-2)));
     }
 
@@ -214,20 +207,19 @@ public class VoFConPenalidadTest {
 
         Jugador jugador1 = juego.crearJugador("Marcos");
         Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Verdadero"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Falso"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.VerdaderoOFalsoConPenalidad(respuestaCorrecta);
 
-        RondaActual rondaActual = new RondaActual();
-        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrecta, new BoostTriplicador());
-        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaCorrecta, new BoostSimple());
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrecta, jugador1.elegirBoostTriplicador());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.elegirBoostDuplicador());
 
         juego.guardarPreguntaActual(pregunta);
-        juego.calcularPuntaje(rondaActual);
 
-        assertTrue( jugador1.getPuntos().equals((Integer) (-3)));
+        juego.calcularPuntaje();
     }
 }
 

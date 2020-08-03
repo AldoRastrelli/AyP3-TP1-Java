@@ -14,19 +14,23 @@ public class Juego {
     List<Pregunta> preguntas;
     Jugador jugadorActual;
     Pregunta preguntaActual;
-    RondaActual jugadasActuales;
+    RondaActual rondaActual;
     List<Boost> boosters;
 
     public Juego(){
 
         jugadores = new ArrayList<>();
         preguntas = new ArrayList<>();
-        jugadasActuales = new RondaActual();
         boosters = new ArrayList<>();
     }
 
     public void iniciarJuego(){
 
+    }
+
+    public RondaActual crearRondaActual(){
+        rondaActual = new RondaActual();
+        return rondaActual;
     }
 
     public Jugador crearJugador(String nombre){
@@ -36,7 +40,7 @@ public class Juego {
         return jugador;
     }
 
-    public void calcularPuntaje(RondaActual rondaActual){
+    public void calcularPuntaje(){
 
         Map<String,Jugador> jugadores = new HashMap<>();
         this.jugadores.stream().forEach(j-> jugadores.put(j.getNombre(), j));

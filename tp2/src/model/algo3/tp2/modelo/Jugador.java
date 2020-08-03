@@ -1,9 +1,6 @@
 package algo3.tp2.modelo;
 
-import algo3.tp2.modelo.Boosts.Boost;
-import algo3.tp2.modelo.Boosts.BoostDuplicador;
-import algo3.tp2.modelo.Boosts.BoostExclusividad;
-import algo3.tp2.modelo.Boosts.BoostTriplicador;
+import algo3.tp2.modelo.Boosts.*;
 import algo3.tp2.modelo.Exceptions.NoTieneBoostDisponibleException;
 
 import java.util.HashMap;
@@ -13,15 +10,15 @@ public class Jugador {
 
     private String nombre;
     private Integer puntos;
-    private Map<String,Integer> boosts;
+    private Map<String,Boost> boosts;
 
     public Jugador(String nombre){
         this.nombre = nombre;
         this.puntos = 0;
-        boosts = new HashMap<String, Integer>();
-        boosts.put("Duplicador",(Integer)1);
-        boosts.put("Triplicador",(Integer)1);
-        boosts.put("Exclusividad",(Integer)2);
+        boosts = new HashMap<String, Boost>();
+        boosts.put("Duplicador",new BoostDuplicador());
+        boosts.put("Triplicador",new BoostTriplicador());
+        boosts.put("Exclusividad",new BoostExclusividad());
     }
 
     public Integer getPuntos() {
@@ -33,18 +30,32 @@ public class Jugador {
         this.puntos += puntosNuevos;
     }
 
-    public void usarBoost(String boost){
-        if(boosts.get(boost) < 1){
+/*    public void usarBoost(Boost boost){
+        if(!boost.puedeUsarse()){
             throw new NoTieneBoostDisponibleException();
         }
-        boosts.put(boost, boosts.get(boost) -1);
-    }
+        boost.restarUso();
+    }*/
 
     public String getNombre(){
         return nombre;
     }
 
+    public Boost elegirBoostDuplicador(){
+        return boosts.get("Duplicador");
+    }
 
+    public Boost elegirBoostTriplicador(){
+        return boosts.get("Triplicador");
+    }
+
+    public Boost elegirBoostExclusivo(){
+        return boosts.get("Exclusivo");
+    }
+
+    public Boost noUsarBoost(){
+        return new BoostSimple();
+    }
 
 
 }
