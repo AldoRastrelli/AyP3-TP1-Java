@@ -1,4 +1,0 @@
-O
-¿En qué orden se pueden realizar las siguientes materias?
-Taller de Programación I;Análisis MatemáticoII;Técnicas de Diseño;Análisis Numérico I; Análisis de la Información
-Análisis MatemáticoII;Análisis Numérico I; Taller de Programación I;Análisis de la Información;Técnicas de Diseño
