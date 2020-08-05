@@ -55,7 +55,10 @@ public class ContenedorPresentacionJugadores extends VBox {
         nombre2.setTextFill(Color.web("000000"));
 
         Boton botonComenzar = new Boton("COMENZAR", cc);
-        Boton botonMute = new Boton("MUTE",new BotonMutear());
+
+        Image imagenMute = new Image("/Recursos/Imagenes/speaker.png",20,20,true,true);
+        final ImageView imagenMuteVista = new ImageView(imagenMute);
+        Boton botonMute = new Boton("",imagenMuteVista,new BotonMutear());
 
         this.getChildren().addAll(decanoVista, discurso, nombre1, nombre2, botonComenzar, botonMute);
     }
@@ -71,10 +74,14 @@ public class ContenedorPresentacionJugadores extends VBox {
         centro = new Pane(fondo);
     }
 
-    public void setBotonJugar(Stage stage, Scene escenaAnterior){
+    public void setBotonVolver(Stage stage, Scene escenaAnterior){
         cc = new ControladorVolver(stage, escenaAnterior);
-        Boton botonEntrar = new Boton("MENÚ PRINCIPAL", cc);
-        this.getChildren().add(6, botonEntrar);
+
+        Image imagenMute = new Image("/Recursos/Imagenes/house.png",20,20,true,true);
+        final ImageView imagenMuteVista = new ImageView(imagenMute);
+
+        Boton botonVolver = new Boton("MENÚ PRINCIPAL",imagenMuteVista, cc);
+        this.getChildren().add(5, botonVolver);
     }
 
 //    private void setLayout(){

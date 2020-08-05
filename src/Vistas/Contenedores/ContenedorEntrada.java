@@ -7,6 +7,7 @@ import Vistas.Boton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,6 +18,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import javax.swing.text.html.CSS;
 import java.util.ArrayList;
 
 public class ContenedorEntrada extends VBox {
@@ -67,7 +70,11 @@ public class ContenedorEntrada extends VBox {
 
 //        Boton botonEntrar = new Boton("JUGAR", cc);
 
-        Boton botonMutear = new Boton("Mutear", new BotonMutear());
+        Image imagenMute = new Image("/Recursos/Imagenes/speaker.png",20,20,true,true);
+        final ImageView imagenMuteVista = new ImageView(imagenMute);
+
+        Boton botonMutear = new Boton("",imagenMuteVista, new BotonMutear());
+
 
         this.getChildren().addAll(titulo,subtitulo, imagenVista, story, label, vb, disclaimer, botonMutear);
     }
