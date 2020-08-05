@@ -3,17 +3,12 @@ package Vistas;
 //import Controladores.Sistema;
 //import Modelo.Jugador;
 import Controladores.Sistema;
+import Vistas.Contenedores.ContenedorEntrada;
+import Vistas.Contenedores.ContenedorPresentacionJugadores;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import model.Juego;
-
-import java.io.File;
-import java.util.ArrayList;
 
 public class Main extends Application {
 
@@ -35,12 +30,13 @@ public class Main extends Application {
 
         ContenedorEntrada contenedorEntrada = new ContenedorEntrada();
         Scene escenaBienvenidos = new Scene (contenedorEntrada);
-//        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal();
-//        Scene escenaJuego = new Scene(contenedorPrincipal);
-//
-//        contenedorEntrada.setBotonJugar(primaryStage,escenaJuego);
+        ContenedorPresentacionJugadores contenedorPresentaciones = new ContenedorPresentacionJugadores();
+        Scene escenaPresentacion = new Scene(contenedorPresentaciones);
+
+        contenedorEntrada.setBotonJugar(primaryStage,escenaPresentacion);
         primaryStage.setScene(escenaBienvenidos);
         primaryStage.setResizable(false);
         primaryStage.show();
     }
+
 }

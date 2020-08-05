@@ -1,10 +1,12 @@
-package Vistas;
+package Vistas.Contenedores;
 
 import Controladores.Botones.BotonMutear;
 import Controladores.ControladorComenzar;
 import Controladores.EntradaUsuario;
+import Vistas.Boton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -62,11 +65,17 @@ public class ContenedorEntrada extends VBox {
         disclaimer.setTextAlignment(TextAlignment.CENTER);
         disclaimer.setTextFill(Color.web("grey"));
 
-        Boton botonEntrar = new Boton("JUGAR", cc);
+//        Boton botonEntrar = new Boton("JUGAR", cc);
 
         Boton botonMutear = new Boton("Mutear", new BotonMutear());
 
-        this.getChildren().addAll(titulo,subtitulo, imagenVista, story, label, vb, botonEntrar, disclaimer, botonMutear);
+        this.getChildren().addAll(titulo,subtitulo, imagenVista, story, label, vb, disclaimer, botonMutear);
+    }
+
+    public void setBotonJugar(Stage stage, Scene proximaEscena){
+        cc = new ControladorComenzar(stage,proximaEscena, jugadores);
+        Boton botonEntrar = new Boton("JUGAR", cc);
+        this.getChildren().add(6, botonEntrar);
     }
 
 }
