@@ -35,4 +35,14 @@ public class Sistema {
         musicaFondo = mediaPlayer;
     }
 
+    public static void frenarSonidos() {
+        if(musicaFondo.getStatus().equals(MediaPlayer.Status.PLAYING)) musicaFondo.pause();
+        else musicaFondo.play();
+    }
+
+    public static void mutear(){
+        if (mudo == true) mudo=false;
+        else if (mudo == false) mudo=true;
+    }
+
 }

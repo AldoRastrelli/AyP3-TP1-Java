@@ -1,5 +1,6 @@
 package Vistas;
 
+import Controladores.Botones.BotonMutear;
 import Controladores.ControladorComenzar;
 import Controladores.EntradaUsuario;
 import javafx.geometry.Insets;
@@ -63,7 +64,9 @@ public class ContenedorEntrada extends VBox {
 
         Boton botonEntrar = new Boton("JUGAR", cc);
 
-        this.getChildren().addAll(titulo,subtitulo, imagenVista, story, label, vb, botonEntrar, disclaimer);
+        Boton botonMutear = new Boton("Mutear", new BotonMutear());
+
+        this.getChildren().addAll(titulo,subtitulo, imagenVista, story, label, vb, botonEntrar, disclaimer, botonMutear);
     }
 
 }
