@@ -26,7 +26,7 @@ public class AgruparTest {
         respuestaCorrecta.add("\0");
 
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.Agrupar(respuestaCorrecta);
+        Pregunta pregunta = factory.Agrupar("Bebidas/Comidas",respuestaCorrecta);
 
         assertTrue((pregunta).esRespuestaCorrecta(respuestaCorrecta));
     }
@@ -42,7 +42,7 @@ public class AgruparTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("\0"); add("Agua"); add("Coca-Cola"); add("\0");}};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("\0"); add("Pan"); add("Coca-Cola"); add("\0"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.Agrupar(respuestaCorrecta);
+        Pregunta pregunta = factory.Agrupar("Bebidas/Comidas",respuestaCorrecta);
 
         Map<String, List<String>> respuestas = new HashMap<String, List<String>>(){{
             put("Marcos",respuestaIncorrecta);

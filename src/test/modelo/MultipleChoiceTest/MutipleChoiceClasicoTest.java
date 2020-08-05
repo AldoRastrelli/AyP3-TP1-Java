@@ -25,7 +25,7 @@ public class MutipleChoiceClasicoTest {
         respuestaCorrecta.add("Frio del mar");
 
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoiceClasico(respuestaCorrecta);
+        Pregunta pregunta = factory.MultipleChoiceClasico("Las ___ y el ___",respuestaCorrecta);
 
         assertTrue(((MultipleChoice) pregunta).esRespuestaCorrecta(respuestaCorrecta));
     }
@@ -41,7 +41,7 @@ public class MutipleChoiceClasicoTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoiceClasico(respuestaCorrecta);
+        Pregunta pregunta = factory.MultipleChoiceClasico("Las ___ y el ___",respuestaCorrecta);
 
         Map<String, List<String>> respuestas = new HashMap<String, List<String>>(){{
             put("Marcos",respuestaIncorrecta);

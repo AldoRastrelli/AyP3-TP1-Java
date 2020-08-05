@@ -5,8 +5,8 @@ import model.Comportamientos.Comportamiento;
 import java.util.List;
 
 public class Ordenar extends Pregunta {
-    public Ordenar(List<String> respuesta, Comportamiento comportamiento) {
-        super(respuesta, comportamiento);
+    public Ordenar(String titulo, List<String> respuesta, Comportamiento comportamiento) {
+        super(titulo, respuesta, comportamiento);
     }
 
     @Override

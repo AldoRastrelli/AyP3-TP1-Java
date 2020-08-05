@@ -11,11 +11,13 @@ public abstract class Pregunta {
     protected List<String> opciones;
     protected List<String> respuestaCorrecta;
     protected Integer puntajeObtenido;
+    protected String titulo;
     protected Comportamiento comportamiento;
 
-    public Pregunta(List<String> respuesta, Comportamiento comportamiento){
+    public Pregunta(String titulo, List<String> respuesta, Comportamiento comportamiento){
         respuestaCorrecta = respuesta;
         this.comportamiento = comportamiento;
+        this.titulo = titulo;
     }
 
     private void agregarOpcion(String opcion){
@@ -40,4 +42,8 @@ public abstract class Pregunta {
     }
 
     public abstract boolean esRespuestaCorrecta(List<String> respuesta);
+
+    public String getPregunta(){
+        return titulo;
+    }
 }

@@ -13,32 +13,32 @@ import java.util.List;
 
 public class FactoryPreguntas {
 
-    public VerdaderoOFalso VerdaderoOFalsoClasico(List<String> respuestaCorrecta){
-        return new VerdaderoOFalso(respuestaCorrecta, new ComportamientoClasico());
+    public VerdaderoOFalso VerdaderoOFalsoClasico(String titulo, List<String> respuestaCorrecta){
+        return new VerdaderoOFalso(titulo, respuestaCorrecta, new ComportamientoClasico());
     }
 
-    public VerdaderoOFalso VerdaderoOFalsoConPenalidad(List<String> respuestaCorrecta){
-        return new VerdaderoOFalso(respuestaCorrecta, new ComportamientoConPenalidad());
+    public VerdaderoOFalso VerdaderoOFalsoConPenalidad(String titulo, List<String> respuestaCorrecta){
+        return new VerdaderoOFalso(titulo, respuestaCorrecta, new ComportamientoConPenalidad());
     }
 
-    public MultipleChoice MultipleChoiceClasico(List<String> respuestaCorrecta){
-        return new MultipleChoice(respuestaCorrecta, new ComportamientoClasico());
+    public MultipleChoice MultipleChoiceClasico(String titulo, List<String> respuestaCorrecta){
+        return new MultipleChoice(titulo, respuestaCorrecta, new ComportamientoClasico());
     }
 
-    public MultipleChoice MultipleChoiceConPenalidad(List<String> respuestaCorrecta){
-        return new MultipleChoice(respuestaCorrecta, new ComportamientoConPenalidad());
+    public MultipleChoice MultipleChoiceConPenalidad(String titulo, List<String> respuestaCorrecta){
+        return new MultipleChoice(titulo, respuestaCorrecta, new ComportamientoConPenalidad());
     }
 
-    public MultipleChoice MultipleChoicePuntajeParcial(List<String> respuestaCorrecta){
-        return new MultipleChoice(respuestaCorrecta, new ComportamientoPuntajeParcial());
+    public MultipleChoice MultipleChoicePuntajeParcial(String titulo, List<String> respuestaCorrecta){
+        return new MultipleChoice(titulo, respuestaCorrecta, new ComportamientoPuntajeParcial());
     }
 
-    public Ordenar Ordenar(List<String> respuestaCorrecta){
-        return new Ordenar(respuestaCorrecta, new ComportamientoClasico());
+    public Ordenar Ordenar(String titulo, List<String> respuestaCorrecta){
+        return new Ordenar(titulo, respuestaCorrecta, new ComportamientoClasico());
     }
 
-    public Agrupar Agrupar(List<String> respuestaCorrecta){
-        return new Agrupar(respuestaCorrecta, new ComportamientoClasico());
+    public Agrupar Agrupar(String titulo, List<String> respuestaCorrecta){
+        return new Agrupar(titulo, respuestaCorrecta, new ComportamientoClasico());
     }
 
 

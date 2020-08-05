@@ -28,7 +28,7 @@ public class MultipleChoiceConPenalidadTest {
         respuestaCorrecta.add("Física I");
 
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoiceConPenalidad(respuestaCorrecta);
+        Pregunta pregunta = factory.MultipleChoiceConPenalidad("¿Cuáles son materias del primer año?",respuestaCorrecta);
 
         assertTrue(((MultipleChoice) pregunta).esRespuestaCorrecta(respuestaCorrecta));
     }
@@ -44,7 +44,7 @@ public class MultipleChoiceConPenalidadTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoiceConPenalidad(respuestaCorrecta);
+        Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",respuestaCorrecta);
 
         Map<String, List<String>> respuestas = new HashMap<String, List<String>>(){{
             put("Fernando",respuestaIncorrecta);
@@ -73,7 +73,7 @@ public class MultipleChoiceConPenalidadTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoiceConPenalidad(respuestaCorrecta);
+        Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",respuestaCorrecta);
         juego.guardarPreguntaActual(pregunta);
 
         rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostDuplicador());
@@ -97,7 +97,7 @@ public class MultipleChoiceConPenalidadTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoiceConPenalidad(respuestaCorrecta);
+        Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",respuestaCorrecta);
 
         juego.guardarPreguntaActual(pregunta);
 
@@ -119,7 +119,7 @@ public class MultipleChoiceConPenalidadTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoiceConPenalidad(respuestaCorrecta);
+        Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",respuestaCorrecta);
 
         rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostTriplicador());
         rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.noUsarBoost());
@@ -144,7 +144,7 @@ public class MultipleChoiceConPenalidadTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoiceConPenalidad(respuestaCorrecta);
+        Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",respuestaCorrecta);
 
         rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostTriplicador());
         rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.noUsarBoost());
@@ -166,7 +166,7 @@ public class MultipleChoiceConPenalidadTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoiceConPenalidad(respuestaCorrecta);
+        Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",respuestaCorrecta);
 
         rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostTriplicador());
         rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.elegirBoostDuplicador());
@@ -189,7 +189,7 @@ public class MultipleChoiceConPenalidadTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoiceConPenalidad(respuestaCorrecta);
+        Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",respuestaCorrecta);
 
         rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrecta, jugador1.elegirBoostDuplicador());
         rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaCorrecta, jugador2.noUsarBoost());
@@ -212,7 +212,7 @@ public class MultipleChoiceConPenalidadTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoiceConPenalidad(respuestaCorrecta);
+        Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",respuestaCorrecta);
 
         rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrecta, jugador1.elegirBoostTriplicador());
         rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaCorrecta, jugador2.noUsarBoost());

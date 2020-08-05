@@ -26,7 +26,7 @@ public class OrdenarTest {
         respuestaCorrecta.add("1960");
 
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.Ordenar(respuestaCorrecta);
+        Pregunta pregunta = factory.Ordenar("Ordenar de menor a mayor", respuestaCorrecta);
 
         assertTrue(pregunta.esRespuestaCorrecta(respuestaCorrecta));
     }
@@ -43,7 +43,7 @@ public class OrdenarTest {
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("1940"); add("1930"); add("1960"); add("1950");}};
 
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.Ordenar(respuestaCorrecta);
+        Pregunta pregunta = factory.Ordenar("Ordenar de menor a mayor", respuestaCorrecta);
 
         Map<String, List<String>> respuestas = new HashMap<String, List<String>>(){{
             put("Victoria",respuestaIncorrecta);

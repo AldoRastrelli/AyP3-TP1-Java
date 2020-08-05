@@ -11,8 +11,8 @@ public class MultipleChoice extends Pregunta{
 
     Integer valorPuntajeCorrecto = 1;
 
-    public MultipleChoice(List<String> respuesta, Comportamiento comportamiento) {
-        super(respuesta, comportamiento);
+    public MultipleChoice(String titulo, List<String> respuesta, Comportamiento comportamiento) {
+        super(titulo, respuesta, comportamiento);
     }
 
     @Override

@@ -28,7 +28,7 @@ public class JugadorTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Verdadero"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Falso"); }};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.VerdaderoOFalsoConPenalidad(respuestaCorrecta);
+        Pregunta pregunta = factory.VerdaderoOFalsoConPenalidad("",respuestaCorrecta);
 
         var rondaActual = new RondaActual();
 
