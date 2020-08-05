@@ -34,6 +34,7 @@ public class Main extends Application {
         Scene escenaPresentacion = new Scene(contenedorPresentaciones);
 
         contenedorEntrada.setBotonJugar(primaryStage,escenaPresentacion);
+        contenedorPresentaciones.setBotonJugar(primaryStage, escenaBienvenidos);
         primaryStage.setScene(escenaBienvenidos);
         primaryStage.setResizable(false);
         primaryStage.show();
