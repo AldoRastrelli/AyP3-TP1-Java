@@ -24,10 +24,5 @@ public class ControladorComenzar implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         stage.setScene(proximaEscena);
-//        Sistema.musicaFondo(getClass());
-        for (EntradaUsuario entradaJugador: entradaJugadores) {
-//            Sistema.dicColores.put(entradaJugador.getNombre(),entradaJugador.getColor());
-        }
-//        ContenedorPrincipal.setJugadores();
     }
 }
