@@ -22,6 +22,8 @@ public class Juego {
         jugadores = new ArrayList<>();
         preguntas = new ArrayList<>();
         boosters = new ArrayList<>();
+
+//        cargarPreguntas();
     }
 
     public void iniciarJuego(){

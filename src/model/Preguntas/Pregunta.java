@@ -8,10 +8,9 @@ import java.util.Map;
 
 public abstract class Pregunta {
 
+    protected String titulo;
     protected List<String> opciones;
     protected List<String> respuestaCorrecta;
-    protected Integer puntajeObtenido;
-    protected String titulo;
     protected Comportamiento comportamiento;
 
     public Pregunta(String titulo, List<String> respuesta, Comportamiento comportamiento){
