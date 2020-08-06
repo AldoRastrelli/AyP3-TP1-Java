@@ -58,5 +58,4 @@ public class Juego {
         return jugadores.get(numeroJugador-1);
     }
 
-
 }

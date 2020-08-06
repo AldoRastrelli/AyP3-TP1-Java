@@ -1,13 +1,12 @@
 package Vistas.Contenedores;
 
 import Controladores.Botones.BotonMutear;
-import Controladores.ControladorComenzar;
+import Controladores.ControladorJugar;
 import Controladores.EntradaUsuario;
 import Vistas.Boton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,21 +16,22 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import model.Juego;
 
-import javax.swing.*;
-import javax.swing.text.html.CSS;
 import java.util.ArrayList;
 
 public class ContenedorEntrada extends VBox {
 
     ArrayList<EntradaUsuario> jugadores = new ArrayList<>();
-    ControladorComenzar cc;
+    ControladorJugar cc;
+    Juego juego;
 
-    public ContenedorEntrada() {
+    public ContenedorEntrada(Juego juego) {
         super();
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));
+        this.juego = juego;
 
         EntradaUsuario entrada1 = new EntradaUsuario("Jugador/Estudiante 1");
         EntradaUsuario entrada2 = new EntradaUsuario("Jugador/Estudiante 2");
@@ -79,8 +79,12 @@ public class ContenedorEntrada extends VBox {
         this.getChildren().addAll(titulo,subtitulo, imagenVista, story, label, vb, disclaimer, botonMutear);
     }
 
-    public void setBotonJugar(Stage stage, Scene proximaEscena){
-        cc = new ControladorComenzar(stage,proximaEscena, jugadores);
+    public void setBotonJugar(Stage stage){
+
+        ContenedorPresentacionJugadores contenedorPresentacion =  new ContenedorPresentacionJugadores(juego);
+        Scene escenaPresentacion = new Scene (contenedorPresentacion);
+
+        cc = new ControladorJugar(stage,escenaPresentacion, jugadores, juego);
         Boton botonEntrar = new Boton("JUGAR", cc);
         this.getChildren().add(6, botonEntrar);
     }

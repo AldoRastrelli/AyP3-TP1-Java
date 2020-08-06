@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import model.Juego;
 
 public class Main extends Application {
 
@@ -24,20 +25,24 @@ public class Main extends Application {
 
         var sistema = new Sistema();
         sistema.musicaFondo();
+        var juego = new Juego();
+        // TODO juego.inicializarPreguntas();
 
         primaryStage.setTitle("Cursando por un Sueño");
         primaryStage.getIcons().add(new Image("/Recursos/Imagenes/logoFIUBA.png"));
 
-        ContenedorEntrada contenedorEntrada = new ContenedorEntrada();
+        ContenedorEntrada contenedorEntrada = new ContenedorEntrada(juego);
         Scene escenaBienvenidos = new Scene (contenedorEntrada);
-        ContenedorPresentacionJugadores contenedorPresentaciones = new ContenedorPresentacionJugadores();
-        Scene escenaPresentacion = new Scene(contenedorPresentaciones);
+        contenedorEntrada.setBotonJugar(primaryStage);
 
-        contenedorEntrada.setBotonJugar(primaryStage,escenaPresentacion);
-        contenedorPresentaciones.setBotonVolver(primaryStage, escenaBienvenidos);
         primaryStage.setScene(escenaBienvenidos);
+
         primaryStage.setResizable(false);
         primaryStage.show();
+
+
+
+
     }
 
 }

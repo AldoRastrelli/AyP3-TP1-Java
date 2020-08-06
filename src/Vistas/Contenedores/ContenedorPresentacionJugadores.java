@@ -16,6 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import model.Juego;
 import model.Jugador;
 
 import java.util.ArrayList;
@@ -28,9 +29,11 @@ public class ContenedorPresentacionJugadores extends VBox {
     static ArrayList<Jugador> jugadores = new ArrayList<>();
     static Canvas fondo;
     ControladorVolver cc;
+    Juego juego;
 
-    public ContenedorPresentacionJugadores() {
+    public ContenedorPresentacionJugadores(Juego juego) {
         super();
+        this.juego = juego;
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));
@@ -44,23 +47,13 @@ public class ContenedorPresentacionJugadores extends VBox {
         discurso.setTextAlignment(TextAlignment.CENTER);
         discurso.setTextFill(Color.web("000000"));
 
-        Label nombre1 = new Label("Nombre Jugador 1");
-        nombre1.setFont(Font.font("Tahoma", FontWeight.BOLD, 14));
-        nombre1.setTextAlignment(TextAlignment.CENTER);
-        nombre1.setTextFill(Color.web("000000"));
-
-        Label nombre2 = new Label("Nombre Jugador 2");
-        nombre2.setFont(Font.font("Tahoma", FontWeight.BOLD, 14));
-        nombre2.setTextAlignment(TextAlignment.CENTER);
-        nombre2.setTextFill(Color.web("000000"));
-
         Boton botonComenzar = new Boton("COMENZAR", cc);
 
         Image imagenMute = new Image("/Recursos/Imagenes/speaker.png",20,20,true,true);
         final ImageView imagenMuteVista = new ImageView(imagenMute);
         Boton botonMute = new Boton("",imagenMuteVista,new BotonMutear());
 
-        this.getChildren().addAll(decanoVista, discurso, nombre1, nombre2, botonComenzar, botonMute);
+        this.getChildren().addAll(decanoVista, discurso, botonComenzar, botonMute);
     }
 
     public static ArrayList<Jugador> getJugadores() {
