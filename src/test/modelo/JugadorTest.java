@@ -20,9 +20,9 @@ public class JugadorTest {
         var jugador1 = new Jugador("Martina");
         var jugador2 = new Jugador("Lautaro");
 
-        Map<String,Jugador> jugadores = new HashMap<>(){{
-            put("Martina",jugador1);
-            put("Lautaro",jugador2);
+        List<Jugador> jugadores = new ArrayList<>(){{
+            add(jugador1);
+            add(jugador2);
         }};
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Verdadero"); }};

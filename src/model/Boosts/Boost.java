@@ -31,4 +31,12 @@ public abstract class Boost {
     public void restarUso(){
         cantidadDeUsos -= 1;
     }
+
+
+    public void duplicarExclusivo(Integer veces){
+        if(!this.esBoostExclusivo()){
+            return;
+        }
+        multiplicador *= (2 * (veces-1));
+    }
 }

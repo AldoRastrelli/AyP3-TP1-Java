@@ -8,7 +8,4 @@ public class BoostExclusividad extends Boost{
         cantidadDeUsos = 2;
     }
 
-    public void duplicarExclusivo(){
-        multiplicador *= 2;
-    }
 }

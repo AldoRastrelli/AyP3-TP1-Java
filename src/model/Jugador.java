@@ -29,13 +29,6 @@ public class Jugador {
         this.puntos += puntosNuevos;
     }
 
-/*    public void usarBoost(Boost boost){
-        if(!boost.puedeUsarse()){
-            throw new NoTieneBoostDisponibleException();
-        }
-        boost.restarUso();
-    }*/
-
     public String getNombre(){
         return nombre;
     }
@@ -49,7 +42,7 @@ public class Jugador {
     }
 
     public Boost elegirBoostExclusivo(){
-        return boosts.get("Exclusivo");
+        return boosts.get("Exclusividad");
     }
 
     public Boost noUsarBoost(){

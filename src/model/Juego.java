@@ -44,9 +44,6 @@ public class Juego {
 
     public void calcularPuntaje(){
 
-        Map<String,Jugador> jugadores = new HashMap<>();
-        this.jugadores.stream().forEach(j-> jugadores.put(j.getNombre(), j));
-
         rondaActual.determinarPuntaje( preguntaActual, jugadores );
     }
 

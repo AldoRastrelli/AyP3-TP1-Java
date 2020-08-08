@@ -2,7 +2,9 @@ package test.modelo.AgruparTest;
 
 import model.FactoryPreguntas.FactoryPreguntas;
 import model.Juego;
+import model.Jugador;
 import model.Preguntas.Pregunta;
+import model.RondaActual;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -58,5 +60,97 @@ public class AgruparTest {
 
         assertTrue(puntajeObtenido.equals(puntajeEsperado));
 
+    }
+
+    @Test
+    public void JugadorUsaExclusividadYSeAplicaCorrectamente(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("\0"); add("Agua"); add("Coca-Cola"); add("\0");}};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("\0"); add("Pan"); add("Coca-Cola"); add("\0"); }};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.Agrupar("Bebidas/Comidas",respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertTrue(jugador1.getPuntos().equals(2));
+    }
+
+    @Test
+    public void JugadorUsaExclusividadNoVerificaCondicionesEntoncesNoSeAplica(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("\0"); add("Agua"); add("Coca-Cola"); add("\0");}};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("\0"); add("Pan"); add("Coca-Cola"); add("\0"); }};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.Agrupar("Bebidas/Comidas",respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaCorrecta, jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertTrue(jugador1.getPuntos().equals(1));
+    }
+
+    @Test
+    public void JugadorUsaExclusividadSeEquivocaEntoncesSeAplicaAlOtroJugador(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("\0"); add("Agua"); add("Coca-Cola"); add("\0");}};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("\0"); add("Pan"); add("Coca-Cola"); add("\0"); }};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.Agrupar("Bebidas/Comidas",respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrecta, jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaCorrecta, jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertTrue(jugador2.getPuntos().equals(2) && jugador1.getPuntos().equals(0));
+    }
+
+    @Test
+    public void JugadoresUsanExclusividadSeDuplicaYSeAplicaCorrectamente(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("\0"); add("Agua"); add("Coca-Cola"); add("\0");}};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("\0"); add("Pan"); add("Coca-Cola"); add("\0"); }};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.Agrupar("Bebidas/Comidas",respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.elegirBoostExclusivo());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertTrue(jugador1.getPuntos().equals(4));
     }
 }
