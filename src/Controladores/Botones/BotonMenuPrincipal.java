@@ -1,4 +1,4 @@
-package Controladores;
+package Controladores.Botones;
 
 import Controladores.EntradaUsuario;
 
@@ -9,12 +9,12 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class ControladorVolver implements EventHandler<ActionEvent> {
+public class BotonMenuPrincipal implements EventHandler<ActionEvent> {
 
     Stage stage;
     Scene proximaEscena;
 
-    public ControladorVolver(Stage stage, Scene escenaAnterior) {
+    public BotonMenuPrincipal(Stage stage, Scene escenaAnterior) {
         this.stage = stage;
         this.proximaEscena = escenaAnterior;
     }

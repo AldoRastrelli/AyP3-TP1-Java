@@ -6,8 +6,8 @@ import java.util.List;
 
 public class VerdaderoOFalso extends Pregunta{
 
-    public VerdaderoOFalso(String titulo, List<String> respuesta, Comportamiento comportamiento) {
-        super(titulo, respuesta, comportamiento);
+    public VerdaderoOFalso(String titulo, List<String> opciones, List<String> respuesta, Comportamiento comportamiento) {
+        super(titulo, opciones, respuesta, comportamiento);
     }
 
 

@@ -1,7 +1,7 @@
 package Vistas.Contenedores;
 
 import Controladores.Botones.*;
-import Controladores.ControladorVolver;
+import Controladores.Botones.BotonMenuPrincipal;
 import Vistas.Boton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import model.Juego;
@@ -28,10 +27,11 @@ public class ContenedorPresentacionJugadores extends VBox {
     static Pane centro;
     static ArrayList<Jugador> jugadores = new ArrayList<>();
     static Canvas fondo;
-    ControladorVolver cc;
+    BotonMenuPrincipal controladorBotonMenuPrincipal;
+    BotonComenzar controladorBotonComenzar;
     Juego juego;
 
-    public ContenedorPresentacionJugadores(Juego juego) {
+    public ContenedorPresentacionJugadores() {
         super();
         this.juego = juego;
         this.setAlignment(Pos.CENTER);
@@ -47,7 +47,8 @@ public class ContenedorPresentacionJugadores extends VBox {
         discurso.setTextAlignment(TextAlignment.CENTER);
         discurso.setTextFill(Color.web("000000"));
 
-        Boton botonComenzar = new Boton("COMENZAR", cc);
+        controladorBotonComenzar = new BotonComenzar(juego);
+        Boton botonComenzar = new Boton("COMENZAR", controladorBotonComenzar);
 
         Image imagenMute = new Image("/Recursos/Imagenes/speaker.png",20,20,true,true);
         final ImageView imagenMuteVista = new ImageView(imagenMute);
@@ -68,14 +69,21 @@ public class ContenedorPresentacionJugadores extends VBox {
     }
 
     public void setBotonVolver(Stage stage, Scene escenaAnterior){
-        cc = new ControladorVolver(stage, escenaAnterior);
+        controladorBotonMenuPrincipal = new BotonMenuPrincipal(stage, escenaAnterior);
 
         Image imagenMute = new Image("/Recursos/Imagenes/house.png",20,20,true,true);
         final ImageView imagenMuteVista = new ImageView(imagenMute);
 
-        Boton botonVolver = new Boton("MENÚ PRINCIPAL",imagenMuteVista, cc);
-        this.getChildren().add(5, botonVolver);
+        Boton botonVolver = new Boton("MENÚ PRINCIPAL",imagenMuteVista, controladorBotonMenuPrincipal);
+        this.getChildren().add(3, botonVolver);
     }
+
+/*    public void setBotonComenzar(Stage stage, Scene escenaProxima){
+        controladorBotonComenzar = new BotonComenzar();
+
+        Boton botonComenzar = new Boton("COMENZAR", controladorBotonComenzar);
+        this.getChildren().add(2, botonVolver);
+    }*/
 
 //    private void setLayout(){
 //

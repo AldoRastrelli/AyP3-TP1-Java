@@ -19,13 +19,11 @@ public class MutipleChoiceClasicoTest {
     @Test
     public void PreguntaMutipleChoiceClasicoPuedeCrearseIndicandoRespuestaCorrectaTest() {
 
-        List<String> respuestaCorrecta = new ArrayList<>();
-        respuestaCorrecta.add("Olas");
-        respuestaCorrecta.add("Viento");
-        respuestaCorrecta.add("Frio del mar");
-
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");}};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoiceClasico("Las ___ y el ___",respuestaCorrecta);
+        Pregunta pregunta = factory.MultipleChoiceClasico("Las ___ y el ___",opciones, respuestaCorrecta);
+
 
         assertTrue(((MultipleChoice) pregunta).esRespuestaCorrecta(respuestaCorrecta));
     }
@@ -39,9 +37,11 @@ public class MutipleChoiceClasicoTest {
         juego.crearJugador("Evelyn");
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
-        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");}};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoiceClasico("Las ___ y el ___",respuestaCorrecta);
+        Pregunta pregunta = factory.MultipleChoiceClasico("Las ___ y el ___",opciones, respuestaCorrecta);
+
 
         Map<String, List<String>> respuestas = new HashMap<String, List<String>>(){{
             put("Marcos",respuestaIncorrecta);

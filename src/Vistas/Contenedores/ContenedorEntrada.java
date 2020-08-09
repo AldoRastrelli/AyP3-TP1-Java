@@ -1,7 +1,7 @@
 package Vistas.Contenedores;
 
 import Controladores.Botones.BotonMutear;
-import Controladores.ControladorJugar;
+import Controladores.Botones.BotonJugar;
 import Controladores.EntradaUsuario;
 import Vistas.Boton;
 import javafx.geometry.Insets;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class ContenedorEntrada extends VBox {
 
     ArrayList<EntradaUsuario> jugadores = new ArrayList<>();
-    ControladorJugar cc;
+    BotonJugar cc;
     Juego juego;
 
     public ContenedorEntrada(Juego juego) {
@@ -79,12 +79,9 @@ public class ContenedorEntrada extends VBox {
         this.getChildren().addAll(titulo,subtitulo, imagenVista, story, label, vb, disclaimer, botonMutear);
     }
 
-    public void setBotonJugar(Stage stage){
+    public void setBotonJugar(Stage stage, Scene proximaEscena){
 
-        ContenedorPresentacionJugadores contenedorPresentacion =  new ContenedorPresentacionJugadores(juego);
-        Scene escenaPresentacion = new Scene (contenedorPresentacion);
-
-        cc = new ControladorJugar(stage,escenaPresentacion, jugadores, juego);
+        cc = new BotonJugar(stage,proximaEscena, jugadores, juego);
         Boton botonEntrar = new Boton("JUGAR", cc);
         this.getChildren().add(6, botonEntrar);
     }

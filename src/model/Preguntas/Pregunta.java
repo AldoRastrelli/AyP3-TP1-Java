@@ -13,8 +13,9 @@ public abstract class Pregunta {
     protected List<String> respuestaCorrecta;
     protected Comportamiento comportamiento;
 
-    public Pregunta(String titulo, List<String> respuesta, Comportamiento comportamiento){
+    public Pregunta(String titulo, List<String> opciones, List<String> respuesta, Comportamiento comportamiento){
         respuestaCorrecta = respuesta;
+        this.opciones = opciones;
         this.comportamiento = comportamiento;
         this.titulo = titulo;
     }

@@ -11,8 +11,8 @@ public class Agrupar extends Pregunta{
     List<String> respuestaCorrectaGrupoA;
     List<String> respuestaCorrectaGrupoB;
 
-    public Agrupar(String titulo, List<String> respuesta, Comportamiento comportamiento) {
-        super(titulo, respuesta, comportamiento);
+    public Agrupar(String titulo, List<String> opciones, List<String> respuesta, Comportamiento comportamiento) {
+        super(titulo, opciones, respuesta, comportamiento);
         respuestaCorrectaGrupoA = new ArrayList<>();
         respuestaCorrectaGrupoB = new ArrayList<>();
 

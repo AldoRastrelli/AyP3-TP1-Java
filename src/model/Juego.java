@@ -1,12 +1,21 @@
 package model;
 
 import model.Boosts.Boost;
+import model.FactoryPreguntas.FactoryPreguntas;
 import model.Preguntas.Pregunta;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Juego {
 
@@ -23,11 +32,59 @@ public class Juego {
         preguntas = new ArrayList<>();
         boosters = new ArrayList<>();
 
-//        cargarPreguntas();
+        //inicializarPreguntas();
     }
 
-    public void iniciarJuego(){
+    public void inicializarPreguntas(){
+        JSONParser jsonParser = new JSONParser();
+        try (FileReader reader = new FileReader(".\\Recursos\\Preguntas.json"))
+        {
+            //Read JSON file
+            Object obj = jsonParser.parse(reader);
 
+            JSONArray preguntas = (JSONArray) obj;
+
+            //Iterate over employee array
+            preguntas.forEach( p -> parsePreguntasObject( (JSONObject) p ) );
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void parsePreguntasObject(JSONObject pregunta)
+    {
+        //Get employee object within list
+        JSONObject tipo = (JSONObject) pregunta.get("tipo");
+        JSONObject comportamiento = (JSONObject) pregunta.get("comportamiento");
+        JSONObject titulo = (JSONObject) pregunta.get("titulo");
+        JSONObject opcionesLeidas = (JSONObject) pregunta.get("opciones");
+        JSONObject respuestaCorrectaLeida = (JSONObject) pregunta.get("respuestaCorrecta");
+
+        List<String> opciones = modificarFormato(opcionesLeidas);
+        List<String> respuestaCorrecta = modificarFormato(respuestaCorrectaLeida);
+        guardarPregunta(tipo.toString(),comportamiento.toString(),titulo.toString(),opciones,respuestaCorrecta);
+    }
+
+    public static List<String> modificarFormato(JSONObject respuesta){
+        String[] respuestasCorrectas = respuesta.toString().split(",");
+        List<String> respuestaCorrecta = new ArrayList<String>();
+
+        var cantRespuestas = respuestasCorrectas.length;
+        for (int i = 0; i < cantRespuestas; i++){
+            respuestaCorrecta.add(respuestasCorrectas[i]);
+        }
+        return respuestaCorrecta;
+    }
+
+    public void guardarPregunta(String tipo, String comportamiento, String titulo, List<String> opciones, List<String> respuestaCorrecta){
+        FactoryPreguntas factoryPreguntas = new FactoryPreguntas();
+        Pregunta pregunta = factoryPreguntas.crear(tipo,comportamiento,titulo,opciones,respuestaCorrecta);
+        this.preguntas.add(pregunta);
     }
 
     public RondaActual crearRondaActual(){
@@ -54,5 +111,9 @@ public class Juego {
     public Jugador verJugador(int numeroJugador){
         return jugadores.get(numeroJugador-1);
     }
+
+    public List<Jugador> getJugadores(){return jugadores;}
+
+    public List<Pregunta> getPreguntas(){return preguntas;}
 
 }

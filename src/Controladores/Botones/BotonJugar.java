@@ -1,4 +1,4 @@
-package Controladores;
+package Controladores.Botones;
 
 import Controladores.EntradaUsuario;
 
@@ -10,14 +10,14 @@ import model.Juego;
 
 import java.util.ArrayList;
 
-public class ControladorJugar implements EventHandler<ActionEvent> {
+public class BotonJugar implements EventHandler<ActionEvent> {
 
     ArrayList<EntradaUsuario> entradaJugadores;
     Stage stage;
     Scene proximaEscena;
     Juego juego;
 
-    public ControladorJugar(Stage stage, Scene proximaEscena, ArrayList<EntradaUsuario> entradaJugadores, Juego juego) {
+    public BotonJugar(Stage stage, Scene proximaEscena, ArrayList<EntradaUsuario> entradaJugadores, Juego juego) {
         this.stage = stage;
         this.proximaEscena = proximaEscena;
         this.entradaJugadores = entradaJugadores;

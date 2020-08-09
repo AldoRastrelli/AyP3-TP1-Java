@@ -25,6 +25,7 @@ public class Main extends Application {
 
         var sistema = new Sistema();
         sistema.musicaFondo();
+
         var juego = new Juego();
         // TODO juego.inicializarPreguntas();
 
@@ -33,8 +34,11 @@ public class Main extends Application {
 
         ContenedorEntrada contenedorEntrada = new ContenedorEntrada(juego);
         Scene escenaBienvenidos = new Scene (contenedorEntrada);
-        contenedorEntrada.setBotonJugar(primaryStage);
+        ContenedorPresentacionJugadores contenedorPresentacion = new ContenedorPresentacionJugadores();
+        Scene escenaPresentacion = new Scene (contenedorPresentacion);
 
+        contenedorPresentacion.setBotonVolver(primaryStage, escenaBienvenidos);
+        contenedorEntrada.setBotonJugar(primaryStage, escenaPresentacion);
         primaryStage.setScene(escenaBienvenidos);
 
         primaryStage.setResizable(false);

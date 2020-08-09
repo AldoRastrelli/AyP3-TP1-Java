@@ -19,13 +19,11 @@ public class MutipleChoicePuntajeParcialTest {
     @Test
     public void PreguntaMutipleChoicePuntajeParcialPuedeCrearseIndicandoRespuestaCorrectaTest() {
 
-        List<String> respuestaCorrecta = new ArrayList<>();
-        respuestaCorrecta.add("Olas");
-        respuestaCorrecta.add("Viento");
-        respuestaCorrecta.add("Frio del mar");
-
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");}};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoicePuntajeParcial("Las ___ y el ___",respuestaCorrecta);
+        Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",opciones, respuestaCorrecta);
 
         assertTrue(((MultipleChoice) pregunta).esRespuestaCorrecta(respuestaCorrecta));
     }
@@ -40,8 +38,11 @@ public class MutipleChoicePuntajeParcialTest {
 
         List<String> respuestaCompleta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncompleta = new ArrayList<String>(){{ add("Olas"); }};
+
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");}};
+
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoicePuntajeParcial("Ordenar de menor a mayor", respuestaCompleta);
+        Pregunta pregunta = factory.MultipleChoicePuntajeParcial("Ordenar de menor a mayor", opciones, respuestaCompleta);
 
         Map<String, List<String>> respuestas = new HashMap<String, List<String>>(){{
             put("Marcos",respuestaIncompleta);

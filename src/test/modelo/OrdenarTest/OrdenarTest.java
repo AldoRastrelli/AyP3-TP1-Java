@@ -27,8 +27,9 @@ public class OrdenarTest {
         respuestaCorrecta.add("1950");
         respuestaCorrecta.add("1960");
 
+        List<String> opciones = respuestaCorrecta;
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.Ordenar("Ordenar de menor a mayor", respuestaCorrecta);
+        Pregunta pregunta = factory.Ordenar("Ordenar de menor a mayor", opciones,respuestaCorrecta);
 
         assertTrue(pregunta.esRespuestaCorrecta(respuestaCorrecta));
     }
@@ -44,8 +45,9 @@ public class OrdenarTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("1930"); add("1940"); add("1950"); add("1960");}};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("1940"); add("1930"); add("1960"); add("1950");}};
 
+        List<String> opciones = respuestaCorrecta;
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.Ordenar("Ordenar de menor a mayor", respuestaCorrecta);
+        Pregunta pregunta = factory.Ordenar("Ordenar de menor a mayor", opciones,respuestaCorrecta);
 
         Map<String, List<String>> respuestas = new HashMap<String, List<String>>(){{
             put("Victoria",respuestaIncorrecta);
@@ -73,8 +75,9 @@ public class OrdenarTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("1930"); add("1940"); add("1950"); add("1960");}};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("1940"); add("1930"); add("1960"); add("1950");}};
 
+        List<String> opciones = respuestaCorrecta;
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.Ordenar("Ordenar de menor a mayor", respuestaCorrecta);
+        Pregunta pregunta = factory.Ordenar("Ordenar de menor a mayor", opciones,respuestaCorrecta);
 
         rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostExclusivo());
         rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.noUsarBoost());
@@ -97,8 +100,9 @@ public class OrdenarTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("1930"); add("1940"); add("1950"); add("1960");}};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("1940"); add("1930"); add("1960"); add("1950");}};
 
+        List<String> opciones = respuestaCorrecta;
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.Ordenar("Ordenar de menor a mayor", respuestaCorrecta);
+        Pregunta pregunta = factory.Ordenar("Ordenar de menor a mayor", opciones,respuestaCorrecta);
 
         rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostExclusivo());
         rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaCorrecta, jugador2.noUsarBoost());
@@ -121,8 +125,9 @@ public class OrdenarTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("1930"); add("1940"); add("1950"); add("1960");}};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("1940"); add("1930"); add("1960"); add("1950");}};
 
+        List<String> opciones = respuestaCorrecta;
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.Ordenar("Ordenar de menor a mayor", respuestaCorrecta);
+        Pregunta pregunta = factory.Ordenar("Ordenar de menor a mayor", opciones,respuestaCorrecta);
 
         rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrecta, jugador1.elegirBoostExclusivo());
         rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaCorrecta, jugador2.noUsarBoost());
@@ -145,8 +150,9 @@ public class OrdenarTest {
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("1930"); add("1940"); add("1950"); add("1960");}};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("1940"); add("1930"); add("1960"); add("1950");}};
 
+        List<String> opciones = respuestaCorrecta;
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.Ordenar("Ordenar de menor a mayor", respuestaCorrecta);
+        Pregunta pregunta = factory.Ordenar("Ordenar de menor a mayor", opciones,respuestaCorrecta);
 
         rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostExclusivo());
         rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.elegirBoostExclusivo());
