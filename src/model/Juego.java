@@ -32,19 +32,19 @@ public class Juego {
         preguntas = new ArrayList<>();
         boosters = new ArrayList<>();
 
-        //inicializarPreguntas();
+        inicializarPreguntas();
     }
 
     public void inicializarPreguntas(){
         JSONParser jsonParser = new JSONParser();
-        try (FileReader reader = new FileReader(".\\Recursos\\Preguntas.json"))
+        try (FileReader reader = new FileReader("AyP3-TP1-Java\\src\\Recursos\\Preguntas.json"))
         {
             //Read JSON file
             Object obj = jsonParser.parse(reader);
 
             JSONArray preguntas = (JSONArray) obj;
 
-            //Iterate over employee array
+            //Iterate over preguntas array
             preguntas.forEach( p -> parsePreguntasObject( (JSONObject) p ) );
 
         } catch (FileNotFoundException e) {
@@ -59,19 +59,19 @@ public class Juego {
     private void parsePreguntasObject(JSONObject pregunta)
     {
         //Get employee object within list
-        JSONObject tipo = (JSONObject) pregunta.get("tipo");
-        JSONObject comportamiento = (JSONObject) pregunta.get("comportamiento");
-        JSONObject titulo = (JSONObject) pregunta.get("titulo");
-        JSONObject opcionesLeidas = (JSONObject) pregunta.get("opciones");
-        JSONObject respuestaCorrectaLeida = (JSONObject) pregunta.get("respuestaCorrecta");
+        String tipo = (String) pregunta.get("tipo");
+        String comportamiento = (String) pregunta.get("comportamiento");
+        String titulo = (String) pregunta.get("titulo");
+        String opcionesLeidas = (String) pregunta.get("opciones");
+        String respuestaCorrectaLeida = (String) pregunta.get("respuestaCorrecta");
 
         List<String> opciones = modificarFormato(opcionesLeidas);
         List<String> respuestaCorrecta = modificarFormato(respuestaCorrectaLeida);
         guardarPregunta(tipo.toString(),comportamiento.toString(),titulo.toString(),opciones,respuestaCorrecta);
     }
 
-    public static List<String> modificarFormato(JSONObject respuesta){
-        String[] respuestasCorrectas = respuesta.toString().split(",");
+    public static List<String> modificarFormato(String respuesta){
+        String[] respuestasCorrectas = respuesta.split(",");
         List<String> respuestaCorrecta = new ArrayList<String>();
 
         var cantRespuestas = respuestasCorrectas.length;

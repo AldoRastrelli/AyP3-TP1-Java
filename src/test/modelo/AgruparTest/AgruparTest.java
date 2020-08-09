@@ -22,10 +22,10 @@ public class AgruparTest {
         List<String> respuestaCorrecta = new ArrayList<>();
         respuestaCorrecta.add("Pan");
         respuestaCorrecta.add("Hamburguesa");
-        respuestaCorrecta.add("\0");
+        respuestaCorrecta.add("*");
         respuestaCorrecta.add("Agua");
         respuestaCorrecta.add("Coca-Cola");
-        respuestaCorrecta.add("\0");
+        respuestaCorrecta.add("*");
 
         List<String> opciones = new ArrayList<>(){{
             add("Pan");
@@ -47,8 +47,8 @@ public class AgruparTest {
         juego.crearJugador("Marcos");
         juego.crearJugador("Evelyn");
 
-        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("\0"); add("Agua"); add("Coca-Cola"); add("\0");}};
-        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("\0"); add("Pan"); add("Coca-Cola"); add("\0"); }};
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("*"); add("Agua"); add("Coca-Cola"); add("*");}};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("*"); add("Pan"); add("Coca-Cola"); add("*"); }};
         List<String> opciones = new ArrayList<>(){{
             add("Pan");
             add("Hamburguesa");
@@ -82,8 +82,8 @@ public class AgruparTest {
         Jugador jugador2 = juego.crearJugador("Evelyn");
         RondaActual rondaActual = juego.crearRondaActual();
 
-        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("\0"); add("Agua"); add("Coca-Cola"); add("\0");}};
-        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("\0"); add("Pan"); add("Coca-Cola"); add("\0"); }};
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("*"); add("Agua"); add("Coca-Cola"); add("*");}};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("*"); add("Pan"); add("Coca-Cola"); add("*"); }};
         List<String> opciones = new ArrayList<>(){{
             add("Pan");
             add("Hamburguesa");
@@ -111,8 +111,8 @@ public class AgruparTest {
         Jugador jugador2 = juego.crearJugador("Evelyn");
         RondaActual rondaActual = juego.crearRondaActual();
 
-        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("\0"); add("Agua"); add("Coca-Cola"); add("\0");}};
-        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("\0"); add("Pan"); add("Coca-Cola"); add("\0"); }};
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("*"); add("Agua"); add("Coca-Cola"); add("*");}};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("*"); add("Pan"); add("Coca-Cola"); add("*"); }};
         List<String> opciones = new ArrayList<>(){{
             add("Pan");
             add("Hamburguesa");
@@ -140,8 +140,8 @@ public class AgruparTest {
         Jugador jugador2 = juego.crearJugador("Evelyn");
         RondaActual rondaActual = juego.crearRondaActual();
 
-        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("\0"); add("Agua"); add("Coca-Cola"); add("\0");}};
-        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("\0"); add("Pan"); add("Coca-Cola"); add("\0"); }};
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("*"); add("Agua"); add("Coca-Cola"); add("*");}};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("*"); add("Pan"); add("Coca-Cola"); add("*"); }};
         List<String> opciones = new ArrayList<>(){{
             add("Pan");
             add("Hamburguesa");
@@ -169,8 +169,8 @@ public class AgruparTest {
         Jugador jugador2 = juego.crearJugador("Evelyn");
         RondaActual rondaActual = juego.crearRondaActual();
 
-        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("\0"); add("Agua"); add("Coca-Cola"); add("\0");}};
-        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("\0"); add("Pan"); add("Coca-Cola"); add("\0"); }};
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Pan"); add("Hamburguesa"); add("*"); add("Agua"); add("Coca-Cola"); add("*");}};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Agua"); add("Hamburguesa"); add("*"); add("Pan"); add("Coca-Cola"); add("*"); }};
         List<String> opciones = new ArrayList<>(){{
             add("Pan");
             add("Hamburguesa");
