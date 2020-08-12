@@ -111,7 +111,7 @@ public class OrdenarTest {
 
         juego.calcularPuntaje();
 
-        assertTrue(jugador1.getPuntos().equals(1));
+        assertTrue(jugador1.getPuntos().equals(0));
     }
 
     @Test

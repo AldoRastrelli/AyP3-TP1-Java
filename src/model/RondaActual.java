@@ -39,6 +39,7 @@ public class RondaActual {
 
         // Se usa el Boost Exclusividad pero no cumple las condiciones para aplicarse
         if (seUsaBoostExclusividad() & !verificaBoostExclusivo()) {
+            puntajes.keySet().stream().forEach(j -> puntajes.replace(j, 0));
             pasarPuntajes(jugadores);
             return;
         }

@@ -47,6 +47,6 @@
     "comportamiento": "clasico",
     "titulo": "Materias de Ing. en Informática,Materias de Lic. en Análisis de Sistemas",
     "opciones": "Organización del computador,Estructuras y Procesos Organizacionales,Estructura del computador,Laboratorio,Fisica II",
-    "respuestaCorrecta": "Organización del computador,Estructuras y Procesos Organizacionales,*,Estructura del computador,Laboratorio,Fisica II,*"
+    "respuestaCorrecta": "Estructura del computador,Laboratorio,Fisica II,*,Organización del computador,Estructuras y Procesos Organizacionales,*"
   }
 ]
