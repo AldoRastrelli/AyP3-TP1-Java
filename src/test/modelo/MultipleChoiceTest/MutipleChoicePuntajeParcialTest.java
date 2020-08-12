@@ -111,4 +111,100 @@ public class MutipleChoicePuntajeParcialTest {
         assertTrue(jugador1.getPuntos().equals(4));
         assertTrue(jugador2.getPuntos().equals(0));
     }
+
+    @Test
+    public void JugadorUsaExclusividadNoVerificaCondicionesEntoncesNoSeAplica(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.MultipleChoicePuntajeParcial("Las ___ y el ___",opciones, respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaCorrecta, jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertTrue(jugador2.getPuntos().equals(0) && jugador1.getPuntos().equals(0));
+    }
+
+    @Test
+    public void JugadorUsaExclusividadSeEquivocaEntoncesSeAplicaAlOtroJugador(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.MultipleChoicePuntajeParcial("Las ___ y el ___",opciones, respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrecta, jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaCorrecta, jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertTrue(jugador2.getPuntos().equals(4) && jugador1.getPuntos().equals(0));
+    }
+
+    @Test
+    public void JugadoresUsanExclusividadSeDuplicaYSeAplicaCorrectamente(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.MultipleChoicePuntajeParcial("Las ___ y el ___",opciones, respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.elegirBoostExclusivo());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertTrue(jugador1.getPuntos().equals(8) && jugador2.getPuntos().equals(0));
+    }
+
+    @Test
+    public void JugadoresUsanExclusividadSeDuplicaYNoVerificaCondiciones(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.MultipleChoicePuntajeParcial("Las ___ y el ___",opciones, respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaCorrecta, jugador2.elegirBoostExclusivo());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertTrue(jugador1.getPuntos().equals(0) && jugador2.getPuntos().equals(0));
+    }
 }
