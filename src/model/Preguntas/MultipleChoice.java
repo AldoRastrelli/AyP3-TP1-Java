@@ -46,7 +46,7 @@ public class MultipleChoice extends Pregunta{
         Integer respuestasCorrectasUsuario = Math.toIntExact(respuestaCorrecta.stream().filter(respuesta::contains).count());
         Integer respuestasIncorrectasUsuario = cantRespuestasJugador - respuestasCorrectasUsuario;
 
-        return comportamiento.calcularPuntaje(respuestasCorrectasUsuario, respuestasIncorrectasUsuario, respuestasCorrectasUsuario.equals(cantCorrectasPregunta));
+        return comportamiento.calcularPuntaje(respuestasCorrectasUsuario, respuestasIncorrectasUsuario, false);
     }
 
     @Override
