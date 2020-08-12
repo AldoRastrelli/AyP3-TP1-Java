@@ -21,16 +21,16 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        String path = "AyP3-TP1-Java\\src\\Recursos\\Sonidos\\background.mp3";
+        String path = "/home/rochi/Desktop/AyP3-TP1-Java/src/Recursos/Sonidos/background.mp3";
 
         var juego = new Juego();
 
         var sistema = new Sistema(primaryStage,juego);
-        sistema.musicaFondo();
+        //sistema.musicaFondo();
 
 
         primaryStage.setTitle("Cursando por un Sueño");
-        primaryStage.getIcons().add(new Image("/Recursos/Imagenes/logoFIUBA.png"));
+        primaryStage.getIcons().add(new Image("Recursos/Imagenes/logoFIUBA.png"));
 
         ContenedorEntrada contenedorEntrada = new ContenedorEntrada(juego);
         Scene escenaBienvenidos = new Scene (contenedorEntrada);
@@ -41,9 +41,10 @@ public class Main extends Application {
         contenedorEntrada.setBotonJugar(primaryStage, escenaPresentacion);
         primaryStage.setScene(escenaBienvenidos);
 
-        primaryStage.setWidth(700);
-        primaryStage.setHeight(700);
-        primaryStage.setResizable(false);
+        //primaryStage.setWidth(700);
+       // primaryStage.setHeight(700);
+       // primaryStage.setResizable(false);
+       primaryStage.sizeToScene();
         primaryStage.show();
 
 

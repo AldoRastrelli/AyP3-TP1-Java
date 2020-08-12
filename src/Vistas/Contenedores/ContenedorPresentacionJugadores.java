@@ -38,7 +38,7 @@ public class ContenedorPresentacionJugadores extends VBox {
         this.setPadding(new Insets(25));
 
         this.setFondo();
-        Image decano = new Image(".\\Recursos\\Imagenes\\martinez.jpg", 400, 400, true, true);
+        Image decano = new Image("/Recursos/Imagenes/martinez.jpg", 400, 400, true, true);
         final ImageView decanoVista = new ImageView(decano);
 
         Label discurso = new Label("'Bienvenidos y bienvenidas.\nEl día de hoy, estos jóvenes estudiantes se disputarán el título de Ingeniero/a en Informática.\nQuiero agradecer al Departamento de Alumnos: sin su arduo trabajo, no podríamos estar aquí.\nLos recibimos entonces con un aplauso, y comenzamos con el evento.'");

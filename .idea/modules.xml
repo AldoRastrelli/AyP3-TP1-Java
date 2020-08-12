@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AyP3-TP1-Java.iml" filepath="$PROJECT_DIR$/AyP3-TP1-Java.iml" />
       <module fileurl="file://$PROJECT_DIR$/AyP3-TP1-Java - copia.iml" filepath="$PROJECT_DIR$/AyP3-TP1-Java - copia.iml" />
     </modules>
   </component>
