@@ -21,7 +21,6 @@ public class Juego {
 
     List<Jugador> jugadores;
     List<Pregunta> preguntas;
-    Jugador jugadorActual;
     Pregunta preguntaActual;
     RondaActual rondaActual;
     List<Boost> boosters;
@@ -31,7 +30,7 @@ public class Juego {
         jugadores = new ArrayList<>();
         preguntas = new ArrayList<>();
         boosters = new ArrayList<>();
-
+        rondaActual = crearRondaActual();
         inicializarPreguntas();
     }
 
@@ -93,6 +92,11 @@ public class Juego {
     }
 
     public Jugador crearJugador(String nombre){
+
+        if(nombre.equals("")){
+            nombre = "Jugador"+String.valueOf(jugadores.stream().count()+1);
+        }
+
         var jugador = new Jugador(nombre);
         jugadores.add(jugador);
 
@@ -115,5 +119,16 @@ public class Juego {
     public List<Jugador> getJugadores(){return jugadores;}
 
     public List<Pregunta> getPreguntas(){return preguntas;}
+    
+    public void guardarRespuesta(Jugador jugador, List<String> respuesta, Boost boost){
+        rondaActual.guardarRespuesta(jugador.getNombre(), respuesta, boost);
+    }
+
+    public RondaActual getRondaActual(){
+        return rondaActual;
+    }
+    public Pregunta getPreguntaActual(){
+        return preguntaActual;
+    }
 
 }

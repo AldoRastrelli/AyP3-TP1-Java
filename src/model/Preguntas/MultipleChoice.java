@@ -1,5 +1,9 @@
 package model.Preguntas;
 
+import Controladores.ControladorDeTurno;
+import Vistas.VistasPreguntas.VistaMultipleChoice;
+import Vistas.VistasPreguntas.VistaVerdaderoFalso;
+import javafx.scene.layout.VBox;
 import model.Comportamientos.Comportamiento;
 
 import java.util.Collections;
@@ -13,6 +17,7 @@ public class MultipleChoice extends Pregunta{
 
     public MultipleChoice(String titulo, List<String> opciones, List<String> respuesta, Comportamiento comportamiento) {
         super(titulo, opciones, respuesta, comportamiento);
+        tipo = "Multiple Choice";
     }
 
     @Override
@@ -50,5 +55,10 @@ public class MultipleChoice extends Pregunta{
         Collections.sort(respuestaCorrecta);
         Collections.sort(respuesta);
         return respuesta.equals(respuestaCorrecta);
+    }
+
+    @Override
+    public VBox getVista(Pregunta pregunta, ControladorDeTurno controladorDeTurno) {
+        return new VistaMultipleChoice(pregunta, controladorDeTurno);
     }
 }

@@ -1,4 +1,4 @@
-package Controladores;
+package Controladores.EntradasUsuario;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -6,11 +6,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 
-public class EntradaUsuario {
+public class EntradaNombre {
     HBox hb;
     TextField tx;
 
-    public EntradaUsuario(String textoHover) {
+    public EntradaNombre(String textoHover) {
         TextField texto = new TextField();
         texto.setPromptText(textoHover);
         texto.setPrefColumnCount(30);

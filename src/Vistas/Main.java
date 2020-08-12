@@ -23,11 +23,11 @@ public class Main extends Application {
 
         String path = "AyP3-TP1-Java\\src\\Recursos\\Sonidos\\background.mp3";
 
-        var sistema = new Sistema();
+        var juego = new Juego();
+
+        var sistema = new Sistema(primaryStage,juego);
         sistema.musicaFondo();
 
-        var juego = new Juego();
-        // TODO juego.inicializarPreguntas();
 
         primaryStage.setTitle("Cursando por un Sueño");
         primaryStage.getIcons().add(new Image("/Recursos/Imagenes/logoFIUBA.png"));
@@ -41,6 +41,8 @@ public class Main extends Application {
         contenedorEntrada.setBotonJugar(primaryStage, escenaPresentacion);
         primaryStage.setScene(escenaBienvenidos);
 
+        primaryStage.setWidth(700);
+        primaryStage.setHeight(700);
         primaryStage.setResizable(false);
         primaryStage.show();
 

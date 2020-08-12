@@ -1,5 +1,9 @@
 package model.Preguntas;
 
+import Controladores.ControladorDeTurno;
+import Vistas.VistasPreguntas.VistaOrdenar;
+import Vistas.VistasPreguntas.VistaVerdaderoFalso;
+import javafx.scene.layout.VBox;
 import model.Comportamientos.Comportamiento;
 
 import java.util.List;
@@ -7,6 +11,7 @@ import java.util.List;
 public class Ordenar extends Pregunta {
     public Ordenar(String titulo, List<String> opciones, List<String> respuesta, Comportamiento comportamiento) {
         super(titulo, opciones, respuesta, comportamiento);
+        tipo = "Ordenar";
     }
 
     @Override
@@ -14,4 +19,8 @@ public class Ordenar extends Pregunta {
         return respuesta.equals(this.respuestaCorrecta);
     }
 
+    @Override
+    public VBox getVista(Pregunta pregunta, ControladorDeTurno controladorDeTurno) {
+        return new VistaOrdenar(pregunta, controladorDeTurno);
+    }
 }

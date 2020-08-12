@@ -1,13 +1,9 @@
 package Controladores.Botones;
 
-import Controladores.EntradaUsuario;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
 
 public class BotonMenuPrincipal implements EventHandler<ActionEvent> {
 

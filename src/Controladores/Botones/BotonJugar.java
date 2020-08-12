@@ -1,6 +1,6 @@
 package Controladores.Botones;
 
-import Controladores.EntradaUsuario;
+import Controladores.EntradasUsuario.EntradaNombre;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,12 +12,12 @@ import java.util.ArrayList;
 
 public class BotonJugar implements EventHandler<ActionEvent> {
 
-    ArrayList<EntradaUsuario> entradaJugadores;
+    ArrayList<EntradaNombre> entradaJugadores;
     Stage stage;
     Scene proximaEscena;
     Juego juego;
 
-    public BotonJugar(Stage stage, Scene proximaEscena, ArrayList<EntradaUsuario> entradaJugadores, Juego juego) {
+    public BotonJugar(Stage stage, Scene proximaEscena, ArrayList<EntradaNombre> entradaJugadores, Juego juego) {
         this.stage = stage;
         this.proximaEscena = proximaEscena;
         this.entradaJugadores = entradaJugadores;

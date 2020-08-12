@@ -121,4 +121,8 @@ public class RondaActual {
                 jugadores.get(jugador).actualizarPuntaje( this.puntajes.get(jugador) )
                 );
     }
+
+    public Map<String,Integer> getPuntajes(){
+        return puntajes;
+    }
 }

@@ -2,7 +2,7 @@ package Vistas.Contenedores;
 
 import Controladores.Botones.BotonMutear;
 import Controladores.Botones.BotonJugar;
-import Controladores.EntradaUsuario;
+import Controladores.EntradasUsuario.EntradaNombre;
 import Vistas.Boton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class ContenedorEntrada extends VBox {
 
-    ArrayList<EntradaUsuario> jugadores = new ArrayList<>();
+    ArrayList<EntradaNombre> jugadores = new ArrayList<>();
     BotonJugar cc;
     Juego juego;
 
@@ -33,8 +33,8 @@ public class ContenedorEntrada extends VBox {
         this.setPadding(new Insets(25));
         this.juego = juego;
 
-        EntradaUsuario entrada1 = new EntradaUsuario("Jugador/Estudiante 1");
-        EntradaUsuario entrada2 = new EntradaUsuario("Jugador/Estudiante 2");
+        EntradaNombre entrada1 = new EntradaNombre("Jugador/Estudiante 1");
+        EntradaNombre entrada2 = new EntradaNombre("Jugador/Estudiante 2");
         jugadores.add(entrada1);
         jugadores.add(entrada2);
 
@@ -45,12 +45,13 @@ public class ContenedorEntrada extends VBox {
         titulo.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
         titulo.setTextAlignment(TextAlignment.CENTER);
         titulo.setTextFill(Color.web("000000"));
+        titulo.setPadding(new Insets(2));
         Label subtitulo = new Label("¿Podrás llegar al título?");
         subtitulo.setFont(Font.font("Tahoma", FontWeight.BOLD, 14));
         subtitulo.setTextAlignment(TextAlignment.CENTER);
         subtitulo.setTextFill(Color.web("000000"));
 
-        Image imagen = new Image("/Recursos/Imagenes/logoFIUBA.png",250,250,true,true);
+        Image imagen = new Image("/Recursos/Imagenes/logoFIUBA.png",150,150,true,true);
         final ImageView imagenVista = new ImageView(imagen);
 
         Label story = new Label("Luego de muchos años de esfuerzo, están en el último cuatrimestre de Ingeniería en Informática. ¿Pero qué pasó?\nEl Departamento de Alumnos se equivocó y les dió el mismo padrón, ¡y ahora sólo uno puede recibirse!\nEl Decano decide entonces organizar un evento. Aquel que gane, se llevará el título de Ingeniero...");

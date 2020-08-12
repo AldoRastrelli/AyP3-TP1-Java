@@ -1,44 +1,43 @@
 package Controladores.Botones;
 
-import Controladores.ControladorPregunta;
-import Controladores.EntradaUsuario;
-
-import Vistas.Contenedores.ContenedorEntrada;
-import Vistas.Contenedores.ContenedorPregunta;
+import Controladores.ControladorDeTurno;
+import Controladores.Sistema;
+import Vistas.Boton;
+import Vistas.VistaResultados;
+import Vistas.VistaResultados;
+import Vistas.VistasPreguntas.VistaVerdaderoFalso;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Juego;
-import model.Jugador;
 import model.Preguntas.Pregunta;
-
-import java.util.ArrayList;
 
 public class BotonComenzar implements EventHandler<ActionEvent> {
 
-    Stage stage;
-    Scene proximaEscena;
-    Juego juego;
-
-    public BotonComenzar(Juego juego) {
-        this.juego = juego;
-    }
 
     @Override
     public void handle(ActionEvent actionEvent) {
 
-        for (Pregunta pregunta : juego.getPreguntas()){
+        Juego juego = Sistema.juego();
+        ControladorDeTurno controladorDeTurno = new ControladorDeTurno(juego, juego.getJugadores());
 
-            for (Jugador jugador : juego.getJugadores()){
-                ContenedorPregunta contenedorPregunta = new ContenedorPregunta(pregunta);
-                Scene escenaPregunta = new Scene(contenedorPregunta);
+        Pregunta preguntaActual = juego.getPreguntaActual();
 
-                this.stage = new Stage();
-                stage.setResizable(false);
-                stage.setScene(escenaPregunta);
-                stage.show();
-            }
+        try {
+            preguntaActual = juego.getPreguntas().remove(0);
         }
+        catch (Exception exception){
+            var jugadores = juego.getJugadores();
+            BotonVolverAJugar volverAJugar = new BotonVolverAJugar();
+            Boton botonVolverAJugar = new Boton("Volver a jugar",volverAJugar);
+            VistaResultados vistaResultados = new VistaResultados("FIN DEL JUEGO",botonVolverAJugar,jugadores);
+        }
+
+        juego.guardarPreguntaActual(preguntaActual);
+        VBox vista = preguntaActual.getVista(preguntaActual, controladorDeTurno);
+        Scene scene = new Scene(vista);
+        Sistema.setPrimaryStage(scene);
     }
 }

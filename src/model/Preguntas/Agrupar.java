@@ -1,5 +1,9 @@
 package model.Preguntas;
 
+import Controladores.ControladorDeTurno;
+import Vistas.VistasPreguntas.VistaAgrupar;
+import Vistas.VistasPreguntas.VistaVerdaderoFalso;
+import javafx.scene.layout.VBox;
 import model.Comportamientos.Comportamiento;
 
 import java.util.ArrayList;
@@ -13,6 +17,7 @@ public class Agrupar extends Pregunta{
 
     public Agrupar(String titulo, List<String> opciones, List<String> respuesta, Comportamiento comportamiento) {
         super(titulo, opciones, respuesta, comportamiento);
+        tipo = "Agrupar";
         respuestaCorrectaGrupoA = new ArrayList<>();
         respuestaCorrectaGrupoB = new ArrayList<>();
 
@@ -56,11 +61,10 @@ public class Agrupar extends Pregunta{
     }
 
 
-
-
-
-
-
+    @Override
+    public VBox getVista(Pregunta pregunta, ControladorDeTurno controladorDeTurno) {
+        return new VistaAgrupar(pregunta, controladorDeTurno);
+    }
 
 }
 

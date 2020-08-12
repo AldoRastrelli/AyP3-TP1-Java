@@ -1,5 +1,7 @@
 package model.Preguntas;
 
+import Controladores.ControladorDeTurno;
+import javafx.scene.layout.VBox;
 import model.Comportamientos.Comportamiento;
 
 import java.util.HashMap;
@@ -12,6 +14,7 @@ public abstract class Pregunta {
     protected List<String> opciones;
     protected List<String> respuestaCorrecta;
     protected Comportamiento comportamiento;
+    public String tipo;
 
     public Pregunta(String titulo, List<String> opciones, List<String> respuesta, Comportamiento comportamiento){
         respuestaCorrecta = respuesta;
@@ -46,4 +49,7 @@ public abstract class Pregunta {
     public String getPregunta(){
         return titulo;
     }
+    public List<String> getOpciones() {return opciones;}
+    public String getTipo(){ return tipo+" "+comportamiento.getTipo();}
+    public abstract VBox getVista(Pregunta pregunta, ControladorDeTurno controladorDeTurno);
 }
