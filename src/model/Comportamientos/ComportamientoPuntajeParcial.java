@@ -9,7 +9,8 @@ public class ComportamientoPuntajeParcial extends Comportamiento{
     }
 
     public Integer calcularPuntaje(Integer respuestasCorrectas, Integer respuestasIncorrectas, boolean cantRespuestasUsuarioCoincideConCantCorrectas){
-        return valorPuntajeCorrecto * respuestasCorrectas + valorPuntajeIncorrecto * respuestasIncorrectas;
+        if (respuestasIncorrectas>0){ return 0;}
+        return valorPuntajeCorrecto * respuestasCorrectas;
     }
 
     @Override
