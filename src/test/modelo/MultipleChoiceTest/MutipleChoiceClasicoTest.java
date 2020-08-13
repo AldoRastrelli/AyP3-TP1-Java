@@ -62,6 +62,81 @@ public class MutipleChoiceClasicoTest {
     }
 
     @Test
+    public void JugadorEligeRespuestasDeMasYNoLeAsignaPuntos(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); add ("Frío"); add ("Mar"); }};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.MultipleChoiceClasico("Las ___ y el ___",opciones, respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.noUsarBoost());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertEquals(1, (int) jugador1.getPuntos());
+        assertEquals(0, (int) jugador2.getPuntos());
+    }
+
+    @Test
+    public void JugadorEligeRespuestasIncompletaYNoLeAsignaPuntos(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas");add("Viento");}};
+        List<String> respuestaIncompleta = new ArrayList<String>(){{ add("Olas");}};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.MultipleChoiceClasico("Las ___ y el ___",opciones, respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.noUsarBoost());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncompleta, jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertEquals(1, (int) jugador1.getPuntos());
+        assertEquals(0, (int) jugador2.getPuntos());
+    }
+
+    @Test
+    public void JugadorEligeRespuestasVaciaYNoLeAsignaPuntos(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas");add("Viento");}};
+        List<String> respuestaIncompleta = new ArrayList<String>(){};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.MultipleChoiceClasico("Las ___ y el ___",opciones, respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.noUsarBoost());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncompleta, jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertEquals(1, (int) jugador1.getPuntos());
+        assertEquals(0, (int) jugador2.getPuntos());
+    }
+
+    @Test
     public void JugadorUsaExclusividadYSeAplicaCorrectamente(){
         var juego = new Juego();
 

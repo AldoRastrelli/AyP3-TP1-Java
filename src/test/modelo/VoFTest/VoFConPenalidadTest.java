@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class VoFConPenalidadTest {
@@ -59,6 +60,31 @@ public class VoFConPenalidadTest {
 
         assertTrue(puntajeObtenido.equals(puntajeEsperado));
 
+    }
+
+    @Test
+    public void JugadorEligeRespuestaVaciaYNoLeAsignaPuntos(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Verdadero"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){};
+        List<String> opciones = new ArrayList<>(){{add("Verdadero");add("Falso");}};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.VerdaderoOFalsoConPenalidad("",opciones,respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.noUsarBoost());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertEquals(1, (int) jugador1.getPuntos());
+        assertEquals(-1, (int) jugador2.getPuntos());
     }
 
     @Test

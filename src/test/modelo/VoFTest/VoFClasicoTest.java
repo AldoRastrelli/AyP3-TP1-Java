@@ -62,6 +62,31 @@ public class VoFClasicoTest {
     }
 
     @Test
+    public void JugadorEligeRespuestaVaciaYNoLeAsignaPuntos(){
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Verdadero"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){};
+        List<String> opciones = new ArrayList<>(){{add("Verdadero");add("Falso");}};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.VerdaderoOFalsoClasico("",opciones,respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.noUsarBoost());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertEquals(1, (int) jugador1.getPuntos());
+        assertEquals(0, (int) jugador2.getPuntos());
+    }
+
+    @Test
     public void JugadorUsaExclusividadYSeAplicaCorrectamente(){
         var juego = new Juego();
 

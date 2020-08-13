@@ -22,12 +22,11 @@ public class MutipleChoicePuntajeParcialTest {
     public void PreguntaMutipleChoicePuntajeParcialPuedeCrearseIndicandoRespuestaCorrectaTest() {
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
-        List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
         List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");}};
         FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",opciones, respuestaCorrecta);
+        MultipleChoice pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",opciones, respuestaCorrecta);
 
-        assertTrue(((MultipleChoice) pregunta).esRespuestaCorrecta(respuestaCorrecta));
+        assertTrue(pregunta.esRespuestaCorrecta(respuestaCorrecta));
     }
 
     @Test
@@ -35,8 +34,9 @@ public class MutipleChoicePuntajeParcialTest {
 
         var juego = new Juego();
 
-        juego.crearJugador("Marcos");
-        juego.crearJugador("Evelyn");
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
 
         List<String> respuestaCompleta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncompleta = new ArrayList<String>(){{ add("Olas"); }};
@@ -46,19 +46,15 @@ public class MutipleChoicePuntajeParcialTest {
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.MultipleChoicePuntajeParcial("Las ___ y el ___", opciones, respuestaCompleta);
 
-        Map<String, List<String>> respuestas = new HashMap<String, List<String>>(){{
-            put("Marcos",respuestaIncompleta);
-            put("Evelyn",respuestaCompleta);
-        }};
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCompleta, jugador1.noUsarBoost());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncompleta, jugador2.noUsarBoost());
 
-        Map<String, Integer> puntajeEsperado = new HashMap<String, Integer>(){{
-            put("Marcos",1);
-            put("Evelyn",2);
-        }};
+        juego.guardarPreguntaActual(pregunta);
 
-        Map<String, Integer> puntajeObtenido = pregunta.determinarPuntaje(respuestas);
+        juego.calcularPuntaje();
 
-        assertEquals(puntajeEsperado, puntajeObtenido);
+        assertEquals(2, (int) jugador1.getPuntos());
+        assertEquals(1, (int) jugador2.getPuntos());
     }
 
     @Test
@@ -69,7 +65,7 @@ public class MutipleChoicePuntajeParcialTest {
         Jugador jugador2 = juego.crearJugador("Evelyn");
         RondaActual rondaActual = juego.crearRondaActual();
 
-        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); add("Mar");}};
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento");}};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
         List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
         FactoryPreguntas factory = new FactoryPreguntas();
@@ -82,7 +78,33 @@ public class MutipleChoicePuntajeParcialTest {
 
         juego.calcularPuntaje();
 
-        assertEquals(3, (int) jugador1.getPuntos());
+        assertEquals(2, (int) jugador1.getPuntos());
+        assertEquals(0, (int) jugador2.getPuntos());
+    }
+
+    @Test
+    public void JugadorEligeRespuestaVaciaYNoLeAsignaPuntos(){
+
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Fernando");
+        Jugador jugador2 = juego.crearJugador("Rosa");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.MultipleChoicePuntajeParcial("Las ___ y el ___",opciones, respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.noUsarBoost());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertEquals(2, (int) jugador1.getPuntos());
         assertEquals(0, (int) jugador2.getPuntos());
     }
 

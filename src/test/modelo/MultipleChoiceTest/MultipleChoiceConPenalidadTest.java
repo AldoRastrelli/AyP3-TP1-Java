@@ -39,29 +39,51 @@ public class MultipleChoiceConPenalidadTest {
 
         var juego = new Juego();
 
-        juego.crearJugador("Fernando");
-        juego.crearJugador("Rosa");
+        Jugador jugador1 = juego.crearJugador("Fernando");
+        Jugador jugador2 = juego.crearJugador("Rosa");
+        RondaActual rondaActual = juego.crearRondaActual();
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
-        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");}};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",opciones, respuestaCorrecta);
 
-        Map<String, List<String>> respuestas = new HashMap<String, List<String>>(){{
-            put("Fernando",respuestaIncorrecta);
-            put("Rosa",respuestaCorrecta);
-        }};
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.noUsarBoost());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.noUsarBoost());
 
-        Map<String, Integer> puntajeEsperado = new HashMap<String, Integer>(){{
-            put("Fernando",-1);
-            put("Rosa",2);
-        }};
+        juego.guardarPreguntaActual(pregunta);
 
-        Map<String, Integer> puntajeObtenido = pregunta.determinarPuntaje(respuestas);
+        juego.calcularPuntaje();
 
-        assertEquals(puntajeEsperado, puntajeObtenido);
+        assertEquals(2, (int) jugador1.getPuntos());
+        assertEquals(-1, (int) jugador2.getPuntos());
+    }
 
+    @Test
+    public void PreguntaMultipleConPenalidadRecibeRespuestaVaciaYNoAsignaPuntosAJugador(){
+
+        var juego = new Juego();
+
+        Jugador jugador1 = juego.crearJugador("Fernando");
+        Jugador jugador2 = juego.crearJugador("Rosa");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
+        List<String> respuestaIncorrecta = new ArrayList<String>(){};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
+        FactoryPreguntas factory = new FactoryPreguntas();
+        Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",opciones, respuestaCorrecta);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.noUsarBoost());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(pregunta);
+
+        juego.calcularPuntaje();
+
+        assertEquals(2, (int) jugador1.getPuntos());
+        assertEquals(0, (int) jugador2.getPuntos());
     }
 
     @Test
@@ -74,7 +96,7 @@ public class MultipleChoiceConPenalidadTest {
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
-        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");}};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",opciones, respuestaCorrecta);
 
@@ -100,7 +122,7 @@ public class MultipleChoiceConPenalidadTest {
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
-        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");}};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",opciones, respuestaCorrecta);
 
@@ -123,7 +145,7 @@ public class MultipleChoiceConPenalidadTest {
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
-        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");}};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",opciones, respuestaCorrecta);
 
@@ -149,7 +171,7 @@ public class MultipleChoiceConPenalidadTest {
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
-        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");}};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",opciones, respuestaCorrecta);
 
@@ -172,7 +194,7 @@ public class MultipleChoiceConPenalidadTest {
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
-        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");}};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",opciones, respuestaCorrecta);
 
@@ -196,7 +218,7 @@ public class MultipleChoiceConPenalidadTest {
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
-        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");}};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",opciones, respuestaCorrecta);
 
@@ -220,7 +242,7 @@ public class MultipleChoiceConPenalidadTest {
 
         List<String> respuestaCorrecta = new ArrayList<String>(){{ add("Olas"); add("Viento"); }};
         List<String> respuestaIncorrecta = new ArrayList<String>(){{ add("Olas"); add("Mar"); add ("Frío"); }};
-        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");}};
+        List<String> opciones = new ArrayList<>(){{add("Olas");add("Viento");add("Frío");add("Mar");}};
         FactoryPreguntas factory = new FactoryPreguntas();
         Pregunta pregunta = factory.MultipleChoiceConPenalidad("Las ___ y el ___",opciones, respuestaCorrecta);
 
