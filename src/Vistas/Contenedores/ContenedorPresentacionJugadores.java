@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import model.Boosts.Boost;
 import model.Juego;
 import model.Jugador;
 
@@ -66,13 +67,4 @@ public class ContenedorPresentacionJugadores extends VBox {
         centro = new Pane(fondo);
     }
 
-    public void setBotonVolver(Stage stage, Scene escenaAnterior) {
-//        controladorBotonMenuPrincipal = new BotonMenuPrincipal(stage, escenaAnterior);
-//
-//        Image imagenVolver = new Image("/Recursos/Imagenes/house.png", 20, 20, true, true);
-//        final ImageView imagenVolverVista = new ImageView(imagenVolver);
-
-//        Boton botonVolver = new Boton("MENÚ PRINCIPAL", imagenVolverVista, controladorBotonMenuPrincipal);
-//        this.getChildren().add(3, botonVolver);
-    }
 }

@@ -23,21 +23,21 @@ public class Juego {
     List<Pregunta> preguntas;
     Pregunta preguntaActual;
     RondaActual rondaActual;
-    List<Boost> boosters;
+//    List<Boost> boosters;
     int cantPreguntas;
 
     public Juego(){
 
         jugadores = new ArrayList<>();
         preguntas = new ArrayList<>();
-        boosters = new ArrayList<>();
+//        boosters = new ArrayList<>();
         rondaActual = crearRondaActual();
         inicializarPreguntas();
     }
 
     public void inicializarPreguntas(){
         JSONParser jsonParser = new JSONParser();
-        try (FileReader reader = new FileReader("/home/rochi/Desktop/AyP3-TP1-Java/src/Recursos/Preguntas.json"))
+        try (FileReader reader = new FileReader("C:\\Users\\Usuario\\IdeaProjects\\TP2\\AyP3-TP1-Java\\src\\Recursos\\Preguntas.json"))
         {
             //Read JSON file
             Object obj = jsonParser.parse(reader);
