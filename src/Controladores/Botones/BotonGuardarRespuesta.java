@@ -5,8 +5,7 @@ import Controladores.ControladorDeTurno;
 import Controladores.EntradasUsuario.EntradaUsuario;
 import Controladores.Sistema;
 import Vistas.VistaResultados;
-import Vistas.VistasPreguntas.VistaPuntajes;
-import Vistas.VistasPreguntas.VistaVerdaderoFalso;
+import Vistas.VistasPreguntas.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -50,7 +49,25 @@ public class BotonGuardarRespuesta implements EventHandler<ActionEvent> {
             Sistema.setPrimaryStage(scene);
         }
         else{
-            VBox vista = juego.getPreguntaActual().getVista(juego.getPreguntaActual(), controladorDeTurno);
+            //VBox vista = juego.getPreguntaActual().getVista(juego.getPreguntaActual(), controladorDeTurno);
+            VBox vista = new VBox();
+
+            switch (juego.getPreguntaActual().getTipoGenerico()) {
+                case "Agrupar":
+                    vista = new VistaAgrupar(juego.getPreguntaActual(), controladorDeTurno);
+                    break;
+                case "Multiple Choice":
+                    vista = new VistaMultipleChoice(juego.getPreguntaActual(), controladorDeTurno);
+                    break;
+                case "Ordenar":
+                    vista = new VistaOrdenar(juego.getPreguntaActual(), controladorDeTurno);
+                    break;
+                case "Verdadero o Falso":
+                    vista = new VistaVerdaderoFalso(juego.getPreguntaActual(), controladorDeTurno);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + juego.getPreguntaActual().getTipo());
+            }
             Scene scene = new Scene(vista);
             Sistema.setPrimaryStage(scene);
         }

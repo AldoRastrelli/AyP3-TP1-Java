@@ -57,8 +57,9 @@ public class MultipleChoice extends Pregunta{
         return respuesta.equals(respuestaCorrecta);
     }
 
-    @Override
+   /* @Override
     public VBox getVista(Pregunta pregunta, ControladorDeTurno controladorDeTurno) {
         return new VistaMultipleChoice(pregunta, controladorDeTurno);
-    }
+    }*/
+    //TODO usar mvc. Modelo no deberia saber nada de la vista
 }

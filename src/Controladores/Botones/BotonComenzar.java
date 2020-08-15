@@ -5,6 +5,9 @@ import Controladores.Sistema;
 import Vistas.Boton;
 import Vistas.VistaResultados;
 import Vistas.VistaResultados;
+import Vistas.VistasPreguntas.VistaAgrupar;
+import Vistas.VistasPreguntas.VistaMultipleChoice;
+import Vistas.VistasPreguntas.VistaOrdenar;
 import Vistas.VistasPreguntas.VistaVerdaderoFalso;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -36,7 +39,25 @@ public class BotonComenzar implements EventHandler<ActionEvent> {
         }
 
         juego.guardarPreguntaActual(preguntaActual);
-        VBox vista = preguntaActual.getVista(preguntaActual, controladorDeTurno);
+        //VBox vista = preguntaActual.getVista(preguntaActual, controladorDeTurno);
+        VBox vista = new VBox();
+
+        switch (preguntaActual.getTipoGenerico()) {
+            case "Agrupar":
+                vista = new VistaAgrupar(preguntaActual, controladorDeTurno);
+                break;
+            case "Multiple Choice":
+                vista = new VistaMultipleChoice(preguntaActual, controladorDeTurno);
+                break;
+            case "Ordenar":
+                vista = new VistaOrdenar(preguntaActual, controladorDeTurno);
+                break;
+            case "Verdadero o Falso":
+                vista = new VistaVerdaderoFalso(preguntaActual, controladorDeTurno);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + preguntaActual.getTipoGenerico());
+        }
         Scene scene = new Scene(vista);
         Sistema.setPrimaryStage(scene);
     }

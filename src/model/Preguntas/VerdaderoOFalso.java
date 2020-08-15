@@ -21,8 +21,8 @@ public class VerdaderoOFalso extends Pregunta{
     }
 
 
-    @Override
+  /*  @Override
     public VBox getVista(Pregunta pregunta, ControladorDeTurno controladorDeTurno) {
-        return new VistaVerdaderoFalso(pregunta, controladorDeTurno);
-    }
+    return new VistaVerdaderoFalso(pregunta, controladorDeTurno);
+    }*/
 }
