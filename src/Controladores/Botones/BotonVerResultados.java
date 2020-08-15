@@ -5,6 +5,7 @@ import Controladores.ControladorDeTurno;
 import Controladores.EntradasUsuario.EntradaUsuario;
 import Controladores.Sistema;
 import Vistas.Boton;
+import Vistas.VistaFinal;
 import Vistas.VistaResultados;
 import Vistas.VistasPreguntas.VistaPuntajes;
 import Vistas.VistasPreguntas.VistaVerdaderoFalso;
@@ -24,14 +25,15 @@ public class BotonVerResultados implements EventHandler<ActionEvent> {
 
         BotonVolverAJugar botonVolverAJugar = new BotonVolverAJugar();
         Boton botonSiguiente = new Boton("FINALIZAR", botonVolverAJugar);
-
+        VistaFinal vistaFinal = new VistaFinal("Final del Juego", botonSiguiente, juego.getJugadores());
+        Scene escenaResultados = new Scene(vistaFinal);
         if(!juego.getCantPreguntas().equals(1)){
             BotonComenzar botonComenzar = new BotonComenzar();
             botonSiguiente = new Boton("SIGUIENTE PREGUNTA", botonComenzar);
+            VistaResultados vistaResultados = new VistaResultados("Total", botonSiguiente, juego.getJugadores());
+            escenaResultados = new Scene(vistaResultados);
         }
-        String titulo = "Total";
-        VistaResultados vistaResultados = new VistaResultados(titulo, botonSiguiente, juego.getJugadores());
-        Scene escenaResultados = new Scene(vistaResultados);
+
         Sistema.setPrimaryStage(escenaResultados);
         juego.descontarPregunta();
     }
