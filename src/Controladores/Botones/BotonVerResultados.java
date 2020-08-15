@@ -22,11 +22,13 @@ public class BotonVerResultados implements EventHandler<ActionEvent> {
 
         var juego = Sistema.juego();
 
-        BotonComenzar botonComenzar = new BotonComenzar();
-        Boton botonSiguiente = new Boton("FINALIZAR", botonComenzar);
+        BotonVolverAJugar botonVolverAJugar = new BotonVolverAJugar();
+        Boton botonSiguiente = new Boton("FINALIZAR", botonVolverAJugar);
 
-        if(!juego.getCantPreguntas().equals(1))
+        if(!juego.getCantPreguntas().equals(1)){
+            BotonComenzar botonComenzar = new BotonComenzar();
             botonSiguiente = new Boton("SIGUIENTE PREGUNTA", botonComenzar);
+        }
         String titulo = "Total";
         VistaResultados vistaResultados = new VistaResultados(titulo, botonSiguiente, juego.getJugadores());
         Scene escenaResultados = new Scene(vistaResultados);
