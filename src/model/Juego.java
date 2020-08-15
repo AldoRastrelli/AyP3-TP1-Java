@@ -24,6 +24,7 @@ public class Juego {
     Pregunta preguntaActual;
     RondaActual rondaActual;
     List<Boost> boosters;
+    int cantPreguntas;
 
     public Juego(){
 
@@ -36,7 +37,7 @@ public class Juego {
 
     public void inicializarPreguntas(){
         JSONParser jsonParser = new JSONParser();
-        try (FileReader reader = new FileReader("C:\\Users\\Usuario\\IdeaProjects\\TP2\\AyP3-TP1-Java\\src\\Recursos\\Preguntas.json"))
+        try (FileReader reader = new FileReader("/home/rochi/Desktop/AyP3-TP1-Java/src/Recursos/Preguntas.json"))
         {
             //Read JSON file
             Object obj = jsonParser.parse(reader);
@@ -59,14 +60,16 @@ public class Juego {
     {
         //Get employee object within list
         String tipo = (String) pregunta.get("tipo");
-        String comportamiento = (String) pregunta.get("comportamiento");
-        String titulo = (String) pregunta.get("titulo");
-        String opcionesLeidas = (String) pregunta.get("opciones");
-        String respuestaCorrectaLeida = (String) pregunta.get("respuestaCorrecta");
 
-        List<String> opciones = modificarFormato(opcionesLeidas);
-        List<String> respuestaCorrecta = modificarFormato(respuestaCorrectaLeida);
-        guardarPregunta(tipo.toString(),comportamiento.toString(),titulo.toString(),opciones,respuestaCorrecta);
+            String comportamiento = (String) pregunta.get("comportamiento");
+            String titulo = (String) pregunta.get("titulo");
+            String opcionesLeidas = (String) pregunta.get("opciones");
+            String respuestaCorrectaLeida = (String) pregunta.get("respuestaCorrecta");
+
+            List<String> opciones = modificarFormato(opcionesLeidas);
+            List<String> respuestaCorrecta = modificarFormato(respuestaCorrectaLeida);
+            guardarPregunta(tipo.toString(), comportamiento.toString(), titulo.toString(), opciones, respuestaCorrecta);
+
     }
 
     public static List<String> modificarFormato(String respuesta){
@@ -84,6 +87,7 @@ public class Juego {
         FactoryPreguntas factoryPreguntas = new FactoryPreguntas();
         Pregunta pregunta = factoryPreguntas.crear(tipo,comportamiento,titulo,opciones,respuestaCorrecta);
         this.preguntas.add(pregunta);
+        cantPreguntas = preguntas.size();
     }
 
     public RondaActual crearRondaActual(){
@@ -131,4 +135,11 @@ public class Juego {
         return preguntaActual;
     }
 
+    public void descontarPregunta() {
+        cantPreguntas--;
+    }
+
+    public Object getCantPreguntas() {
+        return cantPreguntas;
+    }
 }

@@ -3,6 +3,7 @@ package Controladores.Botones;
 import Controladores.ControladorDeTurno;
 import Controladores.Sistema;
 import Vistas.Boton;
+import Vistas.Contenedores.ContenedorEntrada;
 import Vistas.VistaResultados;
 import Vistas.VistaResultados;
 import Vistas.VistasPreguntas.VistaAgrupar;
