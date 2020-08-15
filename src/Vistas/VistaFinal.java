@@ -56,17 +56,21 @@ public class VistaFinal extends VBox {
             jugadorPuntaje.setTextFill(Color.web(color));
             this.getChildren().addAll(jugadorPuntaje);
         }
-        Label subtitulo = new Label("El ganador es");
-       /* Label ganador = new Label(jugadores.get(2).getNombre());
+        Label subtitulo = new Label("Gano");
+        Label ganador = new Label(jugadores.get(1).getNombre());
 
-        if(jugadores.get(1).getPuntos() > jugadores.get(2).getPuntos()){
-            ganador = new Label (jugadores.get(1).getNombre());
-        }*/
+        if(jugadores.get(0).getPuntos() > jugadores.get(1).getPuntos()){
+            ganador = new Label (jugadores.get(0).getNombre());
+        }
+        if(jugadores.get(0).getPuntos() == jugadores.get(1).getPuntos()){
+            subtitulo = new Label("Empate");
+            ganador = new Label ("No hay unx ganadorx");
+        }
         subtitulo.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
         subtitulo.setTextAlignment(TextAlignment.CENTER);
         subtitulo.setTextFill(Color.web("000000"));
         this.getChildren().addAll(subtitulo);
-       // this.getChildren().addAll(ganador);
+       this.getChildren().addAll(ganador);
 
         this.getChildren().addAll(boton);
 
