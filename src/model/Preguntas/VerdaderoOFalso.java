@@ -19,10 +19,4 @@ public class VerdaderoOFalso extends Pregunta{
 
         return respuesta.get(0).toUpperCase().equals(respuestaCorrecta.get(0).toUpperCase());
     }
-
-
-  /*  @Override
-    public VBox getVista(Pregunta pregunta, ControladorDeTurno controladorDeTurno) {
-    return new VistaVerdaderoFalso(pregunta, controladorDeTurno);
-    }*/
 }

@@ -39,25 +39,7 @@ public class BotonComenzar implements EventHandler<ActionEvent> {
         }
 
         juego.guardarPreguntaActual(preguntaActual);
-        //VBox vista = preguntaActual.getVista(preguntaActual, controladorDeTurno);
-        VBox vista = new VBox();
-
-        switch (preguntaActual.getTipoGenerico()) {
-            case "Agrupar":
-                vista = new VistaAgrupar(preguntaActual, controladorDeTurno);
-                break;
-            case "Multiple Choice":
-                vista = new VistaMultipleChoice(preguntaActual, controladorDeTurno);
-                break;
-            case "Ordenar":
-                vista = new VistaOrdenar(preguntaActual, controladorDeTurno);
-                break;
-            case "Verdadero o Falso":
-                vista = new VistaVerdaderoFalso(preguntaActual, controladorDeTurno);
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + preguntaActual.getTipoGenerico());
-        }
+        VBox vista = Sistema.getVista(preguntaActual, controladorDeTurno);
         Scene scene = new Scene(vista);
         Sistema.setPrimaryStage(scene);
     }

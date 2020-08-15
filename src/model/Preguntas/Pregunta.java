@@ -52,5 +52,4 @@ public abstract class Pregunta {
     public List<String> getOpciones() {return opciones;}
     public String getTipo(){ return tipo+" "+comportamiento.getTipo();}
     public String getTipoGenerico(){ return tipo;}
-   // public abstract VBox getVista(Pregunta pregunta, ControladorDeTurno controladorDeTurno);
 }

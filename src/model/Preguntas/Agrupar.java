@@ -60,11 +60,5 @@ public class Agrupar extends Pregunta{
         return index;
     }
 
-
-   /* @Override
-    public VBox getVista(Pregunta pregunta, ControladorDeTurno controladorDeTurno) {
-        return new VistaAgrupar(pregunta, controladorDeTurno);
-    }*/
-
 }
 

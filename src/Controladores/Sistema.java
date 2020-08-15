@@ -2,6 +2,10 @@ package Controladores;
 
 import Controladores.Botones.BotonMutear;
 import Vistas.Boton;
+import Vistas.VistasPreguntas.VistaAgrupar;
+import Vistas.VistasPreguntas.VistaMultipleChoice;
+import Vistas.VistasPreguntas.VistaOrdenar;
+import Vistas.VistasPreguntas.VistaVerdaderoFalso;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,6 +21,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Juego;
+import model.Preguntas.Pregunta;
 
 import java.awt.*;
 import java.io.File;
@@ -72,5 +77,26 @@ public class Sistema {
     }
     public static Stage getPrimaryStage(){
         return primaryStage;
+    }
+
+    public static VBox getVista(Pregunta preguntaActual, ControladorDeTurno controladorDeTurno) {
+        VBox vista = new VBox();
+        switch (preguntaActual.getTipoGenerico()) {
+            case "Agrupar":
+                vista = new VistaAgrupar(preguntaActual, controladorDeTurno);
+                break;
+            case "Multiple Choice":
+                vista = new VistaMultipleChoice(preguntaActual, controladorDeTurno);
+                break;
+            case "Ordenar":
+                vista = new VistaOrdenar(preguntaActual, controladorDeTurno);
+                break;
+            case "Verdadero o Falso":
+                vista = new VistaVerdaderoFalso(preguntaActual, controladorDeTurno);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + preguntaActual.getTipoGenerico());
+        }
+        return vista;
     }
 }

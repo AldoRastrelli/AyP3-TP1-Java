@@ -19,8 +19,4 @@ public class Ordenar extends Pregunta {
         return respuesta.equals(this.respuestaCorrecta);
     }
 
-  /*  @Override
-    public VBox getVista(Pregunta pregunta, ControladorDeTurno controladorDeTurno) {
-        return new VistaOrdenar(pregunta, controladorDeTurno);
-    }*/
 }

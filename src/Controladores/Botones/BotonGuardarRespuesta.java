@@ -49,25 +49,7 @@ public class BotonGuardarRespuesta implements EventHandler<ActionEvent> {
             Sistema.setPrimaryStage(scene);
         }
         else{
-            //VBox vista = juego.getPreguntaActual().getVista(juego.getPreguntaActual(), controladorDeTurno);
-            VBox vista = new VBox();
-
-            switch (juego.getPreguntaActual().getTipoGenerico()) {
-                case "Agrupar":
-                    vista = new VistaAgrupar(juego.getPreguntaActual(), controladorDeTurno);
-                    break;
-                case "Multiple Choice":
-                    vista = new VistaMultipleChoice(juego.getPreguntaActual(), controladorDeTurno);
-                    break;
-                case "Ordenar":
-                    vista = new VistaOrdenar(juego.getPreguntaActual(), controladorDeTurno);
-                    break;
-                case "Verdadero o Falso":
-                    vista = new VistaVerdaderoFalso(juego.getPreguntaActual(), controladorDeTurno);
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + juego.getPreguntaActual().getTipo());
-            }
+            VBox vista = Sistema.getVista(juego.getPreguntaActual(), controladorDeTurno);
             Scene scene = new Scene(vista);
             Sistema.setPrimaryStage(scene);
         }
