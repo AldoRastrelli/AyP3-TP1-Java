@@ -21,8 +21,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        String path = "/home/rochi/Desktop/AyP3-TP1-Java/src/Recursos/Sonidos/background.mp3";
-
         var juego = new Juego();
 
         var sistema = new Sistema(primaryStage,juego);
