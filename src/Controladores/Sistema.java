@@ -44,7 +44,7 @@ public class Sistema {
     }
 
     public static void musicaFondo() {
-        String path = "/home/rochi/Desktop/AyP3-TP1-Java/src/Recursos/Sonidos";
+        String path = "C:\\Users\\Usuario\\IdeaProjects\\TP2\\AyP3-TP1-Java\\src\\Recursos\\Sonidos\\background.mp3";
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setVolume(0.3);
