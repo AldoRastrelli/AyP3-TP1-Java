@@ -31,7 +31,8 @@ public class EntradaVerdaderoFalso extends EntradaUsuario{
 
     @Override
     public List<String> getRespuesta() {
-        respuestaUsuario.add((String) comboBox.getValue());
+        var respuesta = (String) comboBox.getValue() == null ? "" : (String) comboBox.getValue();
+        respuestaUsuario.add(respuesta);
         return respuestaUsuario;
     }
 

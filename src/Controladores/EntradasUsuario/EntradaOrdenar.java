@@ -37,7 +37,10 @@ public class EntradaOrdenar extends EntradaUsuario{
     @Override
     public List<String> getRespuesta() {
 
-        comboBoxes.stream().forEach(comboBox -> respuestaUsuario.add((String)comboBox.getValue()));
+        comboBoxes.stream().forEach(comboBox -> {
+            var respuesta = (String)comboBox.getValue() == null ? "" : (String)comboBox.getValue();
+            respuestaUsuario.add(respuesta);
+        });
 
         return respuestaUsuario;
     }

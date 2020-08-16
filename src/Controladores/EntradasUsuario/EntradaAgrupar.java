@@ -47,6 +47,7 @@ public class EntradaAgrupar extends EntradaUsuario{
 
         for(Map.Entry<String, ComboBox> elemento : opcionesAgrupar.entrySet()){
             var comboBox = elemento.getValue();
+            if(comboBox == null) { comboBox.setValue("");}
             String opcionElegida = (String) comboBox.getValue();
             List<String> grupo = opcionElegida.equals(tituloGrupoA) ? grupoA : grupoB;
             grupo.add(elemento.getKey());

@@ -37,7 +37,7 @@ public class Main extends Application {
         ContenedorPresentacionJugadores contenedorPresentacion = new ContenedorPresentacionJugadores();
         Scene escenaPresentacion = new Scene (contenedorPresentacion);
 
-        contenedorPresentacion.setBotonVolver(primaryStage, escenaBienvenidos);
+//        contenedorPresentacion.setBotonVolver(primaryStage, escenaBienvenidos);
         contenedorEntrada.setBotonJugar(primaryStage, escenaPresentacion);
         primaryStage.setScene(escenaBienvenidos);
 

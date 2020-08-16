@@ -52,6 +52,7 @@ public class RondaActual {
         usarBoosts();
 
         pasarPuntajes(jugadores);
+        boostExclusividad = false;
         return;
     }
 
@@ -125,7 +126,7 @@ public class RondaActual {
     public void restarUsoExclusivo(List<Jugador> jugadores){
         for (Map.Entry<String,Boost> entry : this.boosts.entrySet()){
             jugadores.forEach( j-> {
-                var boost = boosts.get(j);
+                var boost = boosts.get(j.getNombre());
                 if (boost.esBoostExclusivo()){
                     boost.restarUso();
                 }
