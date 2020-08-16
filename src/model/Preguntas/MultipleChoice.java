@@ -1,9 +1,5 @@
 package model.Preguntas;
 
-import Controladores.ControladorDeTurno;
-import Vistas.VistasPreguntas.VistaMultipleChoice;
-import Vistas.VistasPreguntas.VistaVerdaderoFalso;
-import javafx.scene.layout.VBox;
 import model.Comportamientos.Comportamiento;
 
 import java.util.Collections;

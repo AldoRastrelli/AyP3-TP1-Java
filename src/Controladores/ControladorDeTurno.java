@@ -1,15 +1,12 @@
 package Controladores;
 
-import javafx.scene.Scene;
 import model.Boosts.Boost;
 import model.Juego;
 import model.Jugador;
-import model.Preguntas.Pregunta;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 
 public class ControladorDeTurno {

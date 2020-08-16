@@ -3,7 +3,6 @@ package test.modelo.OrdenarTest;
 import model.FactoryPreguntas.FactoryPreguntas;
 import model.Juego;
 import model.Jugador;
-import model.Preguntas.Ordenar;
 import model.Preguntas.Pregunta;
 import model.RondaActual;
 import org.junit.Test;

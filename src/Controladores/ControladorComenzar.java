@@ -1,7 +1,6 @@
 package Controladores;
 
 import Controladores.EntradasUsuario.EntradaUsuario;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;

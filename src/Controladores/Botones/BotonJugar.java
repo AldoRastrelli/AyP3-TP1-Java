@@ -1,7 +1,6 @@
 package Controladores.Botones;
 
 import Controladores.EntradasUsuario.EntradaNombre;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;

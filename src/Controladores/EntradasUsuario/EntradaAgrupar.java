@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import model.Boosts.Boost;
-import model.Boosts.BoostSimple;
 import model.Jugador;
 import model.Preguntas.Pregunta;
 
@@ -47,7 +46,7 @@ public class EntradaAgrupar extends EntradaUsuario{
 
         for(Map.Entry<String, ComboBox> elemento : opcionesAgrupar.entrySet()){
             var comboBox = elemento.getValue();
-            if(comboBox == null) { comboBox.setValue("");}
+            if(comboBox.getValue() == null) { comboBox.setValue("");}
             String opcionElegida = (String) comboBox.getValue();
             List<String> grupo = opcionElegida.equals(tituloGrupoA) ? grupoA : grupoB;
             grupo.add(elemento.getKey());

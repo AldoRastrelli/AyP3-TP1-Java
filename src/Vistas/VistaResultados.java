@@ -1,28 +1,19 @@
 package Vistas;
 
-import Controladores.Botones.*;
-import Controladores.ControladorDeTurno;
-import Controladores.EntradasUsuario.EntradaVerdaderoFalso;
-import Vistas.Boton;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import model.Jugador;
-import model.Preguntas.Pregunta;
-import model.RondaActual;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 public class VistaResultados extends VBox{

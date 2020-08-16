@@ -1,7 +1,5 @@
 package model.Preguntas;
 
-import Controladores.ControladorDeTurno;
-import javafx.scene.layout.VBox;
 import model.Comportamientos.Comportamiento;
 
 import java.util.HashMap;

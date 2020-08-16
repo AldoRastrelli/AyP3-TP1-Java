@@ -1,6 +1,6 @@
 package Vistas.VistasPreguntas;
 
-import Controladores.Botones.*;
+import Controladores.Botones.BotonGuardarRespuesta;
 import Controladores.ControladorDeTurno;
 import Controladores.EntradasUsuario.EntradaUsuario;
 import Controladores.EntradasUsuario.EntradaVerdaderoFalso;
@@ -8,22 +8,18 @@ import Controladores.Sistema;
 import Vistas.Boton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import model.Jugador;
 import model.Preguntas.Pregunta;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

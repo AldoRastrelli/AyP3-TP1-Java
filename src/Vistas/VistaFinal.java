@@ -1,28 +1,20 @@
 package Vistas;
 
-        import Controladores.Botones.*;
-        import Controladores.ControladorDeTurno;
-        import Controladores.EntradasUsuario.EntradaVerdaderoFalso;
-        import Vistas.Boton;
-        import javafx.collections.FXCollections;
-        import javafx.collections.ObservableList;
-        import javafx.geometry.Insets;
-        import javafx.geometry.Pos;
-        import javafx.scene.canvas.Canvas;
-        import javafx.scene.control.ComboBox;
-        import javafx.scene.control.Label;
-        import javafx.scene.layout.*;
-        import javafx.scene.paint.Color;
-        import javafx.scene.text.Font;
-        import javafx.scene.text.FontWeight;
-        import javafx.scene.text.TextAlignment;
-        import model.Jugador;
-        import model.Preguntas.Pregunta;
-        import model.RondaActual;
+import Controladores.Sistema;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
+import model.Jugador;
 
-        import java.util.ArrayList;
-        import java.util.List;
-        import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VistaFinal extends VBox {
 
@@ -38,9 +30,11 @@ public class VistaFinal extends VBox {
         this.setFondo();
 
         Label titulo = new Label(tituloVista);
-        titulo.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
+        titulo.setFont(Font.font("Tahoma", FontWeight.BOLD, 25));
         titulo.setTextAlignment(TextAlignment.CENTER);
-        titulo.setTextFill(Color.web("black"));
+        titulo.setTextFill(Color.web("orange"));
+
+        if (tituloVista.toLowerCase().contains("fin")){ Sistema.musicaAplausos(); Sistema.frenarSonidos();}
 
         this.getChildren().addAll(titulo);
 
@@ -56,8 +50,9 @@ public class VistaFinal extends VBox {
             jugadorPuntaje.setTextFill(Color.web(color));
             this.getChildren().addAll(jugadorPuntaje);
         }
-        Label subtitulo = new Label("Gano");
+        Label subtitulo = new Label("Ganador:");
         Label ganador = new Label(jugadores.get(1).getNombre());
+
 
         if(jugadores.get(0).getPuntos() > jugadores.get(1).getPuntos()){
             ganador = new Label (jugadores.get(0).getNombre());
@@ -69,8 +64,12 @@ public class VistaFinal extends VBox {
         subtitulo.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
         subtitulo.setTextAlignment(TextAlignment.CENTER);
         subtitulo.setTextFill(Color.web("000000"));
+        ganador.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
+        ganador.setTextAlignment(TextAlignment.CENTER);
+        ganador.setTextFill(Color.web("green"));
+
         this.getChildren().addAll(subtitulo);
-       this.getChildren().addAll(ganador);
+        this.getChildren().addAll(ganador);
 
         this.getChildren().addAll(boton);
 

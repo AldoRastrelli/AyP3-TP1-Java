@@ -3,19 +3,16 @@ package model;
 import model.Boosts.Boost;
 import model.FactoryPreguntas.FactoryPreguntas;
 import model.Preguntas.Pregunta;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Juego {
 
@@ -23,14 +20,12 @@ public class Juego {
     List<Pregunta> preguntas;
     Pregunta preguntaActual;
     RondaActual rondaActual;
-//    List<Boost> boosters;
     int cantPreguntas;
 
     public Juego(){
 
         jugadores = new ArrayList<>();
         preguntas = new ArrayList<>();
-//        boosters = new ArrayList<>();
         rondaActual = crearRondaActual();
         inicializarPreguntas();
     }
@@ -58,7 +53,6 @@ public class Juego {
 
     private void parsePreguntasObject(JSONObject pregunta)
     {
-        //Get employee object within list
         String tipo = (String) pregunta.get("tipo");
 
             String comportamiento = (String) pregunta.get("comportamiento");
@@ -68,7 +62,7 @@ public class Juego {
 
             List<String> opciones = modificarFormato(opcionesLeidas);
             List<String> respuestaCorrecta = modificarFormato(respuestaCorrectaLeida);
-            guardarPregunta(tipo.toString(), comportamiento.toString(), titulo.toString(), opciones, respuestaCorrecta);
+            guardarPregunta(tipo, comportamiento, titulo, opciones, respuestaCorrecta);
 
     }
 
@@ -135,11 +129,7 @@ public class Juego {
         return preguntaActual;
     }
 
-    public void descontarPregunta() {
-        cantPreguntas--;
-    }
-
-    public Object getCantPreguntas() {
-        return cantPreguntas;
+    public boolean tienePreguntasDisponibles() {
+        return preguntas.size()>0;
     }
 }

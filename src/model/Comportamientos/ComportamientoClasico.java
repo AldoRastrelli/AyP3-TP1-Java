@@ -1,7 +1,5 @@
 package model.Comportamientos;
 
-import model.Comportamientos.Comportamiento;
-
 public class ComportamientoClasico extends Comportamiento {
 
     public ComportamientoClasico(){

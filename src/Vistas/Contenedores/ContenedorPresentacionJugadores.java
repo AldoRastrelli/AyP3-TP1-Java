@@ -1,23 +1,20 @@
 package Vistas.Contenedores;
 
-import Controladores.Botones.*;
+import Controladores.Botones.BotonComenzar;
 import Controladores.Botones.BotonMenuPrincipal;
 import Controladores.Sistema;
 import Vistas.Boton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
-import model.Boosts.Boost;
-import model.Juego;
 import model.Jugador;
 
 import java.util.ArrayList;
@@ -43,7 +40,7 @@ public class ContenedorPresentacionJugadores extends VBox {
         final ImageView decanoVista = new ImageView(decano);
 
         Label discurso = new Label("'Bienvenidos y bienvenidas.\nEl día de hoy, estos jóvenes estudiantes se disputarán el título de Ingeniero/a en Informática.\nQuiero agradecer al Departamento de Alumnos: sin su arduo trabajo, no podríamos estar aquí.\nLos recibimos entonces con un aplauso, y comenzamos con el evento.'");
-        discurso.setFont(Font.font("Tahoma", 12));
+        discurso.setFont(Font.font("Tahoma", 14));
         discurso.setTextAlignment(TextAlignment.CENTER);
         discurso.setTextFill(Color.web("000000"));
 

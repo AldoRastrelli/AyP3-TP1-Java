@@ -1,25 +1,20 @@
 package Vistas.VistasPreguntas;
 
-import Controladores.Botones.*;
+import Controladores.Botones.BotonVerResultados;
 import Controladores.ControladorDeTurno;
-import Controladores.EntradasUsuario.EntradaVerdaderoFalso;
 import Controladores.Sistema;
 import Vistas.Boton;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
-import model.Boosts.Boost;
 import model.Jugador;
-import model.Preguntas.Pregunta;
 import model.RondaActual;
 
 import java.util.ArrayList;
@@ -50,6 +45,7 @@ public class VistaPuntajes extends VBox{
         Label jugadorPuntaje;
 
         String color = "black";
+        List<Label>jugadores = new ArrayList<>();
         for (Map.Entry<String, Integer > entry : rondaActual.getPuntajes().entrySet()){
             color = entry.getValue() > 0 ? "green" : "red";
 
@@ -57,8 +53,9 @@ public class VistaPuntajes extends VBox{
             jugadorPuntaje.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
             jugadorPuntaje.setTextAlignment(TextAlignment.LEFT);
             jugadorPuntaje.setTextFill(Color.web(color));
-            this.getChildren().addAll(jugadorPuntaje);
+            jugadores.add(jugadorPuntaje);
         }
+        jugadores.stream().forEach(j -> this.getChildren().addAll(j));
 
         BotonVerResultados verResultados = new BotonVerResultados();
         Boton botonVerResultados = new Boton("CONTINUAR", verResultados);

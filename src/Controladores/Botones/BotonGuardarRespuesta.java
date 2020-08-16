@@ -1,20 +1,15 @@
 package Controladores.Botones;
 
 import Controladores.ControladorDeTurno;
-
 import Controladores.EntradasUsuario.EntradaUsuario;
 import Controladores.Sistema;
-import Vistas.VistaResultados;
-import Vistas.VistasPreguntas.*;
+import Vistas.VistasPreguntas.VistaPuntajes;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import model.Boosts.Boost;
-import model.Boosts.BoostSimple;
 import model.Jugador;
-import model.Preguntas.Pregunta;
-import model.RondaActual;
 
 import java.util.List;
 import java.util.Map;

@@ -6,30 +6,21 @@ import Vistas.VistasPreguntas.VistaAgrupar;
 import Vistas.VistasPreguntas.VistaMultipleChoice;
 import Vistas.VistasPreguntas.VistaOrdenar;
 import Vistas.VistasPreguntas.VistaVerdaderoFalso;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.Juego;
 import model.Preguntas.Pregunta;
 
-import java.awt.*;
 import java.io.File;
-import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import static javafx.scene.input.KeyCode.R;
 
 public class Sistema {
 
@@ -51,6 +42,16 @@ public class Sistema {
         mediaPlayer.setAutoPlay(true);
         musicaFondo = mediaPlayer;
     }
+
+    public static void musicaAplausos() {
+        String path = "C:\\Users\\Usuario\\IdeaProjects\\TP2\\AyP3-TP1-Java\\src\\Recursos\\Sonidos\\applause.mp3";
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setVolume(0.3);
+        mediaPlayer.setAutoPlay(true);
+        musicaFondo = mediaPlayer;
+    }
+
 
     public static void frenarSonidos() {
         if(musicaFondo.getStatus().equals(MediaPlayer.Status.PLAYING)) musicaFondo.pause();
@@ -100,7 +101,16 @@ public class Sistema {
         return vista;
     }
 
-    public static void reiniciarJuego(){
-        juego = new Juego();
+    public static void cortarMusica(){
+        // fade out de la música
+        Timeline timeline = new Timeline(
+          new KeyFrame(Duration.seconds(3),
+                  new KeyValue(musicaFondo.volumeProperty(),0))
+        );
+        timeline.play();
+        timeline.setOnFinished(event -> frenarSonidos());
+
+        mutear();
     }
+
 }

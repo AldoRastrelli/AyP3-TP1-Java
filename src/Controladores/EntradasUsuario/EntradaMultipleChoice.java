@@ -2,11 +2,8 @@ package Controladores.EntradasUsuario;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import model.Boosts.Boost;
 import model.Jugador;
 import model.Preguntas.Pregunta;

@@ -1,9 +1,8 @@
 package Controladores.EntradasUsuario;
 
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 
 
 public class EntradaNombre {
