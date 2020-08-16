@@ -1,6 +1,7 @@
 package Controladores;
 
 import javafx.scene.Scene;
+import model.Boosts.Boost;
 import model.Juego;
 import model.Jugador;
 import model.Preguntas.Pregunta;
@@ -18,6 +19,7 @@ public class ControladorDeTurno {
     private static Juego juego;
     private List<Jugador> jugadores;
     private Map<Jugador,List<String>> respuestas;
+    private Map<String, Boost> boostUsado;
 
     public ControladorDeTurno(Juego juego, List<Jugador> unosJugadores){
 
@@ -25,11 +27,13 @@ public class ControladorDeTurno {
         actual = elegirPrimerJugador();
         respuestas = new HashMap<>();
         this.juego = juego;
+        boostUsado = new HashMap<>();
 
     }
 
-    public void guardarRespuesta(List<String> respuesta){
+    public void guardarRespuesta(List<String> respuesta, Boost boost){
         respuestas.put(actual,respuesta);
+        boostUsado.put(actual.getNombre(),boost);
     }
 
 
@@ -57,9 +61,9 @@ public class ControladorDeTurno {
         return jugadores.get(jugadores.indexOf(this.actual)+1);
     }
 
-    public void terminarTurno(){
-        controlador.cambiarTurno();
-    }
+//    public void terminarTurno(){
+//        controlador.cambiarTurno();
+//    }
 
     public Juego getJuego(){
         return this.juego;
@@ -67,5 +71,9 @@ public class ControladorDeTurno {
 
     public boolean finRonda(){
         return actual == jugadores.get(0);
+    }
+
+    public Boost getBoostUsado(String nombreJugador){
+        return boostUsado.get(nombreJugador);
     }
 }

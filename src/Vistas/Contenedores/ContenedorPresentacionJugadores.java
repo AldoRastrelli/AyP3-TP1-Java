@@ -67,12 +67,12 @@ public class ContenedorPresentacionJugadores extends VBox {
     }
 
     public void setBotonVolver(Stage stage, Scene escenaAnterior) {
-        controladorBotonMenuPrincipal = new BotonMenuPrincipal(stage, escenaAnterior);
+//        controladorBotonMenuPrincipal = new BotonMenuPrincipal(stage, escenaAnterior);
+//
+//        Image imagenVolver = new Image("/Recursos/Imagenes/house.png", 20, 20, true, true);
+//        final ImageView imagenVolverVista = new ImageView(imagenVolver);
 
-        Image imagenVolver = new Image("/Recursos/Imagenes/house.png", 20, 20, true, true);
-        final ImageView imagenMuteVista = new ImageView(imagenVolver);
-
-        Boton botonVolver = new Boton("MENÚ PRINCIPAL", imagenMuteVista, controladorBotonMenuPrincipal);
-        this.getChildren().add(3, botonVolver);
+//        Boton botonVolver = new Boton("MENÚ PRINCIPAL", imagenVolverVista, controladorBotonMenuPrincipal);
+//        this.getChildren().add(3, botonVolver);
     }
 }

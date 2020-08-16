@@ -4,7 +4,7 @@ public class BoostSimple extends Boost{
 
     public BoostSimple(){
         multiplicador = 1;
-        nombre = "Simple";
+        nombre = "No Usar Boost";
         cantidadDeUsos = Integer.MAX_VALUE;
     }
 }

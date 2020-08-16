@@ -21,5 +21,6 @@ public class BotonVolverAJugar implements EventHandler<ActionEvent> {
 
         Main main = new Main();
         main.start(Sistema.getPrimaryStage());
+
     }
 }

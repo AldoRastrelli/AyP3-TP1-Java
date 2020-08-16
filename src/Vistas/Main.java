@@ -41,10 +41,10 @@ public class Main extends Application {
         contenedorEntrada.setBotonJugar(primaryStage, escenaPresentacion);
         primaryStage.setScene(escenaBienvenidos);
 
-        //primaryStage.setWidth(700);
-       // primaryStage.setHeight(700);
-       // primaryStage.setResizable(false);
-       primaryStage.sizeToScene();
+        primaryStage.setWidth(700);
+        primaryStage.setHeight(700);
+        primaryStage.setResizable(false);
+//        primaryStage.sizeToScene();
         primaryStage.show();
 
 

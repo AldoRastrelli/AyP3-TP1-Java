@@ -1,5 +1,6 @@
 package Controladores.Botones;
 
+import Controladores.Sistema;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ public class BotonMenuPrincipal implements EventHandler<ActionEvent> {
     public BotonMenuPrincipal(Stage stage, Scene escenaAnterior) {
         this.stage = stage;
         this.proximaEscena = escenaAnterior;
+
     }
 
     @Override

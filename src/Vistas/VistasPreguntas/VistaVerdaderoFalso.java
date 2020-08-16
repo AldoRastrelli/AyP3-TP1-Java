@@ -39,7 +39,8 @@ public class VistaVerdaderoFalso extends VBox{
         this.setPadding(new Insets(25));
         this.setFondo();
 
-        Label nombreJugador = new Label("Turno: "+controladorDeTurno.getactual().getNombre());
+        Jugador jugador = controladorDeTurno.getactual();
+        Label nombreJugador = new Label("Turno: "+jugador.getNombre());
         nombreJugador.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
         nombreJugador.setTextAlignment(TextAlignment.CENTER);
         nombreJugador.setTextFill(Color.web("blue"));
@@ -58,11 +59,16 @@ public class VistaVerdaderoFalso extends VBox{
 
 
         List<String> opciones  = pregunta.getOpciones();
-        EntradaVerdaderoFalso entradaUsuario = new EntradaVerdaderoFalso(pregunta, opciones);
+        EntradaVerdaderoFalso entradaUsuario = new EntradaVerdaderoFalso(pregunta, opciones,jugador);
         final ComboBox comboBox = entradaUsuario.getComboBox();
 
+        Label textoElegirBoost = new Label("Elija un Boost");
+        textoElegirBoost.setFont(Font.font("Tahoma", 10));
+        textoElegirBoost.setTextFill(Color.web("black"));
+        final ComboBox comboBoxBoost = entradaUsuario.getBoosts();
+
         Boton botonGuardarRespuesta  = new Boton("Guardar Respuesta", new BotonGuardarRespuesta(controladorDeTurno,entradaUsuario));
-        this.getChildren().addAll(nombreJugador,tipo,titulo,comboBox, botonGuardarRespuesta);
+        this.getChildren().addAll(nombreJugador,tipo,titulo,comboBox, textoElegirBoost, comboBoxBoost, botonGuardarRespuesta);
 
         Boton botonMute = Sistema.getBotonMute();
         this.getChildren().addAll(botonMute);

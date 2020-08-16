@@ -42,7 +42,8 @@ public class VistaAgrupar extends VBox{
         this.setPadding(new Insets(25));
         this.setFondo();
 
-        Label nombreJugador = new Label("Turno: "+controladorDeTurno.getactual().getNombre());
+        Jugador jugador = controladorDeTurno.getactual();
+        Label nombreJugador = new Label("Turno: "+jugador.getNombre());
         nombreJugador.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
         nombreJugador.setTextAlignment(TextAlignment.CENTER);
         nombreJugador.setTextFill(Color.web("blue"));
@@ -62,7 +63,7 @@ public class VistaAgrupar extends VBox{
         this.getChildren().addAll(nombreJugador,tipo,titulo);
 
         List<String> opcionesPregunta = pregunta.getOpciones();
-        EntradaAgrupar entradaUsuario = new EntradaAgrupar(pregunta,opcionesPregunta);
+        EntradaAgrupar entradaUsuario = new EntradaAgrupar(pregunta,opcionesPregunta,jugador);
 
         Map<String,ComboBox> opcionesComboBox = entradaUsuario.getOpciones();
 
@@ -82,9 +83,14 @@ public class VistaAgrupar extends VBox{
         }
         this.getChildren().addAll(grid);
 
+        Label textoElegirBoost = new Label("Elija un Boost");
+        textoElegirBoost.setFont(Font.font("Tahoma", 10));
+        textoElegirBoost.setTextFill(Color.web("black"));
+        final ComboBox comboBoxBoost = entradaUsuario.getBoosts();
+
         Boton botonGuardarRespuesta  = new Boton("Guardar Respuesta", new BotonGuardarRespuesta(controladorDeTurno,entradaUsuario));
 
-        this.getChildren().addAll(botonGuardarRespuesta);
+        this.getChildren().addAll(textoElegirBoost, comboBoxBoost, botonGuardarRespuesta);
 
         Boton botonMute = Sistema.getBotonMute();
         this.getChildren().addAll(botonMute);

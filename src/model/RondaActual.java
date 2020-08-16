@@ -40,6 +40,7 @@ public class RondaActual {
         // Se usa el Boost Exclusividad pero no cumple las condiciones para aplicarse
         if (seUsaBoostExclusividad() & !verificaBoostExclusivo()) {
             puntajes.keySet().stream().forEach(j -> puntajes.replace(j, 0));
+            restarUsoExclusivo(jugadores);
             pasarPuntajes(jugadores);
             return;
         }
@@ -97,12 +98,6 @@ public class RondaActual {
 
         var jugadores = puntajes.keySet().stream();
 
-        if(seUsaBoostExclusividad()){
-            for (Map.Entry<String,Boost> entry : this.boosts.entrySet()){
-
-            }
-        }
-
         jugadores.forEach( j->
                 puntajes.put
                     ( j , boosts.get(j).usarBoost(puntajes.get(j) )
@@ -125,5 +120,16 @@ public class RondaActual {
 
     public Map<String,Integer> getPuntajes(){
         return puntajes;
+    }
+
+    public void restarUsoExclusivo(List<Jugador> jugadores){
+        for (Map.Entry<String,Boost> entry : this.boosts.entrySet()){
+            jugadores.forEach( j-> {
+                var boost = boosts.get(j);
+                if (boost.esBoostExclusivo()){
+                    boost.restarUso();
+                }
+            });
+        }
     }
 }

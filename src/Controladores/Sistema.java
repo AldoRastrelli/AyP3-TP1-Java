@@ -99,4 +99,8 @@ public class Sistema {
         }
         return vista;
     }
+
+    public static void reiniciarJuego(){
+        juego = new Juego();
+    }
 }

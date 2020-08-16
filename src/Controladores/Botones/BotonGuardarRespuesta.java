@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
+import model.Boosts.Boost;
 import model.Boosts.BoostSimple;
 import model.Jugador;
 import model.Preguntas.Pregunta;
@@ -33,15 +34,17 @@ public class BotonGuardarRespuesta implements EventHandler<ActionEvent> {
 
         var juego = Sistema.juego();
         var respuestaUsuario = entradaUsuario.getRespuesta();
+        Boost boostUsuario = entradaUsuario.getBoostUsado();
 
-        controladorDeTurno.guardarRespuesta(respuestaUsuario);
+        controladorDeTurno.guardarRespuesta(respuestaUsuario,boostUsuario);
         controladorDeTurno.cambiarTurno();
 
         boolean finRonda = controladorDeTurno.finRonda();
         if (finRonda){
 
             for (Map.Entry<Jugador,List<String>> entry : controladorDeTurno.getRespuestas().entrySet()){
-                juego.guardarRespuesta(entry.getKey(),entry.getValue(),entry.getKey().noUsarBoost());
+                Jugador jugador = entry.getKey();
+                juego.guardarRespuesta(jugador,entry.getValue(),controladorDeTurno.getBoostUsado(jugador.getNombre()));
             }
             juego.calcularPuntaje();
             VistaPuntajes vistaPuntajes = new VistaPuntajes(juego.getRondaActual(), controladorDeTurno);

@@ -2,14 +2,14 @@ package Controladores.EntradasUsuario;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
+import model.Boosts.Boost;
+import model.Boosts.BoostSimple;
+import model.Jugador;
 import model.Preguntas.Pregunta;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class EntradaAgrupar extends EntradaUsuario{
@@ -17,8 +17,8 @@ public class EntradaAgrupar extends EntradaUsuario{
     String tituloGrupoA;
     String tituloGrupoB;
 
-    public EntradaAgrupar(Pregunta pregunta, List<String> opciones) {
-        super(pregunta,opciones);
+    public EntradaAgrupar(Pregunta pregunta, List<String> opciones, Jugador jugador) {
+        super(pregunta,opciones,jugador);
         Collections.shuffle(this.opciones);
 
         List<String> opcionesComboBox = Arrays.asList(pregunta.getPregunta().split(","));
@@ -32,6 +32,7 @@ public class EntradaAgrupar extends EntradaUsuario{
             ComboBox comboBox = new ComboBox(options);
             opcionesAgrupar.put(opcion,comboBox);
         }
+        setBoosts(jugador);
     }
 
     public Map<String,ComboBox> getOpciones(){
@@ -58,5 +59,21 @@ public class EntradaAgrupar extends EntradaUsuario{
 
         return respuestaUsuario;
     }
+
+    @Override
+    public void setBoosts(Jugador jugador) {
+        List<Boost> boostsJugador = new ArrayList<>();
+        boostsJugador.add(jugador.elegirBoostExclusivo());
+        boostsJugador.add(jugador.noUsarBoost());
+
+
+        List<Boost> boostDisponibles = boostsJugador.stream().filter(b -> b.puedeUsarse()).collect(Collectors.toList());
+        boostDisponibles.stream().forEach(b-> boosts.put(b.getNombre(),b));
+
+        ObservableList<String> options = FXCollections.observableArrayList();
+        boosts.keySet().stream().forEach(boostName->options.addAll(boostName));
+        boostsMostrados = new ComboBox(options);
+    }
+
 
 }
