@@ -13,7 +13,10 @@ public abstract class Boost {
             throw new NoTieneBoostDisponibleException();
         }
         restarUso();
-        return puntaje * multiplicador;
+        Integer puntos = puntaje * multiplicador;
+        if (esBoostExclusivo()){reiniciarMultiplicidad();}
+
+        return puntos;
     }
 
     public String getNombre(){
@@ -32,6 +35,7 @@ public abstract class Boost {
         cantidadDeUsos -= 1;
     }
 
+    private void reiniciarMultiplicidad() {multiplicador = 2;}
 
     public void duplicarExclusivo(Integer veces){
         if(!this.esBoostExclusivo()){
