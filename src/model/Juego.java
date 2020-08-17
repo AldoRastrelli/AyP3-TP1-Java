@@ -32,7 +32,7 @@ public class Juego {
 
     public void inicializarPreguntas(){
         JSONParser jsonParser = new JSONParser();
-        try (FileReader reader = new FileReader("/home/rochi/Desktop/AyP3-TP1-Java/src/Recursos/Preguntas.json"))
+        try (FileReader reader = new FileReader("AyP3-TP1-Java/src/Recursos/Preguntas.json"))
         {
             //Read JSON file
             Object obj = jsonParser.parse(reader);

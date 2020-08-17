@@ -39,21 +39,21 @@ public class RondaActual {
 
         // Se usa el Boost Exclusividad pero no cumple las condiciones para aplicarse
         if (seUsaBoostExclusividad() & !verificaBoostExclusivo()) {
-            puntajes.keySet().stream().forEach(j -> puntajes.replace(j, 0));
+            puntajes.keySet().forEach(j -> puntajes.replace(j, 0));
             restarUsoExclusivo(jugadores);
             pasarPuntajes(jugadores);
+            boostExclusividad = false;
             return;
         }
 
         // Se usa el Boost Exclusividad y cumple condiciones
         if (seUsaBoostExclusividad() & verificaBoostExclusivo()) {
-            ModificarBoostsSegúnCantidadDeUsosDeBoostExclusividad(jugadores);
+            ModificarBoostsSegunCantidadDeUsosDeBoostExclusividad(jugadores);
         }
         usarBoosts();
 
         pasarPuntajes(jugadores);
         boostExclusividad = false;
-        return;
     }
 
     private boolean seUsaBoostExclusividad(){
@@ -68,9 +68,9 @@ public class RondaActual {
 
     }
 
-    public void ModificarBoostsSegúnCantidadDeUsosDeBoostExclusividad(List<Jugador> jugadores){
+    public void ModificarBoostsSegunCantidadDeUsosDeBoostExclusividad(List<Jugador> jugadores){
         var cantExclusividad = cantidadDeUsosExclusividad(jugadores);
-        jugadores.stream().forEach(j -> boosts.replace(j.getNombre(), j.elegirBoostExclusivo()));
+        jugadores.forEach(j -> boosts.replace(j.getNombre(), j.elegirBoostExclusivo()));
 
         // Si más de un jugador aplicó exclusividad, se duplica
         // el multiplicador del Boost por cada vez que un jugador lo usó
@@ -110,7 +110,7 @@ public class RondaActual {
     private void pasarPuntajes(List<Jugador> jugadoresLista){
 
         Map<String,Jugador> jugadores = new HashMap<>();
-        jugadoresLista.stream().forEach(j-> jugadores.put(j.getNombre(), j));
+        jugadoresLista.forEach(j-> jugadores.put(j.getNombre(), j));
 
         var puntajes = this.puntajes.keySet().stream();
 

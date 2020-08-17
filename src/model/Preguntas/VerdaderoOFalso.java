@@ -14,6 +14,6 @@ public class VerdaderoOFalso extends Pregunta{
 
     public boolean esRespuestaCorrecta(List<String> respuesta){
 
-        return respuesta.get(0).toUpperCase().equals(respuestaCorrecta.get(0).toUpperCase());
+        return respuesta.equals(respuestaCorrecta);
     }
 }
