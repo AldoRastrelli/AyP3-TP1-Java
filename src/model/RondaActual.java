@@ -124,13 +124,9 @@ public class RondaActual {
     }
 
     public void restarUsoExclusivo(List<Jugador> jugadores){
-        for (Map.Entry<String,Boost> entry : this.boosts.entrySet()){
-            jugadores.forEach( j-> {
-                var boost = boosts.get(j.getNombre());
-                if (boost.esBoostExclusivo()){
-                    boost.restarUso();
-                }
-            });
-        }
+        jugadores.forEach( j-> {
+            var boost = boosts.get(j.getNombre());
+            if (boost.esBoostExclusivo()){boost.restarUso();}
+        });
     }
 }
