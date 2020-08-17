@@ -7,9 +7,9 @@ import java.util.Map;
 
 public class Jugador {
 
-    private String nombre;
+    private final String nombre;
     private Integer puntos;
-    private Map<String,Boost> boosts;
+    private final Map<String,Boost> boosts;
 
     public Jugador(String nombre){
         this.nombre = nombre;

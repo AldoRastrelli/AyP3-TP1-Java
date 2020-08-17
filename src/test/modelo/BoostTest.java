@@ -8,73 +8,187 @@ import model.RondaActual;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class BoostTest {
 
+    Juego juego = new Juego();
+    Jugador jugador1 = juego.crearJugador("Marcos");
+    Jugador jugador2 = juego.crearJugador("Evelyn");
+    RondaActual rondaActual = juego.crearRondaActual();
+
+    List<String> respuestaCorrectaVoF = new ArrayList<String>() {{
+        add("Verdadero");
+    }};
+
+    List<String> opcionesVoF = new ArrayList<>() {{
+        add("Verdadero");
+        add("Falso");
+    }};
+    FactoryPreguntas factory = new FactoryPreguntas();
+    Pregunta preguntaVoFClasico = factory.VerdaderoOFalsoClasico("", opcionesVoF, respuestaCorrectaVoF);
+
+    List<String> respuestaCorrectaMultipleChoiceClasico = new ArrayList<String>() {{
+        add("Olas");
+        add("Viento");
+    }};
+
+    List<String> opcionesMultipleChoiceClasico = new ArrayList<>() {{
+        add("Olas");
+        add("Viento");
+        add("Frío");
+        add("Mar");
+    }};
+    Pregunta preguntaMultipleChoiceClasico = factory.MultipleChoiceClasico("Las ___ y el ___", opcionesMultipleChoiceClasico, respuestaCorrectaMultipleChoiceClasico);
+
+    List<String> respuestaCorrectaopcionesMultipleChoiceConPenalidad = new ArrayList<String>() {{
+        add("Olas");
+        add("Viento");
+    }};
+    List<String> opcionesMultipleChoiceConPenalidad = new ArrayList<>() {{
+        add("Olas");
+        add("Viento");
+        add("Frío");
+        add("Mar");
+    }};
+    Pregunta preguntaMultipleChoiceConPenalidad = factory.MultipleChoiceConPenalidad("Las ___ y el ___", opcionesMultipleChoiceConPenalidad, respuestaCorrectaopcionesMultipleChoiceConPenalidad);
+
+    List<String> respuestaIncorrectaVoF = new ArrayList<String>() {{add("Falso");}};
+
+    List<String> respuestaIncorrectaMultipleChoiceClasico = new ArrayList<String>() {{
+        add("Olas");
+        add("Mar");
+        add("Frío");
+    }};
+
     @Test
-    public void SeDuplicaExclusividadEnPrimerPreguntaYEnSegundaElMultiplicadorEsDos() {
+    public void SeUsaExclusividadEnPrimerYSegundaPreguntaYCalculaBienPuntajes() {
 
-        var juego = new Juego();
+        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.noUsarBoost());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrectaVoF, jugador2.elegirBoostExclusivo());
 
-        Jugador jugador1 = juego.crearJugador("Marcos");
-        Jugador jugador2 = juego.crearJugador("Evelyn");
-        RondaActual rondaActual = juego.crearRondaActual();
+        juego.guardarPreguntaActual(preguntaVoFClasico);
 
-        List<String> respuestaCorrecta = new ArrayList<String>() {{
-            add("Verdadero");
-        }};
-        List<String> respuestaIncorrecta = new ArrayList<String>() {{
-            add("Falso");
-        }};
-        List<String> opciones = new ArrayList<>() {{
-            add("Verdadero");
-            add("Falso");
-        }};
-        FactoryPreguntas factory = new FactoryPreguntas();
-        Pregunta pregunta = factory.VerdaderoOFalsoClasico("", opciones, respuestaCorrecta);
+        juego.calcularPuntaje();
 
-        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaCorrecta, jugador1.elegirBoostExclusivo());
-        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrecta, jugador2.elegirBoostExclusivo());
+        assertEquals(2, (int) jugador1.getPuntos());
+        assertEquals(0, (int) jugador2.getPuntos());
 
-        juego.guardarPreguntaActual(pregunta);
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrectaMultipleChoiceClasico, jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaMultipleChoiceClasico.getRespuestaCorrecta(), jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(preguntaMultipleChoiceClasico);
+
+        juego.calcularPuntaje();
+
+        assertEquals(2, (int) jugador1.getPuntos());
+        assertEquals(2, (int) jugador2.getPuntos());
+    }
+
+    @Test
+    public void SeUsaExclusividadDuplicadoEnPrimerPreguntaYSinDuplicarEnSegundaPreguntaYCalculaBienPuntajes() {
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrectaVoF, jugador2.elegirBoostExclusivo());
+
+        juego.guardarPreguntaActual(preguntaVoFClasico);
 
         juego.calcularPuntaje();
 
         assertEquals(4, (int) jugador1.getPuntos());
         assertEquals(0, (int) jugador2.getPuntos());
 
-        List<String> respuestaCorrecta2 = new ArrayList<String>() {{
-            add("Olas");
-            add("Viento");
-        }};
-        List<String> respuestaIncorrecta2 = new ArrayList<String>() {{
-            add("Olas");
-            add("Mar");
-            add("Frío");
-        }};
-        List<String> opciones2 = new ArrayList<>() {{
-            add("Olas");
-            add("Viento");
-            add("Frío");
-            add("Mar");
-        }};
-        FactoryPreguntas factory2 = new FactoryPreguntas();
-        Pregunta pregunta2 = factory.MultipleChoiceClasico("Las ___ y el ___", opciones2, respuestaCorrecta2);
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrectaMultipleChoiceClasico, jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaMultipleChoiceClasico.getRespuestaCorrecta(), jugador2.noUsarBoost());
 
-        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrecta2, jugador1.elegirBoostExclusivo());
-        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaCorrecta2, jugador2.noUsarBoost());
-
-        juego.guardarPreguntaActual(pregunta2);
+        juego.guardarPreguntaActual(preguntaMultipleChoiceClasico);
 
         juego.calcularPuntaje();
 
         assertEquals(4, (int) jugador1.getPuntos());
         assertEquals(2, (int) jugador2.getPuntos());
+    }
+
+    @Test
+    public void SeUsaExclusividadDuplicadoEnPrimerPreguntaYEnLaSiguienteUnBoostDuplicadorYTriplicadorYCalculaBienPuntajes(){
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrectaVoF, jugador2.elegirBoostExclusivo());
+
+        juego.guardarPreguntaActual(preguntaVoFClasico);
+
+        juego.calcularPuntaje();
+
+        assertEquals(4, (int) jugador1.getPuntos());
+        assertEquals(0, (int) jugador2.getPuntos());
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaMultipleChoiceConPenalidad.getRespuestaCorrecta(), jugador1.elegirBoostTriplicador());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaMultipleChoiceConPenalidad.getRespuestaCorrecta(), jugador2.elegirBoostDuplicador());
+
+        juego.guardarPreguntaActual(preguntaMultipleChoiceConPenalidad);
+
+        juego.calcularPuntaje();
+
+        assertEquals(10, (int) jugador1.getPuntos());
+        assertEquals(4, (int) jugador2.getPuntos());
+    }
+
+    @Test
+    public void SeUsaExclusividadDuplicadoSinCumplirCondicionesEnPrimerPreguntaYEnLaSiguienteUnBoostDuplicadorYCalculaBien(){
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador2.elegirBoostExclusivo());
+
+        juego.guardarPreguntaActual(preguntaVoFClasico);
+
+        juego.calcularPuntaje();
+
+        assertEquals(0, (int) jugador1.getPuntos());
+        assertEquals(0, (int) jugador2.getPuntos());
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaMultipleChoiceConPenalidad.getRespuestaCorrecta(), jugador1.elegirBoostTriplicador());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaMultipleChoiceConPenalidad.getRespuestaCorrecta(), jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(preguntaMultipleChoiceConPenalidad);
+
+        juego.calcularPuntaje();
+
+        assertEquals(6, (int) jugador1.getPuntos());
+        assertEquals(2, (int) jugador2.getPuntos());
+    }
+
+    @Test
+    public void SeUsaExclusividadDuplicadoSinCumplirCondicionesEnPrimerPreguntaEnLaSiguientetDuplicadorYEnLaTerceraExclusividadYCalculaBien(){
+        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador2.elegirBoostExclusivo());
+
+        juego.guardarPreguntaActual(preguntaVoFClasico);
+
+        juego.calcularPuntaje();
+
+        assertEquals(0, (int) jugador1.getPuntos());
+        assertEquals(0, (int) jugador2.getPuntos());
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaMultipleChoiceConPenalidad.getRespuestaCorrecta(), jugador1.elegirBoostTriplicador());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaMultipleChoiceConPenalidad.getRespuestaCorrecta(), jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(preguntaMultipleChoiceConPenalidad);
+
+        juego.calcularPuntaje();
+
+        assertEquals(6, (int) jugador1.getPuntos());
+        assertEquals(2, (int) jugador2.getPuntos());
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), respuestaIncorrectaMultipleChoiceClasico, jugador1.elegirBoostExclusivo());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaMultipleChoiceClasico.getRespuestaCorrecta(), jugador2.noUsarBoost());
+
+        juego.guardarPreguntaActual(preguntaMultipleChoiceClasico);
+
+        juego.calcularPuntaje();
+
+        assertEquals(6, (int) jugador1.getPuntos());
+        assertEquals(4, (int) jugador2.getPuntos());
     }
 }

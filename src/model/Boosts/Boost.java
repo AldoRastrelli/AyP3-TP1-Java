@@ -6,7 +6,7 @@ public abstract class Boost {
 
     Integer multiplicador;
     String nombre;
-    Integer cantidadDeUsos;
+    public Integer cantidadDeUsos;
 
     public Integer usarBoost(Integer puntaje){
         if (!puedeUsarse()){

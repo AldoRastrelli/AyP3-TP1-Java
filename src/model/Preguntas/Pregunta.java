@@ -48,6 +48,7 @@ public abstract class Pregunta {
         return titulo;
     }
     public List<String> getOpciones() {return opciones;}
+    public List<String> getRespuestaCorrecta() {return respuestaCorrecta;}
     public String getTipo(){ return tipo+" "+comportamiento.getTipo();}
     public String getTipoGenerico(){ return tipo;}
 }
