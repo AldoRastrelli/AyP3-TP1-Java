@@ -43,6 +43,4 @@ public abstract class Boost {
         }
         multiplicador *= (2 * (veces-1));
     }
-
-    public Integer getCantidadDeUsos(){return cantidadDeUsos;}
 }

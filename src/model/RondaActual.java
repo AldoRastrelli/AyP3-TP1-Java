@@ -1,7 +1,6 @@
 package model;
 
 import model.Boosts.Boost;
-import model.Boosts.BoostExclusividad;
 import model.Preguntas.Pregunta;
 
 import java.util.HashMap;
@@ -71,12 +70,7 @@ public class RondaActual {
 
     public void ModificarBoostsSegunCantidadDeUsosDeBoostExclusividad(List<Jugador> jugadores){
         var cantExclusividad = cantidadDeUsosExclusividad(jugadores);
-
-        for (Jugador j: jugadores){
-            if (!boosts.get(j.getNombre()).getNombre().equals("Exclusividad")){
-                boosts.replace(j.getNombre(), new BoostExclusividad());
-            }
-        }
+        jugadores.forEach(j -> boosts.replace(j.getNombre(), j.elegirBoostExclusivo()));
 
         // Si más de un jugador aplicó exclusividad, se duplica
         // el multiplicador del Boost por cada vez que un jugador lo usó

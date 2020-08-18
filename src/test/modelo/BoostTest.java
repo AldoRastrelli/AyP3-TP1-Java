@@ -306,38 +306,4 @@ public class BoostTest {
         assertEquals(0, (int) jugador1.getPuntos());
         assertEquals(2, (int) jugador2.getPuntos());
     }
-
-    @Test
-    public void Jug1UsaExclusividadEnPrimeraPreguntaYLeQuedaUnUsoDisponibleYAJug2DosUsosDisponibles(){
-        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.elegirBoostExclusivo());
-        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrectaVoF, jugador2.noUsarBoost());
-
-        juego.guardarPreguntaActual(preguntaVoFClasico);
-
-        juego.calcularPuntaje();
-
-        assertEquals(1, (int) jugador1.elegirBoostExclusivo().getCantidadDeUsos());
-        assertEquals(2, (int) jugador2.elegirBoostExclusivo().getCantidadDeUsos());
-    }
-
-    @Test
-    public void Jug1UsaExclusividadEnPrimeraPreguntaJug2UsaExclusividadEnSegundaPreguntaYTodaviaTienenCadaUnoUnUsoDisponible(){
-        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.elegirBoostExclusivo());
-        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrectaVoF, jugador2.noUsarBoost());
-
-        juego.guardarPreguntaActual(preguntaVoFClasico);
-
-        juego.calcularPuntaje();
-
-        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaMultipleChoiceClasico.getRespuestaCorrecta(), jugador1.noUsarBoost());
-        rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrectaMultipleChoiceClasico, jugador2.elegirBoostExclusivo());
-
-        juego.guardarPreguntaActual(preguntaMultipleChoiceClasico);
-
-        juego.calcularPuntaje();
-
-        assertEquals(1, (int) jugador1.elegirBoostExclusivo().getCantidadDeUsos());
-        assertEquals(1, (int) jugador2.elegirBoostExclusivo().getCantidadDeUsos());
-    }
-
 }
