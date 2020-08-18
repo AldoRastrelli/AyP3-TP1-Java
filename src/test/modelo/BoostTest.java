@@ -75,8 +75,8 @@ public class BoostTest {
 
         juego.calcularPuntaje();
 
-        //assertEquals(2, (int) jugador1.elegirBoostTriplicador().cantidadDeUsos);
-        assertEquals(1, (int) jugador2.elegirBoostTriplicador().cantidadDeUsos);
+        assertEquals(2, (int) jugador1.elegirBoostExclusivo().cantidadDeUsos);
+        assertEquals(1, (int) jugador2.elegirBoostExclusivo().cantidadDeUsos);
 
     }
 
@@ -141,14 +141,6 @@ public class BoostTest {
 
         juego.calcularPuntaje();
 
-        /*
-        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaMultipleChoiceConPenalidad.getRespuestaCorrecta(), jugador1.elegirBoostDuplicador());
-        rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaMultipleChoiceConPenalidad.getRespuestaCorrecta(), jugador2.noUsarBoost());
-
-        juego.guardarPreguntaActual(preguntaMultipleChoiceConPenalidad);
-
-        juego.calcularPuntaje();
-
         rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaMultipleChoiceConPenalidad.getRespuestaCorrecta(), jugador1.elegirBoostDuplicador());
         rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaMultipleChoiceConPenalidad.getRespuestaCorrecta(), jugador2.noUsarBoost());
 
@@ -157,24 +149,35 @@ public class BoostTest {
         Assertions.assertThrows(NoTieneBoostDisponibleException.class, () -> {
             juego.calcularPuntaje();;
         });
-         */
+
 
     }
 
     @Test
     public void SeUsaExclusividadCon0UsosYDaException() {
 
-        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaMultipleChoiceConPenalidad.getRespuestaCorrecta(), jugador1.elegirBoostTriplicador());
-        rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaMultipleChoiceConPenalidad.getRespuestaCorrecta(), jugador2.noUsarBoost());
+        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.noUsarBoost());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador2.elegirBoostExclusivo());
 
-        juego.guardarPreguntaActual(preguntaMultipleChoiceConPenalidad);
+        juego.guardarPreguntaActual(preguntaVoFClasico);
 
         juego.calcularPuntaje();
 
-        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaMultipleChoiceConPenalidad.getRespuestaCorrecta(), jugador1.elegirBoostTriplicador());
-        rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaMultipleChoiceConPenalidad.getRespuestaCorrecta(), jugador2.noUsarBoost());
+        System.out.println(jugador2.elegirBoostExclusivo().cantidadDeUsos);
 
-        juego.guardarPreguntaActual(preguntaMultipleChoiceConPenalidad);
+        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.noUsarBoost());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador2.elegirBoostExclusivo());
+
+        juego.guardarPreguntaActual(preguntaVoFClasico);
+
+        juego.calcularPuntaje();
+
+        System.out.println(jugador2.elegirBoostExclusivo().cantidadDeUsos);
+
+        rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.noUsarBoost());
+        rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador2.elegirBoostExclusivo());
+
+        juego.guardarPreguntaActual(preguntaVoFClasico);
 
         Assertions.assertThrows(NoTieneBoostDisponibleException.class, () -> {
             juego.calcularPuntaje();;
