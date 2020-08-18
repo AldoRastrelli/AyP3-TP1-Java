@@ -154,7 +154,7 @@ public class BoostTest {
     }
 
     @Test
-    public void SeUsaExclusividadCon0UsosYDaException() {
+    public void Jug1UsaExclusividadEnPrimeraPreguntaJug2UsaExclusividadEnSegundaPreguntaYTodaviaTienenCadaUnoUnUsoDisponible(){
 
         rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.noUsarBoost());
         rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador2.elegirBoostExclusivo());
@@ -186,7 +186,7 @@ public class BoostTest {
     }
 
     @Test
-    public void Jug1UsaExclusividadEnPrimeraPreguntaJug2UsaExclusividadEnSegundaPreguntaYTodaviaTienenCadaUnoUnUsoDisponible(){
+    public void SeUsaExclusividadEnPrimerYSegundaPreguntaYCalculaBienPuntajes() {
 
         rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.noUsarBoost());
         rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrectaVoF, jugador2.elegirBoostExclusivo());
