@@ -6,12 +6,9 @@ public abstract class Boost {
 
     Integer multiplicador;
     String nombre;
-    public Integer cantidadDeUsos;
+    Integer cantidadDeUsos;
 
     public Integer usarBoost(Integer puntaje){
-        if (!puedeUsarse()){
-            throw new NoTieneBoostDisponibleException();
-        }
         restarUso();
         Integer puntos = puntaje * multiplicador;
         if (esBoostExclusivo()){reiniciarMultiplicidad();}
@@ -32,6 +29,9 @@ public abstract class Boost {
     }
 
     public void restarUso(){
+        if (!puedeUsarse()){
+            throw new NoTieneBoostDisponibleException();
+        }
         cantidadDeUsos -= 1;
     }
 
@@ -43,4 +43,6 @@ public abstract class Boost {
         }
         multiplicador *= (2 * (veces-1));
     }
+
+    public Integer getCantidadDeUsos(){return cantidadDeUsos;}
 }

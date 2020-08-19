@@ -87,8 +87,8 @@ public class BoostTest {
 
         juego.calcularPuntaje();
 
-        assertEquals(1, (int) jugador1.elegirBoostExclusivo().cantidadDeUsos);
-        assertEquals(0, (int) jugador2.elegirBoostExclusivo().cantidadDeUsos);
+        assertEquals(2, (int) jugador1.elegirBoostExclusivo().getCantidadDeUsos());
+        assertEquals(1, (int) jugador2.elegirBoostExclusivo().getCantidadDeUsos());
 
     }
 
@@ -102,8 +102,8 @@ public class BoostTest {
 
         juego.calcularPuntaje();
 
-        assertEquals(0, (int) jugador1.elegirBoostTriplicador().cantidadDeUsos);
-        assertEquals(1, (int) jugador2.elegirBoostTriplicador().cantidadDeUsos);
+        assertEquals(0, (int) jugador1.elegirBoostTriplicador().getCantidadDeUsos());
+        assertEquals(1, (int) jugador2.elegirBoostTriplicador().getCantidadDeUsos());
 
     }
 
@@ -117,8 +117,8 @@ public class BoostTest {
 
         juego.calcularPuntaje();
 
-        assertEquals(0, (int) jugador1.elegirBoostDuplicador().cantidadDeUsos);
-        assertEquals(1, (int) jugador2.elegirBoostDuplicador().cantidadDeUsos);
+        assertEquals(0, (int) jugador1.elegirBoostDuplicador().getCantidadDeUsos());
+        assertEquals(1, (int) jugador2.elegirBoostDuplicador().getCantidadDeUsos());
 
     }
 
@@ -175,16 +175,12 @@ public class BoostTest {
 
         juego.calcularPuntaje();
 
-        System.out.println(jugador2.elegirBoostExclusivo().cantidadDeUsos);
-
         rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.noUsarBoost());
         rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador2.elegirBoostExclusivo());
 
         juego.guardarPreguntaActual(preguntaVoFClasico);
 
         juego.calcularPuntaje();
-
-        System.out.println(jugador2.elegirBoostExclusivo().cantidadDeUsos);
 
         rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.noUsarBoost());
         rondaActual.guardarRespuesta(jugador2.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador2.elegirBoostExclusivo());
@@ -220,7 +216,7 @@ public class BoostTest {
         assertEquals(2, (int) jugador1.getPuntos());
         assertEquals(2, (int) jugador2.getPuntos());
 
-        System.out.print(jugador2.elegirBoostExclusivo().cantidadDeUsos);
+        System.out.print(jugador2.elegirBoostExclusivo().getCantidadDeUsos());
 
     }
 
