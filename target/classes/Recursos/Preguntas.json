@@ -6,6 +6,7 @@
     "opciones": "Verdadero,Falso",
     "respuestaCorrecta": "Falso"
   },
+
   {
     "tipo": "VerdaderoFalso",
     "comportamiento": "conPenalidad",

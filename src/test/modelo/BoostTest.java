@@ -68,6 +68,18 @@ public class BoostTest {
     @Test
     public void Jug1UsaExclusividadEnPrimeraPreguntaYLeQuedaUnUsoDisponibleYAJug2DosUsosDisponibles(){
 
+        Juego juego = new Juego();
+        Jugador jugador1 = juego.crearJugador("Marcos");
+        Jugador jugador2 = juego.crearJugador("Evelyn");
+        RondaActual rondaActual = juego.crearRondaActual();
+
+        Pregunta preguntaVoFClasico = factory.VerdaderoOFalsoClasico("", opcionesVoF, respuestaCorrectaVoF);
+        List<String> respuestaCorrectaVoF = new ArrayList<String>() {{
+            add("Verdadero");
+        }};
+
+        List<String> respuestaIncorrectaVoF = new ArrayList<String>() {{add("Falso");}};
+
         rondaActual.guardarRespuesta(jugador1.getNombre(), preguntaVoFClasico.getRespuestaCorrecta(), jugador1.noUsarBoost());
         rondaActual.guardarRespuesta(jugador2.getNombre(), respuestaIncorrectaVoF, jugador2.elegirBoostExclusivo());
 
@@ -75,8 +87,8 @@ public class BoostTest {
 
         juego.calcularPuntaje();
 
-        assertEquals(2, (int) jugador1.elegirBoostExclusivo().cantidadDeUsos);
-        assertEquals(1, (int) jugador2.elegirBoostExclusivo().cantidadDeUsos);
+        assertEquals(1, (int) jugador1.elegirBoostExclusivo().cantidadDeUsos);
+        assertEquals(0, (int) jugador2.elegirBoostExclusivo().cantidadDeUsos);
 
     }
 
