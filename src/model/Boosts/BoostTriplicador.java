@@ -8,4 +8,11 @@ public class BoostTriplicador extends Boost {
         cantidadDeUsos = 1;
     }
 
+    public boolean esBoostExclusivo() {
+        return false;
+    }
+
+    public Boost reemplazaBoostSiNoEsExclusivo(){
+        return new BoostExclusividad();
+    };
 }

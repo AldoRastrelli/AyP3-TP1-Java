@@ -7,4 +7,12 @@ public class BoostSimple extends Boost{
         nombre = "No Usar Boost";
         cantidadDeUsos = Integer.MAX_VALUE;
     }
+
+    public boolean esBoostExclusivo() {
+        return false;
+    }
+
+    public Boost reemplazaBoostSiNoEsExclusivo(){
+        return new BoostExclusividad();
+    };
 }

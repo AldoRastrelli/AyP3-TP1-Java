@@ -8,4 +8,11 @@ public class BoostExclusividad extends Boost{
         cantidadDeUsos = 2;
     }
 
+    public boolean esBoostExclusivo() {
+        return true;
+    }
+
+    public Boost reemplazaBoostSiNoEsExclusivo(){
+        return this;
+    };
 }

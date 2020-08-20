@@ -7,4 +7,12 @@ public class BoostDuplicador extends Boost {
         nombre = "Duplicador";
         cantidadDeUsos = 1;
     }
+
+    public boolean esBoostExclusivo() {
+        return false;
+    }
+
+    public Boost reemplazaBoostSiNoEsExclusivo(){
+        return new BoostExclusividad();
+    };
 }
