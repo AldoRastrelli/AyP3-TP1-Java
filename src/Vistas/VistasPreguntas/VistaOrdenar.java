@@ -67,23 +67,23 @@ public class VistaOrdenar extends VBox{
         EntradaOrdenar entradaUsuario = new EntradaOrdenar(pregunta,opcionesPregunta,jugador);
 
         List<ComboBox> elementosHabilitados = new ArrayList<>();
-        this.getChildren().addAll(nombreJugador,tipo,titulo,opciones);
 
         List<ComboBox> opcionesComboBox = entradaUsuario.getComboBoxes();
         for (ComboBox opcion : opcionesComboBox){
             final ComboBox cbx = opcion;
-            this.getChildren().addAll(cbx);
             elementosHabilitados.add(cbx);
         }
 
         // timer
-//        Timer timer = new Timer();
-//        Label timerLabel = timer.getLabel();
-//        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
-//        timerLabel.setTextAlignment(TextAlignment.LEFT);
-//        timerLabel.setTextFill(Color.web("red"));
-//        controladorDeTurno.setTimerComboBox(timer,25,elementosHabilitados);
-//
+        Timer timer = new Timer();
+        Label timerLabel = timer.getLabel();
+        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
+        timerLabel.setTextAlignment(TextAlignment.LEFT);
+        timerLabel.setTextFill(Color.web("red"));
+        controladorDeTurno.setTimerComboBox(timer,25,elementosHabilitados);
+
+        this.getChildren().addAll(timerLabel, nombreJugador,tipo,titulo,opciones);
+        this.getChildren().addAll(elementosHabilitados);
 
         Label textoElegirBoost = new Label("Elija un Boost");
         textoElegirBoost.setFont(Font.font("Tahoma", 10));

@@ -59,27 +59,29 @@ public class VistaMultipleChoice extends VBox{
         titulo.setTextFill(Color.web("black"));
 
 
-        this.getChildren().addAll(nombreJugador,tipo,titulo);
+
         List<String> opcionesPregunta = pregunta.getOpciones();
         EntradaMultipleChoice entradaUsuario = new EntradaMultipleChoice(pregunta,opcionesPregunta,jugador);
 
-        List<CheckBox> checkboxes = new ArrayList<>();
+        List<CheckBox> elementosHabilitados = new ArrayList<>();
         List<CheckBox> opcionesCheckBox = entradaUsuario.getCheckBoxes();
         Collections.shuffle(opcionesCheckBox);
         for (CheckBox checkBox : opcionesCheckBox){
             final CheckBox cbx = checkBox;
-            this.getChildren().addAll(cbx);
-            checkboxes.add(cbx);
+            elementosHabilitados.add(cbx);
         }
 
-//        // timer
-//        Timer timer = new Timer();
-//        Label timerLabel = timer.getLabel();
-//        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
-//        timerLabel.setTextAlignment(TextAlignment.LEFT);
-//        timerLabel.setTextFill(Color.web("red"));
-//        List<CheckBox> elementosHabilitados = checkboxes;
-//        controladorDeTurno.setTimerCheckbox(timer,15,elementosHabilitados);
+        // timer
+        Timer timer = new Timer();
+        Label timerLabel = timer.getLabel();
+        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
+        timerLabel.setTextAlignment(TextAlignment.LEFT);
+        timerLabel.setTextFill(Color.web("red"));
+        controladorDeTurno.setTimerCheckbox(timer,15,elementosHabilitados);
+
+        this.getChildren().addAll(timerLabel, nombreJugador,tipo,titulo);
+        this.getChildren().addAll(elementosHabilitados);
+
 
 
         Label textoElegirBoost = new Label("Elija un Boost");
