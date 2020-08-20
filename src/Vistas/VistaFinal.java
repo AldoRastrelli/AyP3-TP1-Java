@@ -51,7 +51,7 @@ public class VistaFinal extends VBox {
             this.getChildren().addAll(jugadorPuntaje);
         }
         Label subtitulo = new Label("Ganador:");
-        Label ganador = new Label(jugadores.get(1).getNombre());
+        Label ganador = new Label("Ingeniero/a "+jugadores.get(1).getNombre());
 
 
         if(jugadores.get(0).getPuntos() > jugadores.get(1).getPuntos()){
