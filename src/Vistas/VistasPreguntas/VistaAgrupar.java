@@ -27,35 +27,12 @@ import java.util.List;
 import java.util.Map;
 
 
-public class VistaAgrupar extends VBox{
+public class VistaAgrupar extends VistaPregunta{
 
-    static Pane centro;
-    static Canvas fondo;
-
-    public VistaAgrupar(Pregunta pregunta, ControladorDeTurno controladorDeTurno) {
-        super();
-        this.setAlignment(Pos.CENTER);
-        this.setSpacing(20);
-        this.setPadding(new Insets(25));
-        this.setFondo();
+    public VistaAgrupar(Pregunta pregunta, ControladorDeTurno controladorDeTurno){
+        super(pregunta,controladorDeTurno);
 
         Jugador jugador = controladorDeTurno.getactual();
-        Label nombreJugador = new Label("Turno: "+jugador.getNombre());
-        nombreJugador.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
-        nombreJugador.setTextAlignment(TextAlignment.CENTER);
-        nombreJugador.setTextFill(Color.web("blue"));
-        nombreJugador.setStyle("-fx-border-color: blue;");
-        nombreJugador.setPadding(new Insets(5));
-
-        Label tipo = new Label(pregunta.getTipo());
-        tipo.setFont(Font.font("Tahoma", FontWeight.BOLD, 16));
-        tipo.setTextAlignment(TextAlignment.CENTER);
-        tipo.setTextFill(Color.web("grey"));
-
-        Label titulo = new Label(pregunta.getPregunta());
-        titulo.setFont(Font.font("Tahoma", FontWeight.BOLD, 14));
-        titulo.setTextAlignment(TextAlignment.CENTER);
-        titulo.setTextFill(Color.web("black"));
 
         List<String> opcionesPregunta = pregunta.getOpciones();
         EntradaAgrupar entradaUsuario = new EntradaAgrupar(pregunta,opcionesPregunta,jugador);
@@ -67,7 +44,7 @@ public class VistaAgrupar extends VBox{
         // timer
         Timer timer = new Timer();
         Label timerLabel = timer.getLabel();
-        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
+        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
         timerLabel.setTextAlignment(TextAlignment.LEFT);
         timerLabel.setTextFill(Color.web("red"));
         List<GridPane> elementosHabilitados = new ArrayList<>() {{ add(grid);}};
@@ -86,10 +63,8 @@ public class VistaAgrupar extends VBox{
             grid.addRow(i,nombreOpcion,comboBox);
             i++;
         }
-        this.getChildren().addAll(timerLabel,nombreJugador,tipo,titulo);
+        this.getChildren().add(0,timerLabel);
         this.getChildren().addAll(grid);
-
-
 
         Label textoElegirBoost = new Label("Elija un Boost");
         textoElegirBoost.setFont(Font.font("Tahoma", 10));

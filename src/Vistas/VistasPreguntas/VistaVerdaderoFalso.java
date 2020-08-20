@@ -25,36 +25,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class VistaVerdaderoFalso extends VBox{
-
-    static Pane centro;
-    static Canvas fondo;
+public class VistaVerdaderoFalso extends VistaPregunta{
 
     public VistaVerdaderoFalso(Pregunta pregunta, ControladorDeTurno controladorDeTurno) {
-        super();
-        this.setAlignment(Pos.CENTER);
-        this.setSpacing(20);
-        this.setPadding(new Insets(25));
-        this.setFondo();
+        super(pregunta,controladorDeTurno);
 
         Jugador jugador = controladorDeTurno.getactual();
-        Label nombreJugador = new Label("Turno: "+jugador.getNombre());
-        nombreJugador.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
-        nombreJugador.setTextAlignment(TextAlignment.CENTER);
-        nombreJugador.setTextFill(Color.web("blue"));
-        nombreJugador.setStyle("-fx-border-color: blue;");
-        nombreJugador.setPadding(new Insets(5));
-
-        Label tipo = new Label(pregunta.getTipo());
-        tipo.setFont(Font.font("Tahoma", FontWeight.BOLD, 16));
-        tipo.setTextAlignment(TextAlignment.CENTER);
-        tipo.setTextFill(Color.web("grey"));
-
-        Label titulo = new Label(pregunta.getPregunta());
-        titulo.setFont(Font.font("Tahoma", FontWeight.BOLD, 14));
-        titulo.setTextAlignment(TextAlignment.CENTER);
-        titulo.setTextFill(Color.web("black"));
-
 
         List<String> opciones  = pregunta.getOpciones();
         EntradaVerdaderoFalso entradaUsuario = new EntradaVerdaderoFalso(pregunta, opciones,jugador);
@@ -68,31 +44,20 @@ public class VistaVerdaderoFalso extends VBox{
         // timer
         Timer timer = new Timer();
         Label timerLabel = timer.getLabel();
-        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
+        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
         timerLabel.setTextAlignment(TextAlignment.LEFT);
         timerLabel.setTextFill(Color.web("red"));
-        List<ComboBox> elementosHabilitados = new ArrayList<>() {{ add(comboBoxBoost);add(comboBox);}};
+        List<ComboBox> elementosHabilitados = new ArrayList<>() {{ add(comboBox);}};
         controladorDeTurno.setTimerComboBox(timer,15,elementosHabilitados);
 
+        this.getChildren().add(0,timerLabel);
         Boton botonGuardarRespuesta  = new Boton("Guardar Respuesta", new BotonGuardarRespuesta(controladorDeTurno,entradaUsuario));
-        this.getChildren().addAll(timerLabel,nombreJugador,tipo,titulo,comboBox, textoElegirBoost, comboBoxBoost, botonGuardarRespuesta);
+        this.getChildren().addAll(comboBox, textoElegirBoost, comboBoxBoost, botonGuardarRespuesta);
 
         Boton botonMute = Sistema.getBotonMute();
         this.getChildren().addAll(botonMute);
     }
 
-    public void setFondo() {
-        fondo = new Canvas(800, 800);
-        fondo.getGraphicsContext2D().setFill(Color.WHITESMOKE);
-        fondo.getGraphicsContext2D().fillRect(0, 0, 720, 420);
-        centro = new Pane(fondo);
-    }
-
-    public void setBotonGuardarRespuesta(ControladorDeTurno controladorDeTurno, EntradaUsuario entradaUsuario){
-
-        Boton botonGuardarRespuesta  = new Boton("Guardar Respuesta", new BotonGuardarRespuesta(controladorDeTurno,entradaUsuario));
-        this.getChildren().add(4, botonGuardarRespuesta);
-    }
 
 }
 

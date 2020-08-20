@@ -26,42 +26,19 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class VistaOrdenar extends VBox{
-
-    static Pane centro;
-    static Canvas fondo;
+public class VistaOrdenar extends VistaPregunta{
 
     public VistaOrdenar(Pregunta pregunta, ControladorDeTurno controladorDeTurno) {
-        super();
-        this.setAlignment(Pos.CENTER);
-        this.setSpacing(20);
-        this.setPadding(new Insets(25));
-        this.setFondo();
+        super(pregunta,controladorDeTurno);
 
         Jugador jugador = controladorDeTurno.getactual();
-        Label nombreJugador = new Label("Turno: "+jugador.getNombre());
-        nombreJugador.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
-        nombreJugador.setTextAlignment(TextAlignment.CENTER);
-        nombreJugador.setTextFill(Color.web("blue"));
-        nombreJugador.setStyle("-fx-border-color: blue;");
-        nombreJugador.setPadding(new Insets(5));
-
-        Label tipo = new Label(pregunta.getTipo());
-        tipo.setFont(Font.font("Tahoma", FontWeight.BOLD, 10));
-        tipo.setTextAlignment(TextAlignment.CENTER);
-        tipo.setTextFill(Color.web("grey"));
-
-        Label titulo = new Label(pregunta.getPregunta());
-        titulo.setFont(Font.font("Tahoma", FontWeight.BOLD, 14));
-        titulo.setTextAlignment(TextAlignment.CENTER);
-        titulo.setTextFill(Color.web("black"));
 
         List<String> opcionesDesordenadas = pregunta.getOpciones();
         Collections.shuffle(opcionesDesordenadas);
         Label opciones = new Label(opcionesDesordenadas.toString());
-        titulo.setFont(Font.font("Tahoma", FontWeight.BOLD, 16));
-        titulo.setTextAlignment(TextAlignment.CENTER);
-        titulo.setTextFill(Color.web("black"));
+        opciones.setFont(Font.font("Tahoma", FontWeight.BOLD, 12));
+        opciones.setTextAlignment(TextAlignment.CENTER);
+        opciones.setTextFill(Color.web("black"));
 
         List<String> opcionesPregunta = pregunta.getOpciones();
         EntradaOrdenar entradaUsuario = new EntradaOrdenar(pregunta,opcionesPregunta,jugador);
@@ -77,12 +54,13 @@ public class VistaOrdenar extends VBox{
         // timer
         Timer timer = new Timer();
         Label timerLabel = timer.getLabel();
-        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
+        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
         timerLabel.setTextAlignment(TextAlignment.LEFT);
         timerLabel.setTextFill(Color.web("red"));
         controladorDeTurno.setTimerComboBox(timer,25,elementosHabilitados);
 
-        this.getChildren().addAll(timerLabel, nombreJugador,tipo,titulo,opciones);
+        this.getChildren().add(0,timerLabel);
+        this.getChildren().addAll(opciones);
         this.getChildren().addAll(elementosHabilitados);
 
         Label textoElegirBoost = new Label("Elija un Boost");

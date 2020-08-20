@@ -3,7 +3,7 @@ package Controladores.Botones;
 import Controladores.ControladorDeTurno;
 import Controladores.EntradasUsuario.EntradaUsuario;
 import Controladores.Sistema;
-import Vistas.VistasPreguntas.VistaPuntajes;
+import Vistas.VistaPuntajes;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;

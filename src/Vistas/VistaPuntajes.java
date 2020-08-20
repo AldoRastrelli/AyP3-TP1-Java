@@ -1,4 +1,4 @@
-package Vistas.VistasPreguntas;
+package Vistas;
 
 import Controladores.Botones.BotonVerResultados;
 import Controladores.ControladorDeTurno;

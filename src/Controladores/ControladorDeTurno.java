@@ -85,17 +85,11 @@ public class ControladorDeTurno {
         return boostUsado.get(nombreJugador);
     }
 
-
-    public void setTimerComboBox(Timer timer, int duracion, List<ComboBox> elementosHabilitados){
-        var timeline = setTimer(timer,duracion);
-        timeline.play();
-        timeline.setOnFinished(evento -> deshabilitarComboBox(elementosHabilitados));
-    }
-
     public Timeline setTimer(Timer timer, int duracion){
 
         var label = timer.getLabel();
-        label.setText(String.valueOf(duracion));
+        label.setText("COMIENZA");
+//        label.setText(String.valueOf(duracion));
 
         Timeline timeline = new Timeline();
         for(int i = duracion; i >=0 ; i--){
@@ -106,6 +100,12 @@ public class ControladorDeTurno {
         }
 
         return timeline;
+    }
+
+    public void setTimerComboBox(Timer timer, int duracion, List<ComboBox> elementosHabilitados){
+        var timeline = setTimer(timer,duracion);
+        timeline.play();
+        timeline.setOnFinished(evento -> deshabilitarComboBox(elementosHabilitados));
     }
 
     public void deshabilitarComboBox(List<ComboBox> elementos){
