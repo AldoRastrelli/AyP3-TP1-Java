@@ -88,8 +88,7 @@ public class ControladorDeTurno {
     public Timeline setTimer(Timer timer, int duracion){
 
         var label = timer.getLabel();
-        label.setText("COMIENZA");
-//        label.setText(String.valueOf(duracion));
+        label.setText(String.valueOf(duracion));
 
         Timeline timeline = new Timeline();
         for(int i = duracion; i >=0 ; i--){

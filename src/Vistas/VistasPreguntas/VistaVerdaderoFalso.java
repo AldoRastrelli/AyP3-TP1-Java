@@ -44,6 +44,7 @@ public class VistaVerdaderoFalso extends VistaPregunta{
         // timer
         Timer timer = new Timer();
         Label timerLabel = timer.getLabel();
+<<<<<<< Updated upstream
         timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
         timerLabel.setTextAlignment(TextAlignment.LEFT);
         timerLabel.setTextFill(Color.web("red"));
@@ -53,6 +54,16 @@ public class VistaVerdaderoFalso extends VistaPregunta{
         this.getChildren().add(0,timerLabel);
         Boton botonGuardarRespuesta  = new Boton("Guardar Respuesta", new BotonGuardarRespuesta(controladorDeTurno,entradaUsuario));
         this.getChildren().addAll(comboBox, textoElegirBoost, comboBoxBoost, botonGuardarRespuesta);
+=======
+        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
+        timerLabel.setTextAlignment(TextAlignment.LEFT);
+        timerLabel.setTextFill(Color.web("red"));
+        List<ComboBox> elementosHabilitados = new ArrayList<>() {{ add(comboBoxBoost);add(comboBox);}};
+        controladorDeTurno.setTimer(timer,15,elementosHabilitados);
+
+        Boton botonGuardarRespuesta  = new Boton("Guardar Respuesta", new BotonGuardarRespuesta(controladorDeTurno,entradaUsuario));
+        this.getChildren().addAll(timerLabel,nombreJugador,tipo,titulo,comboBox, textoElegirBoost, comboBoxBoost, botonGuardarRespuesta);
+>>>>>>> Stashed changes
 
         Boton botonMute = Sistema.getBotonMute();
         this.getChildren().addAll(botonMute);
