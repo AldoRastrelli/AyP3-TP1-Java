@@ -5,6 +5,7 @@ import Controladores.ControladorDeTurno;
 import Controladores.EntradasUsuario.EntradaOrdenar;
 import Controladores.EntradasUsuario.EntradaUsuario;
 import Controladores.Sistema;
+import Controladores.Timer;
 import Vistas.Boton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,6 +21,7 @@ import javafx.scene.text.TextAlignment;
 import model.Jugador;
 import model.Preguntas.Pregunta;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,16 +63,27 @@ public class VistaOrdenar extends VBox{
         titulo.setTextAlignment(TextAlignment.CENTER);
         titulo.setTextFill(Color.web("black"));
 
-        this.getChildren().addAll(nombreJugador,tipo,titulo,opciones);
-
         List<String> opcionesPregunta = pregunta.getOpciones();
         EntradaOrdenar entradaUsuario = new EntradaOrdenar(pregunta,opcionesPregunta,jugador);
+
+        List<ComboBox> elementosHabilitados = new ArrayList<>();
+        this.getChildren().addAll(nombreJugador,tipo,titulo,opciones);
 
         List<ComboBox> opcionesComboBox = entradaUsuario.getComboBoxes();
         for (ComboBox opcion : opcionesComboBox){
             final ComboBox cbx = opcion;
             this.getChildren().addAll(cbx);
+            elementosHabilitados.add(cbx);
         }
+
+        // timer
+//        Timer timer = new Timer();
+//        Label timerLabel = timer.getLabel();
+//        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
+//        timerLabel.setTextAlignment(TextAlignment.LEFT);
+//        timerLabel.setTextFill(Color.web("red"));
+//        controladorDeTurno.setTimerComboBox(timer,25,elementosHabilitados);
+//
 
         Label textoElegirBoost = new Label("Elija un Boost");
         textoElegirBoost.setFont(Font.font("Tahoma", 10));

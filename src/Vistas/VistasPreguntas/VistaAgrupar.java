@@ -5,6 +5,7 @@ import Controladores.ControladorDeTurno;
 import Controladores.EntradasUsuario.EntradaAgrupar;
 import Controladores.EntradasUsuario.EntradaUsuario;
 import Controladores.Sistema;
+import Controladores.Timer;
 import Vistas.Boton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,6 +22,7 @@ import javafx.scene.text.TextAlignment;
 import model.Jugador;
 import model.Preguntas.Pregunta;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -55,14 +57,22 @@ public class VistaAgrupar extends VBox{
         titulo.setTextAlignment(TextAlignment.CENTER);
         titulo.setTextFill(Color.web("black"));
 
-        this.getChildren().addAll(nombreJugador,tipo,titulo);
-
         List<String> opcionesPregunta = pregunta.getOpciones();
         EntradaAgrupar entradaUsuario = new EntradaAgrupar(pregunta,opcionesPregunta,jugador);
 
         Map<String,ComboBox> opcionesComboBox = entradaUsuario.getOpciones();
 
         GridPane grid = new GridPane();
+
+        // timer
+        Timer timer = new Timer();
+        Label timerLabel = timer.getLabel();
+        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
+        timerLabel.setTextAlignment(TextAlignment.LEFT);
+        timerLabel.setTextFill(Color.web("red"));
+        List<GridPane> elementosHabilitados = new ArrayList<>() {{ add(grid);}};
+        controladorDeTurno.setTimerGrid(timer,20,elementosHabilitados);
+
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(50);
         grid.setVgap(10);
@@ -76,7 +86,10 @@ public class VistaAgrupar extends VBox{
             grid.addRow(i,nombreOpcion,comboBox);
             i++;
         }
+        this.getChildren().addAll(timerLabel,nombreJugador,tipo,titulo);
         this.getChildren().addAll(grid);
+
+
 
         Label textoElegirBoost = new Label("Elija un Boost");
         textoElegirBoost.setFont(Font.font("Tahoma", 10));

@@ -5,6 +5,7 @@ import Controladores.ControladorDeTurno;
 import Controladores.EntradasUsuario.EntradaMultipleChoice;
 import Controladores.EntradasUsuario.EntradaUsuario;
 import Controladores.Sistema;
+import Controladores.Timer;
 import Vistas.Boton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,6 +13,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -21,6 +23,7 @@ import javafx.scene.text.TextAlignment;
 import model.Jugador;
 import model.Preguntas.Pregunta;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -55,17 +58,29 @@ public class VistaMultipleChoice extends VBox{
         titulo.setTextAlignment(TextAlignment.CENTER);
         titulo.setTextFill(Color.web("black"));
 
-        this.getChildren().addAll(nombreJugador,tipo,titulo);
 
+        this.getChildren().addAll(nombreJugador,tipo,titulo);
         List<String> opcionesPregunta = pregunta.getOpciones();
         EntradaMultipleChoice entradaUsuario = new EntradaMultipleChoice(pregunta,opcionesPregunta,jugador);
 
+        List<CheckBox> checkboxes = new ArrayList<>();
         List<CheckBox> opcionesCheckBox = entradaUsuario.getCheckBoxes();
         Collections.shuffle(opcionesCheckBox);
         for (CheckBox checkBox : opcionesCheckBox){
             final CheckBox cbx = checkBox;
             this.getChildren().addAll(cbx);
+            checkboxes.add(cbx);
         }
+
+//        // timer
+//        Timer timer = new Timer();
+//        Label timerLabel = timer.getLabel();
+//        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
+//        timerLabel.setTextAlignment(TextAlignment.LEFT);
+//        timerLabel.setTextFill(Color.web("red"));
+//        List<CheckBox> elementosHabilitados = checkboxes;
+//        controladorDeTurno.setTimerCheckbox(timer,15,elementosHabilitados);
+
 
         Label textoElegirBoost = new Label("Elija un Boost");
         textoElegirBoost.setFont(Font.font("Tahoma", 10));

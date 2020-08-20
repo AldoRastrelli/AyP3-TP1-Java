@@ -24,7 +24,7 @@ public class Main extends Application {
         var juego = new Juego();
 
         var sistema = new Sistema(primaryStage,juego);
-        //sistema.musicaFondo();
+        sistema.musicaFondo();
 
 
         primaryStage.setTitle("Cursando por un Sueño");
@@ -39,10 +39,10 @@ public class Main extends Application {
         contenedorEntrada.setBotonJugar(primaryStage, escenaPresentacion);
         primaryStage.setScene(escenaBienvenidos);
 
-       /* primaryStage.setWidth(700);
+        primaryStage.setWidth(700);
         primaryStage.setHeight(700);
-        primaryStage.setResizable(false);*/
-        primaryStage.sizeToScene();
+        primaryStage.setResizable(false);
+//        primaryStage.sizeToScene();
         primaryStage.show();
 
 

@@ -5,6 +5,7 @@ import Controladores.ControladorDeTurno;
 import Controladores.EntradasUsuario.EntradaUsuario;
 import Controladores.EntradasUsuario.EntradaVerdaderoFalso;
 import Controladores.Sistema;
+import Controladores.Timer;
 import Vistas.Boton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,6 +21,7 @@ import javafx.scene.text.TextAlignment;
 import model.Jugador;
 import model.Preguntas.Pregunta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -63,8 +65,17 @@ public class VistaVerdaderoFalso extends VBox{
         textoElegirBoost.setTextFill(Color.web("black"));
         final ComboBox comboBoxBoost = entradaUsuario.getBoosts();
 
+        // timer
+        Timer timer = new Timer();
+        Label timerLabel = timer.getLabel();
+        timerLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
+        timerLabel.setTextAlignment(TextAlignment.LEFT);
+        timerLabel.setTextFill(Color.web("red"));
+        List<ComboBox> elementosHabilitados = new ArrayList<>() {{ add(comboBoxBoost);add(comboBox);}};
+        controladorDeTurno.setTimerComboBox(timer,15,elementosHabilitados);
+
         Boton botonGuardarRespuesta  = new Boton("Guardar Respuesta", new BotonGuardarRespuesta(controladorDeTurno,entradaUsuario));
-        this.getChildren().addAll(nombreJugador,tipo,titulo,comboBox, textoElegirBoost, comboBoxBoost, botonGuardarRespuesta);
+        this.getChildren().addAll(timerLabel,nombreJugador,tipo,titulo,comboBox, textoElegirBoost, comboBoxBoost, botonGuardarRespuesta);
 
         Boton botonMute = Sistema.getBotonMute();
         this.getChildren().addAll(botonMute);
