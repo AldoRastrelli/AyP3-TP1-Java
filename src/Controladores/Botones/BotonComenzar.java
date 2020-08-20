@@ -18,9 +18,8 @@ public class BotonComenzar implements EventHandler<ActionEvent> {
         Juego juego = Sistema.juego();
         ControladorDeTurno controladorDeTurno = new ControladorDeTurno(juego, juego.getJugadores());
 
-        Pregunta preguntaActual = juego.getPreguntas().remove(0);
+        Pregunta preguntaActual = juego.nuevaPreguntaActual();
 
-        juego.guardarPreguntaActual(preguntaActual);
         VBox vista = Sistema.getVista(preguntaActual, controladorDeTurno);
         Scene scene = new Scene(vista);
         Sistema.setPrimaryStage(scene);

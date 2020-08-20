@@ -132,4 +132,10 @@ public class Juego {
     public boolean tienePreguntasDisponibles() {
         return preguntas.size()>0;
     }
+
+    public Pregunta nuevaPreguntaActual(){
+        var pregunta = preguntas.remove(0);
+        guardarPreguntaActual(pregunta);
+        return pregunta;
+    }
 }
