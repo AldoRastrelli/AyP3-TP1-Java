@@ -24,9 +24,7 @@ public abstract class Boost {
         return cantidadDeUsos > 0;
     }
 
-    public boolean esBoostExclusivo(){
-        return nombre.equals("Exclusividad");
-    }
+    public abstract boolean esBoostExclusivo();
 
     public void restarUso(){
         if (!puedeUsarse()){
@@ -45,4 +43,6 @@ public abstract class Boost {
     }
 
     public Integer getCantidadDeUsos(){return cantidadDeUsos;}
+
+    public abstract Boost reemplazaBoostSiNoEsExclusivo();
 }
