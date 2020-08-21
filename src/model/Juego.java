@@ -43,11 +43,14 @@ public class Juego {
             preguntas.forEach( p -> parsePreguntasObject( (JSONObject) p ) );
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Error: " + e);
+            System.exit(1);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error: " + e);
+            System.exit(1);
         } catch (ParseException e) {
-            e.printStackTrace();
+            System.out.println("Error: " + e);
+            System.exit(1);
         }
     }
 
